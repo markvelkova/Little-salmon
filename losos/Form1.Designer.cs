@@ -28,14 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            button_startNewGame = new Button();
+            button_loadOldGame = new Button();
             SuspendLayout();
+            // 
+            // button_startNewGame
+            // 
+            button_startNewGame.Location = new Point(231, 355);
+            button_startNewGame.Margin = new Padding(2, 3, 2, 3);
+            button_startNewGame.Name = "button_startNewGame";
+            button_startNewGame.Size = new Size(118, 31);
+            button_startNewGame.TabIndex = 0;
+            button_startNewGame.Text = "začít novou hru";
+            button_startNewGame.UseVisualStyleBackColor = true;
+            // 
+            // button_loadOldGame
+            // 
+            button_loadOldGame.Location = new Point(231, 407);
+            button_loadOldGame.Name = "button_loadOldGame";
+            button_loadOldGame.Size = new Size(118, 29);
+            button_loadOldGame.TabIndex = 1;
+            button_loadOldGame.Text = "načíst hru";
+            button_loadOldGame.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(9F, 17F);
+            AutoScaleDimensions = new SizeF(6F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(900, 550);
-            Font = new Font("Courier New", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            ClientSize = new Size(600, 582);
+            Controls.Add(button_loadOldGame);
+            Controls.Add(button_startNewGame);
+            Font = new Font("Bahnschrift Condensed", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            Margin = new Padding(2, 3, 2, 3);
             Name = "Form1";
             Text = "losos";
             Load += Form1_Load;
@@ -43,5 +67,8 @@
         }
 
         #endregion
+
+        private Button button_startNewGame;
+        private Button button_loadOldGame;
     }
 }
