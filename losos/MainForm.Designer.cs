@@ -1,6 +1,6 @@
 ﻿namespace losos
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -51,7 +51,7 @@
             button_loadOldGame.Text = "načíst hru";
             button_loadOldGame.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(6F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -60,7 +60,7 @@
             Controls.Add(button_startNewGame);
             Font = new Font("Bahnschrift Condensed", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(2, 3, 2, 3);
-            Name = "Form1";
+            Name = "MainForm";
             Text = "losos";
             Load += Form1_Load;
             ResumeLayout(false);
