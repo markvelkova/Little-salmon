@@ -1,3 +1,5 @@
+using games;
+
 namespace losos
 {
     internal static class Program

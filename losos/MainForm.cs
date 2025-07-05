@@ -1,3 +1,5 @@
+using games;
+
 namespace losos
 {
     public partial class MainForm : Form
@@ -5,7 +7,8 @@ namespace losos
         public MainForm()
         {
             InitializeComponent();
-            ShowIntro();
+            ShowHeadsOrTails(); //only for debug
+            //ShowIntro();
         }
 
 
@@ -18,8 +21,13 @@ namespace losos
 
         private void ShowMain()
         {
-            var main = new UCMain();
+            var main = new UCHeadsOrTails();
             SwitchScreen(main);
+        }
+        private void ShowHeadsOrTails()
+        {
+            var stupid = new UCHeadsOrTails();
+            SwitchScreen(stupid);
         }
 
         private void SwitchScreen(UserControl newControl)
