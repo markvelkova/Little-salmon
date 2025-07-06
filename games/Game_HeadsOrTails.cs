@@ -7,7 +7,7 @@
     
     public static class Game_HeadsOrTails
     {
-        public enum CoinOptions { Heads, Tails };
+        public enum CoinOptions { Empty, Heads, Tails };
         private static Random random = new Random();
         private static int inclinationTowardsHeads = 50; // 0-100, the coin may be unfair, 80 mans 80% chance of heads
         public static CoinOptions FlipTheCoin()

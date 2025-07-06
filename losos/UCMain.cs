@@ -10,19 +10,16 @@ using System.Windows.Forms;
 
 namespace losos
 {
-    public partial class UCIntro : UserControl
+    public partial class UCMain : UserControl
     {
-        public event EventHandler StartNewGameClicked; // here are stacked requests from outside
-
-        public UCIntro()
+        public event EventHandler GamesButtonClicked;
+        public UCMain()
         {
             InitializeComponent();
         }
-        
-
-        private void btnStartNewGame_Click(object sender, EventArgs e)
+        private void button_GamesButton_Click(object sender, EventArgs e)
         {
-            StartNewGameClicked?.Invoke(this, EventArgs.Empty);
+            GamesButtonClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

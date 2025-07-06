@@ -35,6 +35,7 @@
             Button_ResetFairness = new Button();
             Button_Randomize = new Button();
             Label_Result = new Label();
+            button_ReturnButton = new Button();
             ((System.ComponentModel.ISupportInitialize)coinPicture).BeginInit();
             SuspendLayout();
             // 
@@ -105,10 +106,21 @@
             Label_Result.TabIndex = 8;
             Label_Result.Text = "hmm";
             // 
+            // button_ReturnButton
+            // 
+            button_ReturnButton.Location = new Point(353, 3);
+            button_ReturnButton.Name = "button_ReturnButton";
+            button_ReturnButton.Size = new Size(75, 23);
+            button_ReturnButton.TabIndex = 9;
+            button_ReturnButton.Text = "retreat";
+            button_ReturnButton.UseVisualStyleBackColor = true;
+            button_ReturnButton.Click += returnButton_Click;
+            // 
             // UCHeadsOrTails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(button_ReturnButton);
             Controls.Add(Label_Result);
             Controls.Add(Button_Randomize);
             Controls.Add(Button_ResetFairness);
@@ -132,5 +144,6 @@
         private Button Button_ResetFairness;
         private Button Button_Randomize;
         private Label Label_Result;
+        private Button button_ReturnButton;
     }
 }
