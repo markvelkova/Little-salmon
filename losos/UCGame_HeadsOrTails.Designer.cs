@@ -1,6 +1,6 @@
 ﻿namespace losos
 {
-    partial class UCHeadsOrTails
+    partial class UCGame_HeadsOrTails
     {
         /// <summary> 
         /// Vyžaduje se proměnná návrháře.

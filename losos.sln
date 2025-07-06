@@ -5,7 +5,9 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "losos", "losos\losos.csproj", "{4C302834-2236-48C3-92F8-292BCF365360}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "games", "games\games.csproj", "{4DC86F75-08FE-404A-8867-ADE1A1FFFCC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "games", "games\games.csproj", "{4DC86F75-08FE-404A-8867-ADE1A1FFFCC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pet", "pet\pet.csproj", "{ABA44E8A-1E94-487F-A13C-59FF409D181C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4DC86F75-08FE-404A-8867-ADE1A1FFFCC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC86F75-08FE-404A-8867-ADE1A1FFFCC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DC86F75-08FE-404A-8867-ADE1A1FFFCC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABA44E8A-1E94-487F-A13C-59FF409D181C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA44E8A-1E94-487F-A13C-59FF409D181C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA44E8A-1E94-487F-A13C-59FF409D181C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA44E8A-1E94-487F-A13C-59FF409D181C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

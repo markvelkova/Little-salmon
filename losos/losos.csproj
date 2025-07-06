@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\games\games.csproj" />
+    <ProjectReference Include="..\pet\pet.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +30,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="UCHeadsOrTails.cs">
+    <Compile Update="UCGame_HeadsOrTails.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

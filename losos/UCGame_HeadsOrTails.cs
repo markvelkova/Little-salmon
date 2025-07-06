@@ -21,7 +21,7 @@ namespace losos
     /// 
     /// player can choose between a fair coin and a randomly unfair coin 
     /// </summary>
-    public partial class UCHeadsOrTails : UserControl
+    public partial class UCGame_HeadsOrTails : UserControl
     {
         private string _labelIndifferent = "hmm"; // default label value
         private string[] _labelsVictorious = { 
@@ -41,7 +41,7 @@ namespace losos
         private Random _random; // for choosing the label text option
         private int _iconWidth { get; } = 150; // icon width, must correspond with the bitmap given
         private int _coinSpeed = 200; // duration of flipping in ms
-        public UCHeadsOrTails()
+        public UCGame_HeadsOrTails()
         {
             InitializeComponent();
             coinPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("coinIcons.png")), _iconWidth);

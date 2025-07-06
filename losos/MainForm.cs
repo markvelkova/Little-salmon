@@ -1,15 +1,18 @@
 using games;
+using pet;
 
 namespace losos
 {
     public partial class MainForm : Form
     {
+        // pet is STATIC therefore only one at time
+        // can be reached from anywhere as MainForm.Pet
+        public static Pet pet = new();
         public MainForm()
         {
             InitializeComponent();
             ShowIntro();
         }
-
 
         private void ShowIntro()
         {
@@ -17,12 +20,13 @@ namespace losos
             intro.StartNewGameClicked += (s, e) => ShowMain();
             SwitchScreen(intro);
         }
+
         /// <summary>
         /// from the "Main" screen the player can choose from following:
         /// games
-        /// feed 
-        /// MISSING
-        /// and see stats
+        /// feed MISSING
+        /// sleep MISSING
+        /// wash MISSING
         /// </summary>
         private void ShowMain()
         {
@@ -45,7 +49,7 @@ namespace losos
         #region individual games Show...
         private void ShowHeadsOrTails()
         {
-            var headsOrTails = new UCHeadsOrTails();
+            var headsOrTails = new UCGame_HeadsOrTails();
             headsOrTails.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(headsOrTails);
         }
