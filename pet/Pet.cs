@@ -1,4 +1,7 @@
-﻿namespace pet
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace pet
 {
     /// <summary>
     /// Pet is the key compomenent
@@ -10,19 +13,26 @@
     {
         public string Name { get; set; }
         public int FoodCount { get; set; }
-        private int HungerMeter { get; set; }
+        [JsonInclude]
+        internal int HungerMeter { get; set; }
         // optimal value is 100, more can be, but is bad
-
-        private int EnergyMeter { get; set; }
+        [JsonInclude]
+        internal int EnergyMeter { get; set; }
         // full is 100, cannot be more
-        private int MoodMeter { get; set; }
+        [JsonInclude]
+        internal int MoodMeter { get; set; }
         // full is 100, cannot be more
+        
+        // feeding parameters
         public enum FeedingResult { Fell, Successful, NoFood }
         private int _foodFellChance = 5;
         private int _minFoodFed = 1;
         private int _maxFoodFed = 4;
         private Random rnd = new Random();
-
+        
+        // life parameters
+        public enum LifeStates { Awake, Asleep, Dead };
+        public LifeStates LifeState { get; set; }
 
         //creates new pet
         public Pet() 
@@ -32,10 +42,35 @@
             HungerMeter = 50;
             EnergyMeter = 100;
             MoodMeter = 20;
+            LifeState = LifeStates.Awake;
         }
 
         //creates pet from file
         public Pet(string filename) => throw new NotImplementedException();
+
+        #region serialization and deserialization
+        public string SerializePet()
+        {
+            string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+            return json;
+        }
+
+        public static Pet DeserializeFrom(string json)
+        {
+            Pet pet;
+            try
+            {
+                pet = JsonSerializer.Deserialize<Pet>(json);
+            }
+            catch (Exception e)
+            {
+                throw new PetDeserializationException("Other invalid json.", e);
+            }
+            if (pet == null)
+                throw new PetDeserializationException("Empty json.");
+            return pet;
+        }
+        #endregion
 
         #region feeding
         public FeedingResult TryFeed()
@@ -53,5 +88,15 @@
             HungerMeter += amount;
         }
         #endregion
+
+        public void CheckIfShouldLive()
+        {
+             
+        }
+
+        public void Update() 
+        {
+
+        }
     }
 }

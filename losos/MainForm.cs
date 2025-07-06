@@ -12,12 +12,14 @@ namespace losos
         {
             InitializeComponent();
             ShowIntro();
+            
         }
 
         private void ShowIntro()
         {
             var intro = new UCIntro();
             intro.StartNewGameClicked += (s, e) => ShowMain();
+            // intro. NACTI PREDCHOZI HRU DODELAT
             SwitchScreen(intro);
         }
 
