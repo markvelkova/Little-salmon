@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using games;
+using System.Diagnostics.Eventing.Reader;
 
 namespace losos
 {
@@ -15,22 +17,20 @@ namespace losos
     {
         private Game_HeadsOrTails.CoinOptions _coinResult;
         private Game_HeadsOrTails.CoinOptions _coinGuess;
+        private Bitmap[] coinPictures;
         public UCHeadsOrTails()
         {
             InitializeComponent();
-            coinPicture.Image = Properties.Resources.emptyCoin; // tady se musi pridat spravne do resources
+            coinPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("coinIcons.png")), 150);
+            coinPicture.Image = coinPictures[0];
         }
 
-        public event EventHandler StupidButtonClicked;
-
-        private void button_StupidButton_Click(object sender, EventArgs e)
+        private void ShowFlipResult()
         {
-            StupidButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void ShowFlipResult(Game_HeadsOrTails.CoinOptions result)
-        {
-
+            if (_coinResult == Game_HeadsOrTails.CoinOptions.Heads)
+                coinPicture.Image = coinPictures[1];
+            else
+                coinPicture.Image = coinPictures[2];
         }
         private void HandleGoodGuess()
         {
@@ -42,31 +42,32 @@ namespace losos
             MessageBox.Show("Wrong guess, try again!");
             // give nothing
         }
-        private void Evaluate(Game_HeadsOrTails.CoinOptions result, Game_HeadsOrTails.CoinOptions guess)
+        private void Evaluate()
         {
-            if (result == guess)
+            if (_coinResult == _coinGuess)
                 HandleGoodGuess();
             else
                 HandleBadGuess();
         }
 
-        private void button_HeadsBet_Click(object sender, EventArgs e)
+        private void button_Click(object sender, EventArgs e)
         {
-            _coinGuess = Game_HeadsOrTails.CoinOptions.Heads;
-            PerformTurn();
-        }
-        private void button_TailsBet_Click(object sender, EventArgs e)
-        {
-            _coinGuess = Game_HeadsOrTails.CoinOptions.Tails;
-            PerformTurn();
+            if (sender == Button_HeadsBet)
+                _coinGuess = Game_HeadsOrTails.CoinOptions.Heads;
+            else if (sender == Button_TailsBet)
+                _coinGuess = Game_HeadsOrTails.CoinOptions.Tails;
+            bool shouldEvaluate = sender != Button_JustFlip;
+            PerformTurn(shouldEvaluate);
         }
 
-        private void PerformTurn()
+        private async void PerformTurn(bool shouldEvaluate)
         {
+            coinPicture.Image = coinPictures[0]; // interstate
             _coinResult = Game_HeadsOrTails.FlipTheCoin();
-            ShowFlipResult(_coinResult);
-            Evaluate(_coinResult, _coinGuess);
+            await Task.Delay(500);
+            ShowFlipResult();
+            if (shouldEvaluate)
+                Evaluate();
         }
-
     }
 }

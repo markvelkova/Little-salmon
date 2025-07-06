@@ -10,6 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\coinIcons.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\coinIcons.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\games\games.csproj" />
   </ItemGroup>
 

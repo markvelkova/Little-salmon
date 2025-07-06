@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCHeadsOrTails));
             Button_HeadsBet = new Button();
             Button_TailsBet = new Button();
             coinPicture = new PictureBox();
+            Button_JustFlip = new Button();
             ((System.ComponentModel.ISupportInitialize)coinPicture).BeginInit();
             SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             Button_HeadsBet.TabIndex = 2;
             Button_HeadsBet.Text = "Heads";
             Button_HeadsBet.UseVisualStyleBackColor = true;
-            Button_HeadsBet.Click += button_HeadsBet_Click;
+            Button_HeadsBet.Click += button_Click;
             // 
             // Button_TailsBet
             // 
@@ -53,21 +53,31 @@
             Button_TailsBet.TabIndex = 3;
             Button_TailsBet.Text = "Tails";
             Button_TailsBet.UseVisualStyleBackColor = true;
-            Button_TailsBet.Click += button_TailsBet_Click;
+            Button_TailsBet.Click += button_Click;
             // 
             // coinPicture
             // 
-            coinPicture.Image = (Image)resources.GetObject("coinPicture.Image");
             coinPicture.Location = new Point(133, 57);
             coinPicture.Name = "coinPicture";
             coinPicture.Size = new Size(150, 150);
             coinPicture.TabIndex = 4;
             coinPicture.TabStop = false;
             // 
+            // Button_JustFlip
+            // 
+            Button_JustFlip.Location = new Point(169, 232);
+            Button_JustFlip.Name = "Button_JustFlip";
+            Button_JustFlip.Size = new Size(75, 23);
+            Button_JustFlip.TabIndex = 5;
+            Button_JustFlip.Text = "just flip";
+            Button_JustFlip.UseVisualStyleBackColor = true;
+            Button_JustFlip.Click += button_Click;
+            // 
             // UCHeadsOrTails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Button_JustFlip);
             Controls.Add(coinPicture);
             Controls.Add(Button_TailsBet);
             Controls.Add(Button_HeadsBet);
@@ -82,5 +92,6 @@
         private Button Button_HeadsBet;
         private Button Button_TailsBet;
         private PictureBox coinPicture;
+        private Button Button_JustFlip;
     }
 }
