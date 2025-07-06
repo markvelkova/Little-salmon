@@ -15,6 +15,18 @@ namespace losos
 {
     public partial class UCHeadsOrTails : UserControl
     {
+        private string _labelIndifferent = "hmm";
+        private string[] _labelVictorious = { 
+            "YEAH!", 
+            "that's how it should be done", 
+            "great!", 
+            "are you a wizard?" };
+        private string[] _labelDefeated ={
+            "oh...",
+            "that wasn't too good",
+            "ehh",
+            "somebody's gonna be pooooor"
+            };
         private Game_HeadsOrTails.CoinOptions _coinResult;
         private Game_HeadsOrTails.CoinOptions _coinGuess;
         private Bitmap[] coinPictures;
@@ -35,6 +47,7 @@ namespace losos
         private void HandleGoodGuess()
         {
             MessageBox.Show("You guessed it right!");
+
             // give money / food
         }
         private void HandleBadGuess()
@@ -50,7 +63,7 @@ namespace losos
                 HandleBadGuess();
         }
 
-        private void button_Click(object sender, EventArgs e)
+        private void playButton_Click(object sender, EventArgs e)
         {
             if (sender == Button_HeadsBet)
                 _coinGuess = Game_HeadsOrTails.CoinOptions.Heads;
@@ -68,6 +81,15 @@ namespace losos
             ShowFlipResult();
             if (shouldEvaluate)
                 Evaluate();
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            Game_HeadsOrTails.ResetFairness();
+        }
+        private void randomizeButton_Click(object sender, EventArgs e)
+        {
+            Game_HeadsOrTails.SetRandomFairness();
         }
     }
 }

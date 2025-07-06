@@ -21,5 +21,13 @@
             else
                 return CoinOptions.Tails;
         }
+        public static void ResetFairness()
+        {
+            inclinationTowardsHeads = 50;
+        }
+        public static void SetRandomFairness()
+        {
+            inclinationTowardsHeads = random.Next(0, 100);
+        }
     }
 }
