@@ -30,6 +30,9 @@
         {
             label1 = new Label();
             Button_SelectGame = new Button();
+            ProgressBar_Energy = new ProgressBar();
+            ProgressBar_Hunger = new ProgressBar();
+            ProgressBar_Mood = new ProgressBar();
             SuspendLayout();
             // 
             // label1
@@ -51,10 +54,34 @@
             Button_SelectGame.UseVisualStyleBackColor = true;
             Button_SelectGame.Click += button_GamesButton_Click;
             // 
+            // ProgressBar_Energy
+            // 
+            ProgressBar_Energy.Location = new Point(14, 49);
+            ProgressBar_Energy.Name = "ProgressBar_Energy";
+            ProgressBar_Energy.Size = new Size(100, 23);
+            ProgressBar_Energy.TabIndex = 2;
+            // 
+            // ProgressBar_Hunger
+            // 
+            ProgressBar_Hunger.Location = new Point(14, 19);
+            ProgressBar_Hunger.Name = "ProgressBar_Hunger";
+            ProgressBar_Hunger.Size = new Size(100, 23);
+            ProgressBar_Hunger.TabIndex = 3;
+            // 
+            // ProgressBar_Mood
+            // 
+            ProgressBar_Mood.Location = new Point(14, 78);
+            ProgressBar_Mood.Name = "ProgressBar_Mood";
+            ProgressBar_Mood.Size = new Size(100, 23);
+            ProgressBar_Mood.TabIndex = 4;
+            // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(ProgressBar_Mood);
+            Controls.Add(ProgressBar_Hunger);
+            Controls.Add(ProgressBar_Energy);
             Controls.Add(Button_SelectGame);
             Controls.Add(label1);
             Name = "UCMain";
@@ -67,5 +94,8 @@
 
         private Label label1;
         private Button Button_SelectGame;
+        private ProgressBar ProgressBar_Energy;
+        private ProgressBar ProgressBar_Hunger;
+        private ProgressBar ProgressBar_Mood;
     }
 }

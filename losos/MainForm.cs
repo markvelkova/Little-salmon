@@ -5,21 +5,25 @@ namespace losos
 {
     public partial class MainForm : Form
     {
-        // pet is STATIC therefore only one at time
+        // thePet is STATIC therefore only one at time
         // can be reached from anywhere as MainForm.Pet
-        public static Pet pet = new();
+        public static Pet thePet = new();
         public MainForm()
         {
             InitializeComponent();
             ShowIntro();
-            
+            MessageBox.Show(thePet.SerializePet());
         }
 
+        /// <summary>
+        /// from the "Intro" screen the player can choose to start a new game or load an existing game
+        /// existing game must be a valid json of the right format (intended to be obtained from the very game)
+        /// </summary>
         private void ShowIntro()
         {
             var intro = new UCIntro();
             intro.StartNewGameClicked += (s, e) => ShowMain();
-            // intro. NACTI PREDCHOZI HRU DODELAT
+            intro.LoadGameClicked += (s, e) => ShowMain();
             SwitchScreen(intro);
         }
 

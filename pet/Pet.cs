@@ -13,14 +13,12 @@ namespace pet
     {
         public string Name { get; set; }
         public int FoodCount { get; set; }
-        [JsonInclude]
-        internal int HungerMeter { get; set; }
-        // optimal value is 100, more can be, but is bad
-        [JsonInclude]
-        internal int EnergyMeter { get; set; }
+        public int HungerMeter { get; private set; }
+        // optimal value is 100, more cannot be rached, results in mood drop
+        public int EnergyMeter { get; private set; }
         // full is 100, cannot be more
-        [JsonInclude]
-        internal int MoodMeter { get; set; }
+        //[JsonInclude]
+        public int MoodMeter { get; private set; }
         // full is 100, cannot be more
         
         // feeding parameters
@@ -64,10 +62,10 @@ namespace pet
             }
             catch (Exception e)
             {
-                throw new PetDeserializationException("Other invalid json.", e);
+                throw new PetDeserializationException("Invalid json given.", e);
             }
             if (pet == null)
-                throw new PetDeserializationException("Empty json.");
+                throw new PetDeserializationException("Empty json given.");
             return pet;
         }
         #endregion

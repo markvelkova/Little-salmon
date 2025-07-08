@@ -7,22 +7,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using pet;
 
 namespace losos
 {
     public partial class UCIntro : UserControl
     {
-        public event EventHandler StartNewGameClicked; // here are stacked requests from outside
+        
 
         public UCIntro()
         {
             InitializeComponent();
         }
-        
 
+        public event EventHandler StartNewGameClicked; // here are stacked requests from outside
         private void btnStartNewGame_Click(object sender, EventArgs e)
         {
             StartNewGameClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event EventHandler LoadGameClicked; 
+        private void button_LoadGame_Click(object sender, EventArgs e)
+        {
+
+            string fileContent; 
+            try
+            {
+                fileContent = OpenFile();
+                MainForm.thePet = Pet.DeserializeFrom(fileContent);
+                LoadGameClicked?.Invoke(this, EventArgs.Empty);
+            }
+            catch (FileFormatException ex)
+            {
+                MessageBox.Show("Error opening file: " + ex.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (PetDeserializationException ex)
+            {
+                MessageBox.Show("Error loading game: " + ex.Message, "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string OpenFile()
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|JSON files (*.json)|*.json|All files (*.*)|*.*";
+                openFileDialog.Title = "Open Game File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Read the file content
+                    string filePath = openFileDialog.FileName;
+                    string content = File.ReadAllText(filePath);
+                    return content;
+                }
+                else 
+                    throw new FileFormatException("No file selected or file format is incorrect.");
+            }
         }
     }
 }

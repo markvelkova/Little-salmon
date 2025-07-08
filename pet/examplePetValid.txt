@@ -1,0 +1,8 @@
+{
+"Name": "Artur",
+"FoodCount": 100,
+"HungerMeter": 60,
+"EnergyMeter": 80,
+"MoodMeter": 50,
+"LifeState": 0
+}
