@@ -34,7 +34,7 @@ namespace losos
             try
             {
                 fileContent = OpenFile();
-                MainForm.thePet = Pet.DeserializeFrom(fileContent);
+                MainForm.thePet = Pet.DeserializeFromJson(fileContent);
                 LoadGameClicked?.Invoke(this, EventArgs.Empty);
             }
             catch (FileFormatException ex)

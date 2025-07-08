@@ -1,5 +1,6 @@
 using games;
 using pet;
+using stats;
 
 namespace losos
 {
@@ -8,6 +9,7 @@ namespace losos
         // thePet is STATIC therefore only one at time
         // can be reached from anywhere as MainForm.Pet
         public static Pet thePet = new();
+        public static Stats theStats = new();
         public MainForm()
         {
             InitializeComponent();

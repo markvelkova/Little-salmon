@@ -53,7 +53,7 @@ namespace pet
             return json;
         }
 
-        public static Pet DeserializeFrom(string json)
+        public static Pet DeserializeFromJson(string json)
         {
             Pet pet;
             try

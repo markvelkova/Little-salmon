@@ -6,7 +6,9 @@
         private Dictionary<string, int> DefaultStatsDict = new Dictionary<string, int>
         {
             { "Coins flipped", 0 },
-            { "Lucky coin guesses", 0 }
+            { "Lucky coin guesses", 0 },
+            { "Food units fed", 0 },
+            { "Food units fell", 0 }
         };
         public Stats()
         {
