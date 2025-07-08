@@ -33,12 +33,15 @@
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(5F, 14F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(624, 601);
-            Font = new Font("Bahnschrift Condensed", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            DoubleBuffered = true;
+            Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 3, 2, 3);
+            Margin = new Padding(4);
             MinimumSize = new Size(640, 640);
             Name = "MainForm";
             Text = "losos";

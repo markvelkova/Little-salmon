@@ -17,6 +17,7 @@ namespace losos
         public UCIntro()
         {
             InitializeComponent();
+            this.BackColor = MainForm.MyDefaultBackColor;
         }
 
         #region start new game

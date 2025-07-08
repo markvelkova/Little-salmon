@@ -10,12 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\background.png" />
     <None Remove="Resources\basicFish.ico" />
     <None Remove="Resources\basicFish.png" />
     <None Remove="Resources\coinIcons.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\basicFish.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

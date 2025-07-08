@@ -18,6 +18,11 @@ namespace losos
         }
 
         /// <summary>
+        /// basic colour, kinda blue, for background
+        /// </summary>
+        public static Color MyDefaultBackColor => Color.FromArgb(0, 162, 232);
+
+        /// <summary>
         /// from the "Intro" screen the player can choose to start a new game or load an existing game
         /// existing game must be a valid json of the right format (intended to be obtained from the very game)
         /// </summary>

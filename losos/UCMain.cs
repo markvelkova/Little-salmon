@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace losos
         public UCMain()
         {
             InitializeComponent();
+            this.BackColor = MainForm.MyDefaultBackColor;
             UpdatePetStatusDisplay();
         }
 
@@ -25,6 +27,7 @@ namespace losos
         /// </summary>
         private void UpdatePetStatusDisplay()
         {
+            Label_Name.Text = MainForm.thePet.Name;
             SetProgressBarValue(ProgressBar_Energy, MainForm.thePet.EnergyMeter);
             SetProgressBarValue(ProgressBar_Mood, MainForm.thePet.MoodMeter);
             SetProgressBarValue(ProgressBar_Hunger, MainForm.thePet.HungerMeter);

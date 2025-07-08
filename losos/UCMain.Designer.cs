@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            Label_Name = new Label();
             Button_SelectGame = new Button();
             ProgressBar_Energy = new ProgressBar();
             ProgressBar_Hunger = new ProgressBar();
             ProgressBar_Mood = new ProgressBar();
             SuspendLayout();
             // 
-            // label1
+            // Label_Name
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(203, 49);
-            label1.Name = "label1";
-            label1.Size = new Size(106, 15);
-            label1.TabIndex = 0;
-            label1.Text = "placeholder mainu";
+            Label_Name.AutoSize = true;
+            Label_Name.Location = new Point(281, 19);
+            Label_Name.Name = "Label_Name";
+            Label_Name.Size = new Size(106, 15);
+            Label_Name.TabIndex = 0;
+            Label_Name.Text = "placeholder mainu";
             // 
             // Button_SelectGame
             // 
-            Button_SelectGame.Location = new Point(217, 272);
+            Button_SelectGame.Location = new Point(299, 265);
             Button_SelectGame.Name = "Button_SelectGame";
             Button_SelectGame.Size = new Size(75, 23);
             Button_SelectGame.TabIndex = 1;
@@ -83,7 +83,7 @@
             Controls.Add(ProgressBar_Hunger);
             Controls.Add(ProgressBar_Energy);
             Controls.Add(Button_SelectGame);
-            Controls.Add(label1);
+            Controls.Add(Label_Name);
             Name = "UCMain";
             Size = new Size(533, 402);
             ResumeLayout(false);
@@ -92,7 +92,7 @@
 
         #endregion
 
-        private Label label1;
+        private Label Label_Name;
         private Button Button_SelectGame;
         private ProgressBar ProgressBar_Energy;
         private ProgressBar ProgressBar_Hunger;
