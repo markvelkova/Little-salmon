@@ -35,7 +35,8 @@
             // 
             // button_StartNewGame
             // 
-            button_StartNewGame.Location = new Point(224, 310);
+            button_StartNewGame.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            button_StartNewGame.Location = new Point(165, 125);
             button_StartNewGame.Margin = new Padding(3, 2, 3, 2);
             button_StartNewGame.Name = "button_StartNewGame";
             button_StartNewGame.Size = new Size(201, 22);
@@ -46,7 +47,8 @@
             // 
             // Button_LoadGame
             // 
-            Button_LoadGame.Location = new Point(224, 337);
+            Button_LoadGame.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Button_LoadGame.Location = new Point(165, 168);
             Button_LoadGame.Name = "Button_LoadGame";
             Button_LoadGame.Size = new Size(201, 23);
             Button_LoadGame.TabIndex = 1;
@@ -66,7 +68,7 @@
             Controls.Add(button_StartNewGame);
             Margin = new Padding(3, 2, 3, 2);
             Name = "UCIntro";
-            Size = new Size(648, 393);
+            Size = new Size(640, 638);
             ResumeLayout(false);
         }
 

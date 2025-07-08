@@ -1,8 +1,19 @@
 {
-"Name": "Artur",
-"FoodCount": 100,
-"HungerMeter": 60,
-"EnergyMeter": 80,
-"MoodMeter": 50,
-"LifeState": 0
+  "pet": {
+    "Name": "Artur",
+    "FoodCount": 100,
+    "HungerMeter": 60,
+    "EnergyMeter": 80,
+    "MoodMeter": 50,
+    "LifeState": 0
+  },
+  "stats": {
+    "StatsDict": {
+      "Coins flipped": 0,
+      "Lucky coin guesses": 0,
+      "Food units fed": 0,
+      "Food units fell": 0
+    }
+  }
 }
+

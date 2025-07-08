@@ -62,10 +62,10 @@ namespace pet
             }
             catch (Exception e)
             {
-                throw new PetDeserializationException("Invalid json given.", e);
+                throw new PetDeserializationException("Invalid pet json given.", e);
             }
             if (pet == null)
-                throw new PetDeserializationException("Empty json given.");
+                throw new PetDeserializationException("Empty pet json given.");
             return pet;
         }
         #endregion

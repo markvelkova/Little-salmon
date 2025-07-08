@@ -10,19 +10,6 @@ using System.Text.Json;
 
 namespace losos
 {
-    // je potreba predelat nacitani stare hry, hodit sem tu logiku z deserializace pet
-    public class DeserilazitonResult
-    {
-        public Pet Pet { get; set; }
-        public Stats Stats { get; set; }
-        public string FileContent { get; set; }
-        public DeserilazitonResult(Pet pet, Stats stats, string fileContent)
-        {
-            Pet = pet;
-            Stats = stats;
-            FileContent = fileContent;
-        }
-    }
     internal static class FileHelper
     {
         public static string GetPathToResources(string filename)
@@ -41,8 +28,5 @@ namespace losos
             }
             return result;
         }
-
-        
-        
     }
 }

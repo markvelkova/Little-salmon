@@ -14,7 +14,7 @@ namespace losos
         {
             InitializeComponent();
             ShowIntro();
-            MessageBox.Show(thePet.SerializePet());
+            MessageBox.Show(new SerializationUnit(thePet,theStats).SerializeToJson());
         }
 
         /// <summary>

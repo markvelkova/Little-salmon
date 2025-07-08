@@ -1,4 +1,6 @@
-﻿namespace stats
+﻿using System.Text.Json;
+
+namespace stats
 {
     public class Stats
     {
@@ -33,6 +35,22 @@
                 else
                     StatsDict.Add(key, DefaultStatsDict[key]);
             }
+        }
+
+        public static Stats DeserializeFromJson(string json)
+        {
+            Stats stats;
+            try
+            {
+                stats = JsonSerializer.Deserialize<Stats>(json);
+            }
+            catch (Exception e)
+            {
+                throw new StatsDeserializationException("Invalid stats json given.", e);
+            }
+            if (stats == null)
+                throw new StatsDeserializationException("Empty stats json given.");
+            return stats;
         }
     }
 }

@@ -8,24 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using pet;
+using stats;
 
 namespace losos
 {
     public partial class UCIntro : UserControl
     {
-        
-
         public UCIntro()
         {
             InitializeComponent();
         }
 
+        #region start new game
         public event EventHandler StartNewGameClicked; // here are stacked requests from outside
         private void btnStartNewGame_Click(object sender, EventArgs e)
         {
             StartNewGameClicked?.Invoke(this, EventArgs.Empty);
         }
+        #endregion
 
+        #region load game
         public event EventHandler LoadGameClicked; 
         private void button_LoadGame_Click(object sender, EventArgs e)
         {
@@ -34,7 +36,9 @@ namespace losos
             try
             {
                 fileContent = OpenFile();
-                MainForm.thePet = Pet.DeserializeFromJson(fileContent);
+                SerializationUnit serializationUnit = new(fileContent);
+                MainForm.thePet = serializationUnit.pet;
+                MainForm.theStats = serializationUnit.stats;
                 LoadGameClicked?.Invoke(this, EventArgs.Empty);
             }
             catch (FileFormatException ex)
@@ -42,6 +46,10 @@ namespace losos
                 MessageBox.Show("Error opening file: " + ex.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (PetDeserializationException ex)
+            {
+                MessageBox.Show("Error loading game: " + ex.Message, "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (StatsDeserializationException ex)
             {
                 MessageBox.Show("Error loading game: " + ex.Message, "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -70,5 +78,6 @@ namespace losos
                     throw new FileFormatException("No file selected or file format is incorrect.");
             }
         }
+        #endregion
     }
 }
