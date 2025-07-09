@@ -17,8 +17,8 @@ namespace losos
     /// <summary>
     /// together with ../games/Game_HeadsOrTails does the flip the coin game
     /// player can either bet on heads or tails or just flip
-    /// bad bet result - MISSING
-    /// good bet result - MISSING
+    /// bad bet result - 1
+    /// good bet result - 1
     /// 
     /// player can choose between a fair coin and a randomly unfair coin 
     /// </summary>
@@ -48,6 +48,7 @@ namespace losos
         public UCGame_HeadsOrTails()
         {
             InitializeComponent();
+            this.BackColor = MainForm.MyDefaultBackColor;
             coinPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("coinIcons.png")), _iconWidth);
             coinPicture.Image = coinPictures[0];
             _random = new Random();

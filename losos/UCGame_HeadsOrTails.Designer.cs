@@ -42,7 +42,7 @@
             // 
             // Button_HeadsBet
             // 
-            Button_HeadsBet.Location = new Point(83, 484);
+            Button_HeadsBet.Location = new Point(92, 484);
             Button_HeadsBet.Name = "Button_HeadsBet";
             Button_HeadsBet.Size = new Size(75, 23);
             Button_HeadsBet.TabIndex = 2;
@@ -52,7 +52,7 @@
             // 
             // Button_TailsBet
             // 
-            Button_TailsBet.Location = new Point(425, 484);
+            Button_TailsBet.Location = new Point(468, 484);
             Button_TailsBet.Name = "Button_TailsBet";
             Button_TailsBet.Size = new Size(75, 23);
             Button_TailsBet.TabIndex = 3;
@@ -62,7 +62,7 @@
             // 
             // coinPicture
             // 
-            coinPicture.Location = new Point(216, 193);
+            coinPicture.Location = new Point(241, 215);
             coinPicture.Name = "coinPicture";
             coinPicture.Size = new Size(150, 150);
             coinPicture.TabIndex = 4;
@@ -70,7 +70,7 @@
             // 
             // Button_JustFlip
             // 
-            Button_JustFlip.Location = new Point(250, 484);
+            Button_JustFlip.Location = new Point(275, 484);
             Button_JustFlip.Name = "Button_JustFlip";
             Button_JustFlip.Size = new Size(75, 23);
             Button_JustFlip.TabIndex = 5;
@@ -80,7 +80,7 @@
             // 
             // Button_ResetFairness
             // 
-            Button_ResetFairness.Location = new Point(35, 215);
+            Button_ResetFairness.Location = new Point(65, 215);
             Button_ResetFairness.Name = "Button_ResetFairness";
             Button_ResetFairness.Size = new Size(102, 76);
             Button_ResetFairness.TabIndex = 6;
@@ -90,7 +90,7 @@
             // 
             // Button_Randomize
             // 
-            Button_Randomize.Location = new Point(435, 215);
+            Button_Randomize.Location = new Point(468, 215);
             Button_Randomize.Name = "Button_Randomize";
             Button_Randomize.Size = new Size(108, 76);
             Button_Randomize.TabIndex = 7;
@@ -101,7 +101,7 @@
             // Label_Result
             // 
             Label_Result.AutoSize = true;
-            Label_Result.Location = new Point(275, 124);
+            Label_Result.Location = new Point(275, 148);
             Label_Result.Name = "Label_Result";
             Label_Result.Size = new Size(36, 15);
             Label_Result.TabIndex = 8;
