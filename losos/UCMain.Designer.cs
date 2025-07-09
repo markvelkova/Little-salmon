@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCMain));
             Label_Name = new Label();
             Button_SelectGame = new Button();
             ProgressBar_Energy = new ProgressBar();
@@ -40,6 +41,11 @@
             Label_FoodCountLabel = new Label();
             TextBox_NewNameBox = new TextBox();
             Button_ChangeNameSubmit = new Button();
+            Label_HungerLabel = new Label();
+            Label_EnergyLabel = new Label();
+            Label_MoodLabel = new Label();
+            PictureBox_PetBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
             SuspendLayout();
             // 
             // Label_Name
@@ -129,9 +135,9 @@
             Label_FoodCountLabel.AutoSize = true;
             Label_FoodCountLabel.Location = new Point(15, 111);
             Label_FoodCountLabel.Name = "Label_FoodCountLabel";
-            Label_FoodCountLabel.Size = new Size(38, 15);
+            Label_FoodCountLabel.Size = new Size(66, 15);
             Label_FoodCountLabel.TabIndex = 9;
-            Label_FoodCountLabel.Text = "label1";
+            Label_FoodCountLabel.Text = "food count";
             // 
             // TextBox_NewNameBox
             // 
@@ -153,10 +159,50 @@
             Button_ChangeNameSubmit.UseVisualStyleBackColor = false;
             Button_ChangeNameSubmit.Click += Button_ChangeNameSubmit_Click;
             // 
+            // Label_HungerLabel
+            // 
+            Label_HungerLabel.AutoSize = true;
+            Label_HungerLabel.Location = new Point(120, 20);
+            Label_HungerLabel.Name = "Label_HungerLabel";
+            Label_HungerLabel.Size = new Size(45, 15);
+            Label_HungerLabel.TabIndex = 12;
+            Label_HungerLabel.Text = "hunger";
+            // 
+            // Label_EnergyLabel
+            // 
+            Label_EnergyLabel.AutoSize = true;
+            Label_EnergyLabel.Location = new Point(120, 49);
+            Label_EnergyLabel.Name = "Label_EnergyLabel";
+            Label_EnergyLabel.Size = new Size(43, 15);
+            Label_EnergyLabel.TabIndex = 13;
+            Label_EnergyLabel.Text = "energy";
+            // 
+            // Label_MoodLabel
+            // 
+            Label_MoodLabel.AutoSize = true;
+            Label_MoodLabel.Location = new Point(120, 78);
+            Label_MoodLabel.Name = "Label_MoodLabel";
+            Label_MoodLabel.Size = new Size(39, 15);
+            Label_MoodLabel.TabIndex = 14;
+            Label_MoodLabel.Text = "mood";
+            // 
+            // PictureBox_PetBox
+            // 
+            PictureBox_PetBox.Image = (Image)resources.GetObject("PictureBox_PetBox.Image");
+            PictureBox_PetBox.Location = new Point(176, 78);
+            PictureBox_PetBox.Name = "PictureBox_PetBox";
+            PictureBox_PetBox.Size = new Size(257, 258);
+            PictureBox_PetBox.TabIndex = 15;
+            PictureBox_PetBox.TabStop = false;
+            // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(PictureBox_PetBox);
+            Controls.Add(Label_MoodLabel);
+            Controls.Add(Label_EnergyLabel);
+            Controls.Add(Label_HungerLabel);
             Controls.Add(Button_ChangeNameSubmit);
             Controls.Add(TextBox_NewNameBox);
             Controls.Add(Label_FoodCountLabel);
@@ -171,6 +217,7 @@
             Controls.Add(Label_Name);
             Name = "UCMain";
             Size = new Size(640, 640);
+            ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -189,5 +236,9 @@
         private Label Label_FoodCountLabel;
         private TextBox TextBox_NewNameBox;
         private Button Button_ChangeNameSubmit;
+        private Label Label_HungerLabel;
+        private Label Label_EnergyLabel;
+        private Label Label_MoodLabel;
+        private PictureBox PictureBox_PetBox;
     }
 }

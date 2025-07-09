@@ -119,6 +119,7 @@ namespace pet
         }
         #endregion
 
+
         public void CheckIfShouldLive()
         {
              
