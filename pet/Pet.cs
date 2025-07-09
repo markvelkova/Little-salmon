@@ -130,6 +130,19 @@ namespace pet
         }
         #endregion
 
+        #region sleeping
+        public void Sleep()
+        {
+            LifeState = LifeStates.Asleep;
+        }
+        public void WakeUp()
+        {
+            LifeState = LifeStates.Awake;
+            // when waking up, the pet gets some energy back //MISSING
+            EnergyMeter = 100;
+        }
+        #endregion
+
         public void CheckIfShouldLive()
         {
              

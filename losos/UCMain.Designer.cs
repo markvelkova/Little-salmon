@@ -35,8 +35,7 @@
             ProgressBar_Hunger = new ProgressBar();
             ProgressBar_Mood = new ProgressBar();
             Button_Feed = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            Button_Sleep = new Button();
             TextBox_Reporter = new TextBox();
             Label_FoodCountLabel = new Label();
             TextBox_NewNameBox = new TextBox();
@@ -62,7 +61,7 @@
             // 
             // Button_SelectGame
             // 
-            Button_SelectGame.Location = new Point(93, 408);
+            Button_SelectGame.Location = new Point(120, 484);
             Button_SelectGame.Name = "Button_SelectGame";
             Button_SelectGame.Size = new Size(75, 23);
             Button_SelectGame.TabIndex = 1;
@@ -93,7 +92,7 @@
             // 
             // Button_Feed
             // 
-            Button_Feed.Location = new Point(213, 408);
+            Button_Feed.Location = new Point(264, 484);
             Button_Feed.Name = "Button_Feed";
             Button_Feed.Size = new Size(75, 23);
             Button_Feed.TabIndex = 5;
@@ -101,23 +100,15 @@
             Button_Feed.UseVisualStyleBackColor = true;
             Button_Feed.Click += button_Feed_Click;
             // 
-            // button2
+            // Button_Sleep
             // 
-            button2.Location = new Point(342, 408);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 6;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(468, 408);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 7;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            Button_Sleep.Location = new Point(394, 484);
+            Button_Sleep.Name = "Button_Sleep";
+            Button_Sleep.Size = new Size(75, 23);
+            Button_Sleep.TabIndex = 6;
+            Button_Sleep.Text = "sleep";
+            Button_Sleep.UseVisualStyleBackColor = true;
+            Button_Sleep.Click += button_Sleep_Click;
             // 
             // TextBox_Reporter
             // 
@@ -189,7 +180,7 @@
             // PictureBox_PetBox
             // 
             PictureBox_PetBox.Image = (Image)resources.GetObject("PictureBox_PetBox.Image");
-            PictureBox_PetBox.Location = new Point(176, 78);
+            PictureBox_PetBox.Location = new Point(170, 145);
             PictureBox_PetBox.Name = "PictureBox_PetBox";
             PictureBox_PetBox.Size = new Size(257, 258);
             PictureBox_PetBox.TabIndex = 15;
@@ -207,8 +198,7 @@
             Controls.Add(TextBox_NewNameBox);
             Controls.Add(Label_FoodCountLabel);
             Controls.Add(TextBox_Reporter);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(Button_Sleep);
             Controls.Add(Button_Feed);
             Controls.Add(ProgressBar_Mood);
             Controls.Add(ProgressBar_Hunger);
@@ -230,8 +220,7 @@
         private ProgressBar ProgressBar_Hunger;
         private ProgressBar ProgressBar_Mood;
         private Button Button_Feed;
-        private Button button2;
-        private Button button3;
+        private Button Button_Sleep;
         private TextBox TextBox_Reporter;
         private Label Label_FoodCountLabel;
         private TextBox TextBox_NewNameBox;

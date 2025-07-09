@@ -14,10 +14,14 @@ namespace losos
 {
     public partial class UCMain : UserControl
     {
-        
+        private int _iconWidth { get; } = 256;
+        private Bitmap[] fishPictures; // icons for the fish
+
         public UCMain()
         {
             InitializeComponent();
+
+            fishPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("basicFishIcons.png")), _iconWidth);
 
             TextBox_NewNameBox.Visible = false;
             Button_ChangeNameSubmit.Visible = false;
@@ -34,6 +38,8 @@ namespace losos
         /// </summary>
         private void UpdatePetStatusDisplay()
         {
+            
+            PictureBox_PetBox.Image = fishPictures[(int)MainForm.thePet.LifeState];
             Label_Name.Text = MainForm.thePet.Name;
             Label_FoodCountLabel.Text = "Food count: " + MainForm.thePet.FoodCount.ToString();
             SetProgressBarValue(ProgressBar_Energy, MainForm.thePet.EnergyMeter);
@@ -139,6 +145,41 @@ namespace losos
             }
             UpdatePetStatusDisplay();
         }
+        #endregion
+
+        #region sleeping
+        private void SleepUpdateComponents()
+        {
+            Button_Feed.Enabled = false;
+            Button_SelectGame.Enabled = false;
+            Button_Sleep.Text = "wake up";
+        }
+        private void WakeUpUpdateComponents()
+        {
+            Button_Feed.Enabled = true;
+            Button_SelectGame.Enabled = true;
+            Button_Sleep.Text = "sleep";
+        }
+        private void button_Sleep_Click(object sender, EventArgs e)
+        {
+            if (MainForm.thePet.LifeState == Pet.LifeStates.Awake)
+            {
+                MainForm.thePet.Sleep();
+                ReportToUser("Your pet " + MainForm.thePet.Name + " fell asleep.");
+                SleepUpdateComponents();
+                
+                UpdatePetStatusDisplay();
+            }
+            else
+            {
+                MainForm.thePet.WakeUp();
+                ReportToUser("Your pet " + MainForm.thePet.Name + " woke up.");
+                WakeUpUpdateComponents();
+                UpdatePetStatusDisplay();
+            }
+        }
+
+        
         #endregion
     }
 }
