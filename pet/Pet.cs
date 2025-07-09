@@ -119,6 +119,16 @@ namespace pet
         }
         #endregion
 
+        #region adding food
+        /// <summary>
+        /// Adds or substracts food to the pet's food count, cap on 0
+        /// </summary>
+        public void AddFood(int amount)
+        {
+            FoodCount += amount;
+            if (FoodCount < 0) FoodCount = 0; // cap at 0
+        }
+        #endregion
 
         public void CheckIfShouldLive()
         {

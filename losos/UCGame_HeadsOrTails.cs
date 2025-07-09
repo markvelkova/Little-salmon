@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using games;
 using System.Diagnostics.Eventing.Reader;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace losos
 {
@@ -41,25 +42,42 @@ namespace losos
         private Random _random; // for choosing the label text option
         private int _iconWidth { get; } = 150; // icon width, must correspond with the bitmap given
         private int _coinSpeed = 200; // duration of flipping in ms
+        public int Reward { get; set; } = 1; // how much food is given for a good guess, default 10
+        private int _soFarWon = 0;
+
         public UCGame_HeadsOrTails()
         {
             InitializeComponent();
             coinPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("coinIcons.png")), _iconWidth);
             coinPicture.Image = coinPictures[0];
             _random = new Random();
-            ResetLabel();
+            ResetResultLabel();
         }
 
 
 
-        #region label stuff
-        private void ResetLabel() => Label_Result.Text = _labelIndifferent;
+        #region label result stuff
+        private void ResetResultLabel() => Label_Result.Text = _labelIndifferent;
         private void LabelSetResult(string[] options)
         {
             int i = _random.Next(0, options.Length);
             Label_Result.Text = options[i];
         }
         #endregion
+
+        #region label win so far stuff
+        private void ResetWinSoFarLabel() => _soFarWon = 0;
+        private void SetLabelWinSoFar()
+        {
+            if (_soFarWon == 0)
+                Label_WinSoFar.Text = "You haven't won anything yet.";
+            else
+                Label_WinSoFar.Text = $"You have won {_soFarWon} food units so far.";
+        }
+
+        #endregion
+
+
         private void ShowFlipResult()
         {
             int index = (int)_coinResult;
@@ -68,16 +86,26 @@ namespace losos
         private void HandleGoodGuess()
         {
             LabelSetResult(_labelsVictorious);
-            // give money / food
+            MainForm.AdjustStat("Lucky coin guesses", 1); // increment lucky coin guesses
+
+            _soFarWon += Reward;
+            SetLabelWinSoFar();
+
+            MainForm.thePet.AddFood(Reward);
         }
         private void HandleBadGuess()
         {
             LabelSetResult(_labelsDefeated);
-            // give nothing
+
+            MainForm.thePet.AddFood(- Reward);
+            if (MainForm.thePet.FoodCount != 0) // wasn't caped, else nothng happens any more
+                _soFarWon -= Reward;
+            SetLabelWinSoFar();
         }
 
         private async void PerformTurn(bool shouldEvaluate)
         {
+            MainForm.AdjustStat("Coins flipped", 1); // increment coins flipped
             coinPicture.Image = coinPictures[(int)Game_HeadsOrTails.CoinOptions.Empty]; // interstate
             _coinResult = Game_HeadsOrTails.FlipTheCoin();
             await Task.Delay(_coinSpeed);
@@ -103,7 +131,7 @@ namespace losos
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            ResetLabel();
+            ResetResultLabel();
             if (sender == Button_HeadsBet)
                 _coinGuess = Game_HeadsOrTails.CoinOptions.Heads;
             else if (sender == Button_TailsBet)

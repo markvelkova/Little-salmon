@@ -66,10 +66,6 @@ namespace losos
         {
             TextBox_Reporter.Text = message + Environment.NewLine + TextBox_Reporter.Text;
         }
-        private void AdjustStat(string name, int value)
-        {
-            MainForm.theStats.AdjustStat(name, value);
-        }
         #endregion
 
         #region name change
@@ -127,11 +123,11 @@ namespace losos
             switch (result)
             {
                 case Pet.FeedingResult.Successful:
-                    AdjustStat("Food units fed", 1);
+                    MainForm.AdjustStat("Food units fed", 1);
                     ReportToUser("You fed your pet " + MainForm.thePet.Name + ".");
                     break;
                 case Pet.FeedingResult.Fell:
-                    AdjustStat("Food units fell", 1);
+                    MainForm.AdjustStat("Food units fell", 1);
                     ReportToUser("Yay, the food must have fallen somewhere...");
                     break;
                 case Pet.FeedingResult.NoFood:

@@ -124,6 +124,18 @@ namespace losos
         }
 
         #endregion
+
+        /// <summary>
+        /// adjusts the stat with the given name by the given value.
+        /// wrapper in case stats changed its logic
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        public static void AdjustStat(string name, int value)
+        {
+            theStats.AdjustStat(name, value);
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
