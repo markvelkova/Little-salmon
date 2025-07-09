@@ -22,7 +22,7 @@ namespace pet
         // full is 100, cannot be more
         
         // feeding parameters
-        public enum FeedingResult { Fell, Successful, NoFood }
+        public enum FeedingResult { Fell, Successful, TooMuch, NoFood }
         private int _foodFellChance = 5;
         private int _minFoodFed = 1;
         private int _maxFoodFed = 4;
@@ -71,19 +71,51 @@ namespace pet
         #endregion
 
         #region feeding
+        /// <summary>
+        /// Tries to feed the pet and if successful, performs the feeding or overfeeding action.
+        /// </summary>
+        /// <returns>
+        /// FeedingResult.NoFood if no food
+        /// FeedingResult.Fell if it fell
+        /// FeedingReslut.Successful if it was fed successfully, in this case it feeds!!!
+        /// </returns>
         public FeedingResult TryFeed()
         {
+            // we had no food - nothing happens
             if (FoodCount == 0)
                 return FeedingResult.NoFood;
+
+            // we had food, but it fell - nothing happens
             int fallResult = rnd.Next(100);
             if (fallResult <= _foodFellChance)
                 return FeedingResult.Fell;
-            return FeedingResult.Successful;
+
+            // we gave it food, but it was too much - mood went down
+            if (HungerMeter >= 100)
+            {
+                FoodCount -= 1; // we used one food item
+                OverFeed();
+                return FeedingResult.TooMuch;
+            }
+            // we gave it food successfully, while it was hungry
+            else
+            {
+                FoodCount -= 1; // we used one food item
+                Feed();
+                return FeedingResult.Successful;
+            }  
         } 
         private void Feed()
         {
             int amount = rnd.Next(_minFoodFed,_maxFoodFed);
             HungerMeter += amount;
+            if (HungerMeter > 100) HungerMeter = 100; // cap at 100
+        }
+        private void OverFeed()
+        {
+            int amount = rnd.Next(_minFoodFed, _maxFoodFed);
+            MoodMeter -= amount;
+            if (MoodMeter < 0) MoodMeter = 0; // cap at 0
         }
         #endregion
 

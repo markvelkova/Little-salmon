@@ -75,6 +75,55 @@ namespace losos
             newControl.Dock = DockStyle.Fill;
         }
 
+        #region saving
+        private void FormClosingReaction(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Do you want to save your progress?",
+                "Save",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question
+            );
+            // opens saving dialog
+            if (result == DialogResult.Yes)
+            {
+                SaveGame();
+            }
+            // if cancel is chosen, nothing happens, dialog ends
+            else if (result == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+            // if no chosen, nothing happens, it closes
+        }
+
+        private void SaveGame()
+        {
+            SerializationUnit gameToSave = new SerializationUnit(thePet, theStats);
+            string json = gameToSave.SerializeToJson();
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
+                Title = "Save Game",
+                FileName = $"{thePet.Name}.json"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.WriteAllText(saveFileDialog.FileName, json);
+                    MessageBox.Show("Game saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error while saving: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
 

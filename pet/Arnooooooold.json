@@ -1,0 +1,18 @@
+{
+  "pet": {
+    "Name": "Arnooooooold",
+    "FoodCount": 0,
+    "HungerMeter": 50,
+    "EnergyMeter": 100,
+    "MoodMeter": 20,
+    "LifeState": 0
+  },
+  "stats": {
+    "StatsDict": {
+      "Coins flipped": 0,
+      "Lucky coin guesses": 0,
+      "Food units fed": 0,
+      "Food units fell": 0
+    }
+  }
+}
