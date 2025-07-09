@@ -16,6 +16,7 @@ namespace losos
     {
         private int _iconWidth { get; } = 256;
         private Bitmap[] fishPictures; // icons for the fish
+        private DateTime fallenAsleep; // when the pet fell asleep, used for sleeping time calculation
 
         public UCMain()
         {
@@ -165,21 +166,20 @@ namespace losos
             if (MainForm.thePet.LifeState == Pet.LifeStates.Awake)
             {
                 MainForm.thePet.Sleep();
+                fallenAsleep = DateTime.Now; // record the time when the pet fell asleep
                 ReportToUser("Your pet " + MainForm.thePet.Name + " fell asleep.");
                 SleepUpdateComponents();
-                
                 UpdatePetStatusDisplay();
             }
             else
             {
-                MainForm.thePet.WakeUp();
+                TimeSpan timeSlept = DateTime.Now - fallenAsleep; // calculate how long the pet has been asleep
+                MainForm.thePet.WakeUp(timeSlept);
                 ReportToUser("Your pet " + MainForm.thePet.Name + " woke up.");
                 WakeUpUpdateComponents();
                 UpdatePetStatusDisplay();
             }
         }
-
-        
         #endregion
     }
 }

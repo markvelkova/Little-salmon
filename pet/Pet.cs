@@ -135,11 +135,12 @@ namespace pet
         {
             LifeState = LifeStates.Asleep;
         }
-        public void WakeUp()
+        public void WakeUp(TimeSpan timeSlept)
         {
             LifeState = LifeStates.Awake;
-            // when waking up, the pet gets some energy back //MISSING
-            EnergyMeter = 100;
+            int timeSleptForEnergy = (int)timeSlept.TotalMinutes;
+            EnergyMeter += timeSleptForEnergy * 2;
+            if (EnergyMeter > 100) EnergyMeter = 100; // cap at 100
         }
         #endregion
 
