@@ -21,7 +21,11 @@ namespace losos
         public UCMain()
         {
             InitializeComponent();
-
+            MainForm.PetLifeTick += (s,e) => 
+            {
+                UpdatePetStatusDisplay();
+                UpdateStats();
+            };
             fishPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("basicFishIcons.png")), _iconWidth);
 
             TextBox_NewNameBox.Visible = false;
@@ -34,6 +38,7 @@ namespace losos
             UpdatePetStatusDisplay();
             UpdateStats();
         }
+
 
         #region visual settings
         /// <summary>

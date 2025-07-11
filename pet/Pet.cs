@@ -13,14 +13,34 @@ namespace pet
     {
         public string Name { get; set; }
         public int FoodCount { get; set; }
-        public int HungerMeter { get; private set; }
-        // optimal value is 100, more cannot be rached, results in mood drop
-        public int EnergyMeter { get; private set; }
-        // full is 100, cannot be more
-        //[JsonInclude]
-        public int MoodMeter { get; private set; }
-        // full is 100, cannot be more
-        
+
+        private int _lifeTicks;
+        private int _hungerPointDuration = 8;
+        private int _energyPointDuration = 5;
+        private int _moodPointDuration = 5;
+
+
+        private int _hungerMeter;
+        public int HungerMeter
+        {
+            get => _hungerMeter;
+            private set => _hungerMeter = Math.Max(0, Math.Min(100, value));
+        }
+
+        private int _energyMeter;
+        public int EnergyMeter
+        {
+            get => _energyMeter;
+            private set => _energyMeter = Math.Max(0, Math.Min(100, value));
+        }
+
+        private int _moodMeter;
+        public int MoodMeter
+        {
+            get => _moodMeter;
+            private set => _moodMeter = Math.Max(0, Math.Min(100, value));
+        }
+
         // feeding parameters
         public enum FeedingResult { Fell, Successful, TooMuch, NoFood }
         private int _foodFellChance = 5;
@@ -109,13 +129,11 @@ namespace pet
         {
             int amount = rnd.Next(_minFoodFed,_maxFoodFed);
             HungerMeter += amount;
-            if (HungerMeter > 100) HungerMeter = 100; // cap at 100
         }
         private void OverFeed()
         {
             int amount = rnd.Next(_minFoodFed, _maxFoodFed);
             MoodMeter -= amount;
-            if (MoodMeter < 0) MoodMeter = 0; // cap at 0
         }
         #endregion
 
@@ -135,23 +153,45 @@ namespace pet
         {
             LifeState = LifeStates.Asleep;
         }
+        /// <summary>
+        /// 5 seconds of sleep gives 1 energy point
+        /// </summary>
+        /// <param name="timeSlept"></param>
         public void WakeUp(TimeSpan timeSlept)
         {
             LifeState = LifeStates.Awake;
-            int timeSleptForEnergy = (int)timeSlept.TotalMinutes;
-            EnergyMeter += timeSleptForEnergy * 2;
-            if (EnergyMeter > 100) EnergyMeter = 100; // cap at 100
+            int timeSleptForEnergy = (int)(timeSlept.TotalSeconds / 5);
+            EnergyMeter += timeSleptForEnergy;
         }
         #endregion
 
-        public void CheckIfShouldLive()
+        private void CheckIfShouldLive()
         {
-             
+            if (HungerMeter <= 0 || EnergyMeter <= 0 || MoodMeter <= 0)
+            {
+                LifeState = LifeStates.Dead;
+            }
         }
 
+        /// <summary>
+        /// updates the pet after a time span
+        /// </summary>
         public void Update() 
         {
-
+            _lifeTicks++;
+            if (_lifeTicks % _hungerPointDuration == 0)
+            {
+                HungerMeter -= 1; // every x seconds, hunger goes down by 1
+            }
+            if (_lifeTicks % _energyPointDuration == 0)
+            {
+                EnergyMeter -= 1; // every x seconds, energy goes down by 1
+            }
+            if (_lifeTicks % _moodPointDuration == 0)
+            {
+                MoodMeter -= 1; // every x seconds, mood goes down by 1
+            }
+            CheckIfShouldLive();
         }
     }
 }

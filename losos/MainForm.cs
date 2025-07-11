@@ -1,4 +1,5 @@
 using games;
+using System.Windows.Forms;
 using pet;
 using stats;
 
@@ -10,9 +11,15 @@ namespace losos
         // can be reached from anywhere as MainForm.Pet
         public static Pet thePet = new();
         public static Stats theStats = new();
+        System.Windows.Forms.Timer petLifeTimer = new System.Windows.Forms.Timer
+        {
+            Interval = 1000 // 1 second interval
+        };
         public MainForm()
         {
             InitializeComponent();
+            petLifeTimer.Tick += petLifeTimer_Tick;
+            petLifeTimer.Start(); // start the pet life timer
             ShowIntro();
             MessageBox.Show(new SerializationUnit(thePet,theStats).SerializeToJson());
         }
@@ -21,6 +28,27 @@ namespace losos
         /// basic colour, kinda blue, for background
         /// </summary>
         public static Color MyDefaultBackColor => Color.FromArgb(0, 162, 232);
+
+        private void HandlePetDeath()
+        {
+            petLifeTimer.Stop();
+            MessageBox.Show("Your pet has died. Game over.", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        public static event EventHandler PetLifeTick;
+        private void petLifeTimer_Tick(object sender, EventArgs e)
+        {
+            // this timer is used to update the pet's life state
+            // it can be used to update the pet's stats, like hunger, energy, mood
+            // and also to check if the pet is dead
+            thePet.Update();
+            if (thePet.LifeState == Pet.LifeStates.Dead)
+            {
+                HandlePetDeath();
+                ShowIntro(); // restart the game
+            }
+            if (PetLifeTick != null)
+                PetLifeTick?.Invoke(this, EventArgs.Empty);
+        }
 
         /// <summary>
         /// from the "Intro" screen the player can choose to start a new game or load an existing game
