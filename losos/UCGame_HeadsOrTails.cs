@@ -25,10 +25,10 @@ namespace losos
     public partial class UCGame_HeadsOrTails : UserControl
     {
         private string _labelIndifferent = "hmm"; // default label value
-        private string[] _labelsVictorious = { 
-            "YEAH!", 
-            "that's how it should be done", 
-            "great!", 
+        private string[] _labelsVictorious = {
+            "YEAH!",
+            "that's how it should be done",
+            "great!",
             "are you a wizard?" }; // label values in case of a good bet
         private string[] _labelsDefeated ={
             "oh...",
@@ -53,6 +53,9 @@ namespace losos
             coinPicture.Image = coinPictures[0];
             _random = new Random();
             ResetResultLabel();
+            ResetWinSoFarLabel();
+            SetLabelWinSoFar();
+            UpdateCurrentFoodCountLabel();
         }
 
 
@@ -75,7 +78,12 @@ namespace losos
             else
                 Label_WinSoFar.Text = $"You have won {_soFarWon} food units so far.";
         }
-
+        #endregion
+        #region current food count label
+        private void UpdateCurrentFoodCountLabel()
+        {
+            Label_CurrentFoodCount.Text = $"Current food count: {MainForm.thePet.FoodCount}";
+        }
         #endregion
 
 
@@ -90,7 +98,6 @@ namespace losos
             MainForm.AdjustStat("Lucky coin guesses", 1); // increment lucky coin guesses
 
             _soFarWon += Reward;
-            SetLabelWinSoFar();
 
             MainForm.thePet.AddFood(Reward);
         }
@@ -98,10 +105,11 @@ namespace losos
         {
             LabelSetResult(_labelsDefeated);
 
-            MainForm.thePet.AddFood(- Reward);
-            if (MainForm.thePet.FoodCount != 0) // wasn't caped, else nothng happens any more
+            if (MainForm.thePet.FoodCount >= Reward) // cap on 0, so that the pet doesn't have negative nuber of food
+            {
+                MainForm.thePet.AddFood(-Reward);
                 _soFarWon -= Reward;
-            SetLabelWinSoFar();
+            }
         }
 
         private async void PerformTurn(bool shouldEvaluate)
@@ -113,6 +121,8 @@ namespace losos
             ShowFlipResult();
             if (shouldEvaluate)
                 Evaluate();
+            SetLabelWinSoFar();
+            UpdateCurrentFoodCountLabel();
         }
 
         private void Evaluate()
@@ -149,6 +159,7 @@ namespace losos
         {
             Game_HeadsOrTails.SetRandomFairness();
         }
-        #endregion
+
+#endregion
     }
 }

@@ -37,6 +37,7 @@
             Label_Result = new Label();
             button_ReturnButton = new Button();
             Label_WinSoFar = new Label();
+            Label_CurrentFoodCount = new Label();
             ((System.ComponentModel.ISupportInitialize)coinPicture).BeginInit();
             SuspendLayout();
             // 
@@ -126,10 +127,20 @@
             Label_WinSoFar.TabIndex = 10;
             Label_WinSoFar.Text = "So far you won: ";
             // 
+            // Label_CurrentFoodCount
+            // 
+            Label_CurrentFoodCount.AutoSize = true;
+            Label_CurrentFoodCount.Location = new Point(35, 64);
+            Label_CurrentFoodCount.Name = "Label_CurrentFoodCount";
+            Label_CurrentFoodCount.Size = new Size(115, 15);
+            Label_CurrentFoodCount.TabIndex = 11;
+            Label_CurrentFoodCount.Text = "Current food count: ";
+            // 
             // UCGame_HeadsOrTails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Label_CurrentFoodCount);
             Controls.Add(Label_WinSoFar);
             Controls.Add(button_ReturnButton);
             Controls.Add(Label_Result);
@@ -157,5 +168,6 @@
         private Label Label_Result;
         private Button button_ReturnButton;
         private Label Label_WinSoFar;
+        private Label Label_CurrentFoodCount;
     }
 }
