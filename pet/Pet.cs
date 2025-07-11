@@ -154,13 +154,13 @@ namespace pet
             LifeState = LifeStates.Asleep;
         }
         /// <summary>
-        /// 5 seconds of sleep gives 1 energy point
+        /// second of sleep returns twice as much as would be lost
         /// </summary>
         /// <param name="timeSlept"></param>
         public void WakeUp(TimeSpan timeSlept)
         {
             LifeState = LifeStates.Awake;
-            int timeSleptForEnergy = (int)(timeSlept.TotalSeconds / 5);
+            int timeSleptForEnergy = (int)(timeSlept.TotalSeconds / _energyPointDuration) * 2;
             EnergyMeter += timeSleptForEnergy;
         }
         #endregion
@@ -183,7 +183,8 @@ namespace pet
             {
                 HungerMeter -= 1; // every x seconds, hunger goes down by 1
             }
-            if (_lifeTicks % _energyPointDuration == 0)
+
+            if (LifeState == LifeStates.Awake & _lifeTicks % _energyPointDuration == 0)
             {
                 EnergyMeter -= 1; // every x seconds, energy goes down by 1
             }

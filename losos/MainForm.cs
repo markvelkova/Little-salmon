@@ -19,6 +19,7 @@ namespace losos
         {
             InitializeComponent();
             petLifeTimer.Tick += petLifeTimer_Tick;
+
             petLifeTimer.Start(); // start the pet life timer
             ShowIntro();
             MessageBox.Show(new SerializationUnit(thePet,theStats).SerializeToJson());
@@ -29,10 +30,12 @@ namespace losos
         /// </summary>
         public static Color MyDefaultBackColor => Color.FromArgb(0, 162, 232);
 
+        public static event EventHandler PetDead;
         private void HandlePetDeath()
         {
             petLifeTimer.Stop();
-            MessageBox.Show("Your pet has died. Game over.", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (PetDead != null)
+                PetDead?.Invoke(this, EventArgs.Empty);
         }
         public static event EventHandler PetLifeTick;
         private void petLifeTimer_Tick(object sender, EventArgs e)
@@ -44,7 +47,6 @@ namespace losos
             if (thePet.LifeState == Pet.LifeStates.Dead)
             {
                 HandlePetDeath();
-                ShowIntro(); // restart the game
             }
             if (PetLifeTick != null)
                 PetLifeTick?.Invoke(this, EventArgs.Empty);

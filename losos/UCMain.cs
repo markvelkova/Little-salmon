@@ -26,6 +26,8 @@ namespace losos
                 UpdatePetStatusDisplay();
                 UpdateStats();
             };
+            MainForm.PetDead += (s,e) => PetDead();
+
             fishPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("basicFishIcons.png")), _iconWidth);
 
             TextBox_NewNameBox.Visible = false;
@@ -94,6 +96,21 @@ namespace losos
         {
             TextBox_Reporter.Text = message + Environment.NewLine + TextBox_Reporter.Text;
         }
+
+        
+
+        private void PetDead()
+        {
+            MessageBox.Show("Your pet " + MainForm.thePet.Name + " has died.", "Pet Dead", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Button_Feed.Enabled = false;
+            Button_SelectGame.Enabled = false;
+            Button_Sleep.Enabled = false;
+            Label_Name.Text = "Your pet " + MainForm.thePet.Name + " has died.";
+            CenterNameLabelPosition();
+            PictureBox_PetBox.Image = fishPictures[(int)Pet.LifeStates.Dead];
+            this.BackColor = Color.Maroon;
+        }
+
         #endregion
 
         #region name change
@@ -128,6 +145,9 @@ namespace losos
             Point mousePos = Label_Name.PointToClient(Cursor.Position);
             tooltip.Show("change name", Label_Name, mousePos.X + 15, mousePos.Y + 15, 1500);
         }
+        
+        
+        
         #endregion
 
 
