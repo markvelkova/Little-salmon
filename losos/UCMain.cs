@@ -26,11 +26,13 @@ namespace losos
 
             TextBox_NewNameBox.Visible = false;
             Button_ChangeNameSubmit.Visible = false;
+            TextBox_Stats.Visible = false; // hide the stats text box initially
 
             CenterNameLabelPosition();
 
             this.BackColor = MainForm.MyDefaultBackColor;
             UpdatePetStatusDisplay();
+            UpdateStats();
         }
 
         #region visual settings
@@ -46,6 +48,20 @@ namespace losos
             SetProgressBarValue(ProgressBar_Energy, MainForm.thePet.EnergyMeter);
             SetProgressBarValue(ProgressBar_Mood, MainForm.thePet.MoodMeter);
             SetProgressBarValue(ProgressBar_Hunger, MainForm.thePet.HungerMeter);
+        }
+        
+        private void button_ShowStats_Click(object sender, EventArgs e)
+        {
+            TextBox_Stats.Visible = !TextBox_Stats.Visible;
+        }
+        private void UpdateStats()
+        {
+            StringBuilder statsDisplay = new StringBuilder();
+            foreach (var stat in MainForm.theStats.StatsDict)
+            {
+                statsDisplay.AppendLine($"{stat.Key}: {stat.Value}");
+            }
+            TextBox_Stats.Text = statsDisplay.ToString();
         }
 
         /// <summary>
@@ -131,10 +147,12 @@ namespace losos
             {
                 case Pet.FeedingResult.Successful:
                     MainForm.AdjustStat("Food units fed", 1);
+                    UpdateStats();
                     ReportToUser("You fed your pet " + MainForm.thePet.Name + ".");
                     break;
                 case Pet.FeedingResult.Fell:
                     MainForm.AdjustStat("Food units fell", 1);
+                    UpdateStats();
                     ReportToUser("Yay, the food must have fallen somewhere...");
                     break;
                 case Pet.FeedingResult.NoFood:

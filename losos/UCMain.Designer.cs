@@ -44,6 +44,8 @@
             Label_EnergyLabel = new Label();
             Label_MoodLabel = new Label();
             PictureBox_PetBox = new PictureBox();
+            TextBox_Stats = new TextBox();
+            Button_Stats = new Button();
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
             SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             // 
             // Button_SelectGame
             // 
-            Button_SelectGame.Location = new Point(120, 484);
+            Button_SelectGame.Location = new Point(120, 523);
             Button_SelectGame.Name = "Button_SelectGame";
             Button_SelectGame.Size = new Size(75, 23);
             Button_SelectGame.TabIndex = 1;
@@ -92,7 +94,7 @@
             // 
             // Button_Feed
             // 
-            Button_Feed.Location = new Point(264, 484);
+            Button_Feed.Location = new Point(262, 523);
             Button_Feed.Name = "Button_Feed";
             Button_Feed.Size = new Size(75, 23);
             Button_Feed.TabIndex = 5;
@@ -102,7 +104,7 @@
             // 
             // Button_Sleep
             // 
-            Button_Sleep.Location = new Point(394, 484);
+            Button_Sleep.Location = new Point(396, 523);
             Button_Sleep.Name = "Button_Sleep";
             Button_Sleep.Size = new Size(75, 23);
             Button_Sleep.TabIndex = 6;
@@ -113,12 +115,12 @@
             // TextBox_Reporter
             // 
             TextBox_Reporter.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            TextBox_Reporter.Location = new Point(468, 19);
+            TextBox_Reporter.Location = new Point(66, 409);
             TextBox_Reporter.Multiline = true;
             TextBox_Reporter.Name = "TextBox_Reporter";
             TextBox_Reporter.ReadOnly = true;
             TextBox_Reporter.ScrollBars = ScrollBars.Vertical;
-            TextBox_Reporter.Size = new Size(137, 143);
+            TextBox_Reporter.Size = new Size(471, 72);
             TextBox_Reporter.TabIndex = 8;
             // 
             // Label_FoodCountLabel
@@ -186,10 +188,34 @@
             PictureBox_PetBox.TabIndex = 15;
             PictureBox_PetBox.TabStop = false;
             // 
+            // TextBox_Stats
+            // 
+            TextBox_Stats.Font = new Font("Segoe UI", 7F);
+            TextBox_Stats.Location = new Point(458, 59);
+            TextBox_Stats.MaximumSize = new Size(163, 344);
+            TextBox_Stats.Multiline = true;
+            TextBox_Stats.Name = "TextBox_Stats";
+            TextBox_Stats.ReadOnly = true;
+            TextBox_Stats.ScrollBars = ScrollBars.Vertical;
+            TextBox_Stats.Size = new Size(163, 344);
+            TextBox_Stats.TabIndex = 16;
+            // 
+            // Button_Stats
+            // 
+            Button_Stats.Location = new Point(498, 30);
+            Button_Stats.Name = "Button_Stats";
+            Button_Stats.Size = new Size(75, 23);
+            Button_Stats.TabIndex = 17;
+            Button_Stats.Text = "show stats";
+            Button_Stats.UseVisualStyleBackColor = true;
+            Button_Stats.Click += button_ShowStats_Click;
+            // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Button_Stats);
+            Controls.Add(TextBox_Stats);
             Controls.Add(PictureBox_PetBox);
             Controls.Add(Label_MoodLabel);
             Controls.Add(Label_EnergyLabel);
@@ -229,5 +255,7 @@
         private Label Label_EnergyLabel;
         private Label Label_MoodLabel;
         private PictureBox PictureBox_PetBox;
+        private TextBox TextBox_Stats;
+        private Button Button_Stats;
     }
 }
