@@ -43,7 +43,8 @@ namespace losos
             // this timer is used to update the pet's life state
             // it can be used to update the pet's stats, like hunger, energy, mood
             // and also to check if the pet is dead
-            thePet.Update();
+            if (thePet.LifeState != Pet.LifeStates.Dead)
+                thePet.Update();
             if (thePet.LifeState == Pet.LifeStates.Dead)
             {
                 HandlePetDeath();
