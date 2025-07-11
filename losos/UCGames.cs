@@ -14,6 +14,7 @@ namespace losos
     {
         public event EventHandler ReturnSelected;
         public event EventHandler FlipACoinSelected;
+        public event EventHandler StarrySkySelected;
         public UCGames()
         {
             InitializeComponent();
@@ -25,6 +26,10 @@ namespace losos
         private void button_Return_Click(object sender, EventArgs e)
         {
             ReturnSelected?.Invoke(this, EventArgs.Empty);
+        }
+        private void button_StarrySky_Click(object sender, EventArgs e)
+        {
+            StarrySkySelected?.Invoke(this, EventArgs.Empty);
         }
     }
 }

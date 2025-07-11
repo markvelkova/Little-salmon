@@ -56,6 +56,7 @@ namespace losos
             var games = new UCGames();
             games.ReturnSelected += (s, e) => ShowMain();
             games.FlipACoinSelected += (s, e) => ShowHeadsOrTails();
+            games.StarrySkySelected += (s, e) => ShowStarrySky();
             SwitchScreen(games);
         }
 
@@ -65,6 +66,12 @@ namespace losos
             var headsOrTails = new UCGame_HeadsOrTails();
             headsOrTails.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(headsOrTails);
+        }
+        private void ShowStarrySky()
+        {
+            var starrySky = new UCStarrySky();
+            starrySky.ReturnSelected += (s, e) => ShowGames();
+            SwitchScreen(starrySky);
         }
         #endregion
 

@@ -30,6 +30,7 @@
         {
             Button_SelectFlipCoin = new Button();
             Button_ReturnButton = new Button();
+            Button_SelectStarrySky = new Button();
             SuspendLayout();
             // 
             // Button_SelectFlipCoin
@@ -52,10 +53,21 @@
             Button_ReturnButton.UseVisualStyleBackColor = true;
             Button_ReturnButton.Click += button_Return_Click;
             // 
+            // Button_SelectStarrySky
+            // 
+            Button_SelectStarrySky.Location = new Point(63, 88);
+            Button_SelectStarrySky.Name = "Button_SelectStarrySky";
+            Button_SelectStarrySky.Size = new Size(114, 23);
+            Button_SelectStarrySky.TabIndex = 2;
+            Button_SelectStarrySky.Text = "STARRY SKY";
+            Button_SelectStarrySky.UseVisualStyleBackColor = true;
+            Button_SelectStarrySky.Click += button_StarrySky_Click;
+            // 
             // UCGames
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Button_SelectStarrySky);
             Controls.Add(Button_ReturnButton);
             Controls.Add(Button_SelectFlipCoin);
             Name = "UCGames";
@@ -67,5 +79,6 @@
 
         private Button Button_SelectFlipCoin;
         private Button Button_ReturnButton;
+        private Button Button_SelectStarrySky;
     }
 }
