@@ -31,18 +31,20 @@
             components = new System.ComponentModel.Container();
             pictureBox_Sky = new PictureBox();
             Label_TimeLeft = new Label();
-            timer = new System.Windows.Forms.Timer(components);
+            Timer_CountdownToStart = new System.Windows.Forms.Timer(components);
             Label_Countdown = new Label();
             Button_Start = new Button();
             Label_Reward = new Label();
             Label_Clicks = new Label();
             Button_Return = new Button();
+            Timer_GameTimer = new System.Windows.Forms.Timer(components);
+            Timer_ChangeImage = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox_Sky).BeginInit();
             SuspendLayout();
             // 
             // pictureBox_Sky
             // 
-            pictureBox_Sky.Location = new Point(114, 143);
+            pictureBox_Sky.Location = new Point(152, 156);
             pictureBox_Sky.Name = "pictureBox_Sky";
             pictureBox_Sky.Size = new Size(400, 400);
             pictureBox_Sky.TabIndex = 0;
@@ -58,13 +60,18 @@
             Label_TimeLeft.TabIndex = 1;
             Label_TimeLeft.Text = "Time left: ";
             // 
+            // Timer_CountdownToStart
+            // 
+            Timer_CountdownToStart.Interval = 1000;
+            Timer_CountdownToStart.Tick += timer_Countdown_Tick;
+            // 
             // Label_Countdown
             // 
             Label_Countdown.AutoSize = true;
             Label_Countdown.BackColor = Color.Red;
             Label_Countdown.Font = new Font("Segoe UI", 72F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Label_Countdown.ForeColor = Color.Yellow;
-            Label_Countdown.Location = new Point(260, 288);
+            Label_Countdown.Location = new Point(272, 270);
             Label_Countdown.Name = "Label_Countdown";
             Label_Countdown.Size = new Size(106, 128);
             Label_Countdown.TabIndex = 2;
@@ -73,12 +80,13 @@
             // 
             // Button_Start
             // 
-            Button_Start.Location = new Point(275, 96);
+            Button_Start.Location = new Point(292, 108);
             Button_Start.Name = "Button_Start";
             Button_Start.Size = new Size(75, 23);
             Button_Start.TabIndex = 3;
             Button_Start.Text = "START";
             Button_Start.UseVisualStyleBackColor = true;
+            Button_Start.Click += button_StartGame_Click;
             // 
             // Label_Reward
             // 
@@ -108,6 +116,15 @@
             Button_Return.UseVisualStyleBackColor = true;
             Button_Return.Click += returnButton_Click;
             // 
+            // Timer_GameTimer
+            // 
+            Timer_GameTimer.Tick += timer_GameTimer_Tick;
+            // 
+            // Timer_ChangeImage
+            // 
+            Timer_ChangeImage.Interval = 500;
+            Timer_ChangeImage.Tick += timer_ChangeImage_Tick;
+            // 
             // UCStarrySky
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -130,11 +147,13 @@
 
         private PictureBox pictureBox_Sky;
         private Label Label_TimeLeft;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer Timer_CountdownToStart;
         private Label Label_Countdown;
         private Button Button_Start;
         private Label Label_Reward;
         private Label Label_Clicks;
         private Button Button_Return;
+        private System.Windows.Forms.Timer Timer_GameTimer;
+        private System.Windows.Forms.Timer Timer_ChangeImage;
     }
 }

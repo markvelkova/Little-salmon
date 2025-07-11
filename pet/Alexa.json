@@ -1,0 +1,21 @@
+{
+  "pet": {
+    "Name": "Alexa",
+    "FoodCount": 12,
+    "HungerMeter": 57,
+    "EnergyMeter": 100,
+    "MoodMeter": 20,
+    "LifeState": 0
+  },
+  "stats": {
+    "StatsDict": {
+      "Coins flipped": 5,
+      "Lucky coin guesses": 2,
+      "Food units fed": 4,
+      "Food units fell": 1,
+      "Starry sky clicked": 63,
+      "Starry sky reward record": 14,
+      "Starry sky clicks record": 63
+    }
+  }
+}
