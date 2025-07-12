@@ -12,23 +12,32 @@ using pet;
 
 namespace losos
 {
+    
     public partial class UCMain : UserControl
     {
         private int _iconWidth { get; } = 256;
         private Bitmap[] fishPictures; // icons for the fish
         private DateTime fallenAsleep; // when the pet fell asleep, used for sleeping time calculation
+        private MeterDisplayer[] meterDisplayers;
 
         public UCMain()
         {
             InitializeComponent();
-            MainForm.PetLifeTick += (s,e) => 
+            MainForm.PetLifeTick += (s, e) =>
             {
                 UpdatePetStatusDisplay();
                 UpdateStats();
             };
-            MainForm.PetDead += (s,e) => PetDead();
+            MainForm.PetDead += (s, e) => PetDead();
 
             fishPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("basicFishIcons.png")), _iconWidth);
+
+            meterDisplayers = new MeterDisplayer[]
+            {
+                new MeterDisplayer(Panel_Energy, new Panel(), new Mirror(() => MainForm.thePet.EnergyMeter)),
+                new MeterDisplayer(Panel_Hunger, new Panel(), new Mirror(() => MainForm.thePet.HungerMeter)),
+                new MeterDisplayer(Panel_Mood, new Panel(), new Mirror(() => MainForm.thePet.MoodMeter))
+            };
 
             TextBox_NewNameBox.Visible = false;
             Button_ChangeNameSubmit.Visible = false;
@@ -43,20 +52,82 @@ namespace losos
 
 
         #region visual settings
+
+        /// <summary>
+        /// wrapper over delegate for getter of a property given
+        /// </summary>
+        public class Mirror
+        {
+            private Func<int> getter;
+
+            public Mirror(Func<int> getFunc)
+            {
+                getter = getFunc;
+            }
+            public int Value
+            {
+                get => getter();
+            }
+        }
+        /// <summary>
+        /// wrapper over the background and foreground panels of the progress bar, used to display the progress bar in a panel.
+        /// </summary>
+        private class MeterDisplayer
+        {
+            public Panel BackgroundPanel { get; set; }
+            public Panel BarPanel { get; set; }
+            public Mirror Mirror { get; set; } // used to get the value of the progress bar
+            public int max { get; set; } = 100; // default max value for the progress bar
+
+            public MeterDisplayer(Panel panel, Panel barPanel, Mirror mirrorValue)
+            {
+                BackgroundPanel = panel;
+                BarPanel = barPanel;
+                Mirror = mirrorValue;
+            }
+        }
+
+        /// <summary>
+        /// adjusts the progress bar value and color based on the given value.
+        /// </summary>
+        private void SetPanelProgressBarValue(MeterDisplayer m)
+        {
+            int barWidth = m.BackgroundPanel.Width * m.Mirror.Value / m.max;
+
+            m.BarPanel.Width = barWidth;
+            m.BarPanel.Height = m.BackgroundPanel.Height;
+
+            if (m.Mirror.Value < 15)
+                m.BarPanel.BackColor = Color.Red;
+            else if (m.Mirror.Value < 30)
+                m.BarPanel.BackColor = Color.Orange;
+            else if (m.Mirror.Value < 50)
+                m.BarPanel.BackColor = Color.Yellow;
+            else if (m.Mirror.Value < 100)
+                m.BarPanel.BackColor = Color.Green;
+            else
+                m.BarPanel.BackColor = Color.Blue;
+
+            m.BackgroundPanel.Controls.Clear();
+            m.BackgroundPanel.Controls.Add(m.BarPanel);
+        }
+
+
         /// <summary>
         /// Updates the pet's status display with current values from the pet object.
         /// </summary>
         private void UpdatePetStatusDisplay()
         {
-            //ReportToUser($"food {MainForm.thePet.HungerMeter}, energy {MainForm.thePet.EnergyMeter}, mood {MainForm.thePet.MoodMeter}");
             PictureBox_PetBox.Image = fishPictures[(int)MainForm.thePet.LifeState];
             Label_Name.Text = MainForm.thePet.Name;
             Label_FoodCountLabel.Text = "Food count: " + MainForm.thePet.FoodCount.ToString();
-            SetProgressBarValue(ProgressBar_Energy, MainForm.thePet.EnergyMeter);
-            SetProgressBarValue(ProgressBar_Mood, MainForm.thePet.MoodMeter);
-            SetProgressBarValue(ProgressBar_Hunger, MainForm.thePet.HungerMeter);
+
+            foreach (MeterDisplayer m in meterDisplayers)
+            {
+                SetPanelProgressBarValue(m);
+            }
         }
-        
+
         private void button_ShowStats_Click(object sender, EventArgs e)
         {
             TextBox_Stats.Visible = !TextBox_Stats.Visible;
@@ -71,33 +142,7 @@ namespace losos
             TextBox_Stats.Text = statsDisplay.ToString();
         }
 
-        /// <summary>
-        /// adjusts the progress bar value and color based on the given value.
-        /// </summary>
-        /// <param name="progressBar"></param>
-        /// <param name="value"></param>
-        private void SetProgressBarValue(ProgressBar progressBar, int value)
-        {
-            progressBar.BackColor = Color.Black; // reset color to default
-            /*
-            if (value < 0) 
-                value = 0;
-            else if (value < 15)
-                progressBar.ForeColor = Color.Red;
-            else if (value < 30)
-                progressBar.ForeColor = Color.Orange;
-            else if (value < 50)
-                progressBar.ForeColor = Color.Yellow;
-            else 
-                progressBar.ForeColor = Color.Green;
-            if (value >= 100)
-            {
-                value = 100;
-                progressBar.ForeColor = Color.Blue;
-            }*/
-            progressBar.Value = value;
-        }
-
+        
 
 
         private void ReportToUser(string message)
@@ -105,7 +150,7 @@ namespace losos
             TextBox_Reporter.Text = message + Environment.NewLine + TextBox_Reporter.Text;
         }
 
-        
+
 
         private void PetDead()
         {
@@ -131,7 +176,7 @@ namespace losos
 
         private void CenterNameLabelPosition()
         {
-            Label_Name.Left = (this.Width - Label_Name.Width)/2;
+            Label_Name.Left = (this.Width - Label_Name.Width) / 2;
         }
         private void Button_ChangeNameSubmit_Click(object sender, EventArgs e)
         {
@@ -153,9 +198,9 @@ namespace losos
             Point mousePos = Label_Name.PointToClient(Cursor.Position);
             tooltip.Show("change name", Label_Name, mousePos.X + 15, mousePos.Y + 15, 1500);
         }
-        
-        
-        
+
+
+
         #endregion
 
 

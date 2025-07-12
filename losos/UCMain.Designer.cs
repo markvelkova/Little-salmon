@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCMain));
             Label_Name = new Label();
             Button_SelectGame = new Button();
-            ProgressBar_Energy = new ProgressBar();
-            ProgressBar_Hunger = new ProgressBar();
-            ProgressBar_Mood = new ProgressBar();
             Button_Feed = new Button();
             Button_Sleep = new Button();
             TextBox_Reporter = new TextBox();
@@ -46,6 +43,9 @@
             PictureBox_PetBox = new PictureBox();
             TextBox_Stats = new TextBox();
             Button_Stats = new Button();
+            Panel_Energy = new Panel();
+            Panel_Mood = new Panel();
+            Panel_Hunger = new Panel();
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
             SuspendLayout();
             // 
@@ -70,27 +70,6 @@
             Button_SelectGame.Text = "games";
             Button_SelectGame.UseVisualStyleBackColor = true;
             Button_SelectGame.Click += button_GamesButton_Click;
-            // 
-            // ProgressBar_Energy
-            // 
-            ProgressBar_Energy.Location = new Point(14, 49);
-            ProgressBar_Energy.Name = "ProgressBar_Energy";
-            ProgressBar_Energy.Size = new Size(100, 23);
-            ProgressBar_Energy.TabIndex = 2;
-            // 
-            // ProgressBar_Hunger
-            // 
-            ProgressBar_Hunger.Location = new Point(14, 19);
-            ProgressBar_Hunger.Name = "ProgressBar_Hunger";
-            ProgressBar_Hunger.Size = new Size(100, 23);
-            ProgressBar_Hunger.TabIndex = 3;
-            // 
-            // ProgressBar_Mood
-            // 
-            ProgressBar_Mood.Location = new Point(14, 78);
-            ProgressBar_Mood.Name = "ProgressBar_Mood";
-            ProgressBar_Mood.Size = new Size(100, 23);
-            ProgressBar_Mood.TabIndex = 4;
             // 
             // Button_Feed
             // 
@@ -155,7 +134,7 @@
             // Label_HungerLabel
             // 
             Label_HungerLabel.AutoSize = true;
-            Label_HungerLabel.Location = new Point(120, 20);
+            Label_HungerLabel.Location = new Point(121, 28);
             Label_HungerLabel.Name = "Label_HungerLabel";
             Label_HungerLabel.Size = new Size(45, 15);
             Label_HungerLabel.TabIndex = 12;
@@ -164,7 +143,7 @@
             // Label_EnergyLabel
             // 
             Label_EnergyLabel.AutoSize = true;
-            Label_EnergyLabel.Location = new Point(120, 49);
+            Label_EnergyLabel.Location = new Point(120, 59);
             Label_EnergyLabel.Name = "Label_EnergyLabel";
             Label_EnergyLabel.Size = new Size(43, 15);
             Label_EnergyLabel.TabIndex = 13;
@@ -173,7 +152,7 @@
             // Label_MoodLabel
             // 
             Label_MoodLabel.AutoSize = true;
-            Label_MoodLabel.Location = new Point(120, 78);
+            Label_MoodLabel.Location = new Point(120, 90);
             Label_MoodLabel.Name = "Label_MoodLabel";
             Label_MoodLabel.Size = new Size(39, 15);
             Label_MoodLabel.TabIndex = 14;
@@ -210,10 +189,37 @@
             Button_Stats.UseVisualStyleBackColor = true;
             Button_Stats.Click += button_ShowStats_Click;
             // 
+            // Panel_Energy
+            // 
+            Panel_Energy.BackColor = Color.White;
+            Panel_Energy.Location = new Point(15, 49);
+            Panel_Energy.Name = "Panel_Energy";
+            Panel_Energy.Size = new Size(100, 26);
+            Panel_Energy.TabIndex = 19;
+            // 
+            // Panel_Mood
+            // 
+            Panel_Mood.BackColor = Color.White;
+            Panel_Mood.Location = new Point(15, 82);
+            Panel_Mood.Name = "Panel_Mood";
+            Panel_Mood.Size = new Size(100, 26);
+            Panel_Mood.TabIndex = 20;
+            // 
+            // Panel_Hunger
+            // 
+            Panel_Hunger.BackColor = Color.White;
+            Panel_Hunger.Location = new Point(15, 17);
+            Panel_Hunger.Name = "Panel_Hunger";
+            Panel_Hunger.Size = new Size(100, 26);
+            Panel_Hunger.TabIndex = 20;
+            // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Panel_Mood);
+            Controls.Add(Panel_Hunger);
+            Controls.Add(Panel_Energy);
             Controls.Add(Button_Stats);
             Controls.Add(TextBox_Stats);
             Controls.Add(PictureBox_PetBox);
@@ -226,9 +232,6 @@
             Controls.Add(TextBox_Reporter);
             Controls.Add(Button_Sleep);
             Controls.Add(Button_Feed);
-            Controls.Add(ProgressBar_Mood);
-            Controls.Add(ProgressBar_Hunger);
-            Controls.Add(ProgressBar_Energy);
             Controls.Add(Button_SelectGame);
             Controls.Add(Label_Name);
             Name = "UCMain";
@@ -242,8 +245,6 @@
 
         private Label Label_Name;
         private Button Button_SelectGame;
-        private ProgressBar ProgressBar_Energy;
-        private ProgressBar ProgressBar_Hunger;
         private ProgressBar ProgressBar_Mood;
         private Button Button_Feed;
         private Button Button_Sleep;
@@ -257,5 +258,10 @@
         private PictureBox PictureBox_PetBox;
         private TextBox TextBox_Stats;
         private Button Button_Stats;
+        private Panel Panel_HungerMeter;
+        private Panel panel1;
+        private Panel Panel_Energy;
+        private Panel Panel_Mood;
+        private Panel Panel_Hunger;
     }
 }
