@@ -126,7 +126,11 @@ namespace pet
                 Feed();
                 return FeedingResult.Successful;
             }  
-        } 
+        }
+
+        /// <summary>
+        /// Does the feeding itself, randomly choses the amount of food fed to the pet and increases  the hunger meter by that amount.
+        /// </summary>
         private void Feed()
         {
             int amount = rnd.Next(_minFoodFed,_maxFoodFed);
@@ -164,20 +168,21 @@ namespace pet
         #endregion
 
         #region sleeping
+        /// <summary>
+        /// sets life state to asleep, which means the pet is sleeping and its energy meter will go up
+        /// </summary>
         public void Sleep()
         {
             LifeState = LifeStates.Asleep;
         }
         /// <summary>
-        /// second of sleep returns twice as much as would be lost
+        /// sets life state to awake, which means the pet is awake and its energy meter will go down
         /// </summary>
-        /// <param name="timeSlept"></param>
-        public void WakeUp(TimeSpan timeSlept)
+        public void WakeUp()
         {
             LifeState = LifeStates.Awake;
-            int timeSleptForEnergy = (int)(timeSlept.TotalSeconds / _energyPointDuration) * 2;
-            EnergyMeter += timeSleptForEnergy;
         }
+
         #endregion
 
         private void CheckIfShouldLive()
@@ -188,27 +193,54 @@ namespace pet
             }
         }
 
-        /// <summary>
-        /// updates the pet after a time span
-        /// </summary>
-        public void Update() 
+        private void UpdateMoodAwake()
         {
-            _lifeTicks++;
-            if (_lifeTicks % _hungerPointDuration == 0)
-            {
-                HungerMeter -= 1; // every x seconds, hunger goes down by 1
-            }
-
-            if (LifeState == LifeStates.Awake & _lifeTicks % _energyPointDuration == 0)
-            {
-                EnergyMeter -= 1; // every x seconds, energy goes down by 1
-            }
             if (_lifeTicks % _moodPointDuration == 0)
             {
+                // mood goes up by 3 if playing games, otherwise it goes down by 1
                 if (PlayingGames)
-                    BeHappier(3); // every x seconds, mood goes up by 3 if playing games
+                    MoodMeter += 3; // every x seconds, mood goes up by 3 if playing games
                 else
-                    BeSad(1); // every x seconds, mood goes down by 1
+                    MoodMeter -= 1; // every x seconds, mood goes down by 1
+            }
+        }
+        private void UpdateHungerAwake()
+        {
+            if (_lifeTicks % _hungerPointDuration == 0)
+                HungerMeter -= 1; // every x seconds, hunger goes down by 1
+        }
+        private void UpdateEnergyAwake()
+        {
+            if (_lifeTicks % _energyPointDuration == 0)
+                EnergyMeter -= 1; // every x seconds, energy goes down by 1
+        }
+        private void UpdateEnergyAsleep()
+        {
+            if (_lifeTicks % _energyPointDuration == 0)
+                EnergyMeter += 2; // every x seconds, energy goes up by 2 while sleeping
+        }
+
+        public void Update()
+        {
+            _lifeTicks++;
+            switch (LifeState)
+            {
+                case LifeStates.Awake:
+                        UpdateEnergyAwake();
+                        UpdateHungerAwake();
+                        UpdateMoodAwake();
+                    break;
+                case LifeStates.Asleep:
+                    if (EnergyMeter >= 100) // in this case the pet doesn't need to sleep anymore and starts to feel hunger and bad mood again
+                    {
+                        UpdateHungerAwake();
+                        UpdateMoodAwake();
+                    }
+                    else 
+                        UpdateEnergyAsleep();
+                    break;
+                case LifeStates.Dead:
+                    return; // no updates for dead pets, no more checking???
             }
             CheckIfShouldLive();
         }

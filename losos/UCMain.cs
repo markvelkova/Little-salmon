@@ -48,7 +48,7 @@ namespace losos
         /// </summary>
         private void UpdatePetStatusDisplay()
         {
-            
+            //ReportToUser($"food {MainForm.thePet.HungerMeter}, energy {MainForm.thePet.EnergyMeter}, mood {MainForm.thePet.MoodMeter}");
             PictureBox_PetBox.Image = fishPictures[(int)MainForm.thePet.LifeState];
             Label_Name.Text = MainForm.thePet.Name;
             Label_FoodCountLabel.Text = "Food count: " + MainForm.thePet.FoodCount.ToString();
@@ -78,6 +78,8 @@ namespace losos
         /// <param name="value"></param>
         private void SetProgressBarValue(ProgressBar progressBar, int value)
         {
+            progressBar.BackColor = Color.Black; // reset color to default
+            /*
             if (value < 0) 
                 value = 0;
             else if (value < 15)
@@ -88,9 +90,15 @@ namespace losos
                 progressBar.ForeColor = Color.Yellow;
             else 
                 progressBar.ForeColor = Color.Green;
-            if (value > 100) value = 100;
+            if (value >= 100)
+            {
+                value = 100;
+                progressBar.ForeColor = Color.Blue;
+            }*/
             progressBar.Value = value;
         }
+
+
 
         private void ReportToUser(string message)
         {
@@ -217,7 +225,8 @@ namespace losos
             else
             {
                 TimeSpan timeSlept = DateTime.Now - fallenAsleep; // calculate how long the pet has been asleep
-                MainForm.thePet.WakeUp(timeSlept);
+                MainForm.AdjustStat("Seconds slept", (int)timeSlept.TotalSeconds);
+                MainForm.thePet.WakeUp();
                 ReportToUser("Your pet " + MainForm.thePet.Name + " woke up.");
                 WakeUpUpdateComponents();
                 UpdatePetStatusDisplay();
