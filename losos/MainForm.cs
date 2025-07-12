@@ -30,6 +30,11 @@ namespace losos
         /// </summary>
         public static Color MyDefaultBackColor => Color.FromArgb(0, 162, 232);
 
+
+        #region time flow
+        /// <summary>
+        /// Event that is raised when the pet dies.
+        /// </summary>
         public static event EventHandler PetDead;
         private void HandlePetDeath()
         {
@@ -37,12 +42,16 @@ namespace losos
             if (PetDead != null)
                 PetDead?.Invoke(this, EventArgs.Empty);
         }
+
+        /// <summary>
+        /// event that is raised every second to update the pet's life state.
+        /// this timer is used to update the pet's life state
+        /// it can be used to update the pet's stats, like hunger, energy, mood
+        /// and also to check if the pet is dead
+        /// </summary>
         public static event EventHandler PetLifeTick;
         private void petLifeTimer_Tick(object sender, EventArgs e)
         {
-            // this timer is used to update the pet's life state
-            // it can be used to update the pet's stats, like hunger, energy, mood
-            // and also to check if the pet is dead
             if (thePet.LifeState != Pet.LifeStates.Dead)
                 thePet.Update();
             if (thePet.LifeState == Pet.LifeStates.Dead)
@@ -50,8 +59,9 @@ namespace losos
                 HandlePetDeath();
             }
             if (PetLifeTick != null)
-                PetLifeTick?.Invoke(this, EventArgs.Empty);
+                PetLifeTick?.Invoke(this, EventArgs.Empty); // raise the event (contains things from UCMain)
         }
+        #endregion
 
         /// <summary>
         /// from the "Intro" screen the player can choose to start a new game or load an existing game
@@ -85,6 +95,7 @@ namespace losos
         private void ShowGames()
         {
             var games = new UCGames();
+            thePet.PlayingGames = false; // the player does not play games any more
             games.ReturnSelected += (s, e) => ShowMain();
             games.FlipACoinSelected += (s, e) => ShowHeadsOrTails();
             games.StarrySkySelected += (s, e) => ShowStarrySky();
@@ -95,12 +106,14 @@ namespace losos
         private void ShowHeadsOrTails()
         {
             var headsOrTails = new UCGame_HeadsOrTails();
+            thePet.PlayingGames = true; // set the pet to playing games state
             headsOrTails.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(headsOrTails);
         }
         private void ShowStarrySky()
         {
             var starrySky = new UCStarrySky();
+            thePet.PlayingGames = true; // set the pet to playing games state
             starrySky.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(starrySky);
         }

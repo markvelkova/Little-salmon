@@ -14,6 +14,8 @@ namespace pet
         public string Name { get; set; }
         public int FoodCount { get; set; }
 
+
+        public bool PlayingGames = false;
         private int _lifeTicks;
         private int _hungerPointDuration = 8;
         private int _energyPointDuration = 5;
@@ -133,9 +135,22 @@ namespace pet
         private void OverFeed()
         {
             int amount = rnd.Next(_minFoodFed, _maxFoodFed);
+            BeSad(amount); // overfeeding makes the pet sad
+        }
+        #endregion
+
+
+        #region mood
+        public void BeHappier(int amount)
+        {
+            MoodMeter += amount;
+        }
+        public void BeSad(int amount)
+        {
             MoodMeter -= amount;
         }
         #endregion
+
 
         #region adding food
         /// <summary>
@@ -190,7 +205,10 @@ namespace pet
             }
             if (_lifeTicks % _moodPointDuration == 0)
             {
-                MoodMeter -= 1; // every x seconds, mood goes down by 1
+                if (PlayingGames)
+                    BeHappier(3); // every x seconds, mood goes up by 3 if playing games
+                else
+                    BeSad(1); // every x seconds, mood goes down by 1
             }
             CheckIfShouldLive();
         }
