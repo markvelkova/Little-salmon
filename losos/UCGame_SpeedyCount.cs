@@ -19,10 +19,11 @@ namespace losos
         private int TimeLimit { get; set; } = 600; // time limit in seconds, default is 60 seconds - 600 tenths of second
         private int TimeLeft { get; set; }
         private GameMode currentGameMode = GameMode.Easy; // current game mode, default is Easy
+        int TotalReward { get; set; } = 0; // total reward for the game, can be used to display the score at the end of the game
 
         MeterDisplayer timeBar; 
-
-        private enum GameMode { Easy, Medium, Hard, Insane };
+        
+        private enum GameMode { Easy = 1, Medium = 2, Hard = 3, Insane = 5 };
 
         public UCGame_SpeedyCount()
         {
@@ -38,6 +39,7 @@ namespace losos
             CenterControlHorizontally(TextBox_Answer); // center the answer text box horizontally
             CenterControlHorizontally(Panel_Time); // center the time panel horizontally
             Button_Start.Text = "START";
+
         }
 
         #region equation label
@@ -87,6 +89,7 @@ namespace losos
         {
             CurrentEquation = new SpeedCounting.SimpleEquation();
             displayEquation(CurrentEquation); // display the generated equation
+            Label_CorrectResult.Text = CurrentEquation.Solution.ToString(); // display the correct result in the label
         }
 
         private void textBox_Answer_KeyDown(object sender, KeyEventArgs e)
@@ -108,6 +111,7 @@ namespace losos
 
         private void StartGame()
         {
+            TotalReward = 0; // reset the total reward
             ReadDifficultyInputs();
             GenerateNewEquation(); // generate a new equation
             TextBox_Answer.Text = ""; // clear the answer text box
@@ -124,46 +128,46 @@ namespace losos
                 return; // do not start the game if no difficulty is selected
             }
             // read the difficulty level from the checked items in the list box
-            if (CheckListBox_Difficulty.CheckedItems.Contains("Easy"))
+            if (CheckListBox_Difficulty.CheckedItems.Contains("easy"))
             {
                 currentGameMode = GameMode.Easy;
-                SpeedCounting.SimpleEquation.MaxOperandValue = 5; // set the maximum operand value for Easy mode
-                SpeedCounting.SimpleEquation.MinOperandValue = -5; // set the minimum operand value for Easy mode
+                SpeedCounting.MaxOperandValue = 5; // set the maximum operand value for Easy mode
+                SpeedCounting.MinOperandValue = -5; // set the minimum operand value for Easy mode
             }
 
-            else if (CheckListBox_Difficulty.CheckedItems.Contains("Medium"))
+            else if (CheckListBox_Difficulty.CheckedItems.Contains("medium"))
             {
                 currentGameMode = GameMode.Medium;
-                SpeedCounting.SimpleEquation.MaxOperandValue = 10; // set the maximum operand value for Medium mode
-                SpeedCounting.SimpleEquation.MinOperandValue = -10; // set the minimum operand value for Medium mode
+                SpeedCounting.MaxOperandValue = 10; // set the maximum operand value for Medium mode
+                SpeedCounting.MinOperandValue = -10; // set the minimum operand value for Medium mode
             }
-            else if (CheckListBox_Difficulty.CheckedItems.Contains("Hard"))
+            else if (CheckListBox_Difficulty.CheckedItems.Contains("hard"))
             {
                 currentGameMode = GameMode.Hard;
-                SpeedCounting.SimpleEquation.MaxOperandValue = 50; // set the maximum operand value for Hard mode
-                SpeedCounting.SimpleEquation.MinOperandValue = -50; // set the minimum operand value for Hard mode
+                SpeedCounting.MaxOperandValue = 50; // set the maximum operand value for Hard mode
+                SpeedCounting.MinOperandValue = -50; // set the minimum operand value for Hard mode
             }
-            else if (CheckListBox_Difficulty.CheckedItems.Contains("Insane"))
+            else if (CheckListBox_Difficulty.CheckedItems.Contains("insane"))
             {
                 currentGameMode = GameMode.Insane;
-                SpeedCounting.SimpleEquation.MaxOperandValue = 100; // set the maximum operand value for Insane mode
-                SpeedCounting.SimpleEquation.MinOperandValue = -100; // set the minimum operand value for Insane mode
+                SpeedCounting.MaxOperandValue = 100; // set the maximum operand value for Insane mode
+                SpeedCounting.MinOperandValue = -100; // set the minimum operand value for Insane mode
             }
 
             // read the operand limit
-            SpeedCounting.SimpleEquation.MaxOperands = (int)Numeric_MaxOpNum.Value;
+            SpeedCounting.MaxOperands = (int)Numeric_MaxOpNum.Value;
 
         }
         private void checkedListBox_OnlyOneItemCheck(object sender, ItemCheckEventArgs e)
         {
-            CheckedListBox checkedListBox1 = sender as CheckedListBox;
+            CheckedListBox clb = sender as CheckedListBox;
             if (e.NewValue == CheckState.Checked)
             {
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                for (int i = 0; i < clb.Items.Count; i++)
                 {
                     if (i != e.Index)
                     {
-                        checkedListBox1.SetItemChecked(i, false);
+                        clb.SetItemChecked(i, false);
                     }
                 }
             }
@@ -173,7 +177,8 @@ namespace losos
         {
             Button_Start.Enabled = true; // enable the start button
             Timer_GameTimer.Stop(); // stop the game timer
-            ///MISSING REWARD HANDLING
+            TextBox_Answer.BackColor = Color.White;
+            // MISSING REWARD HANDLING
         }
 
         private void CheckAnswer()
@@ -194,11 +199,12 @@ namespace losos
         #region rewards
         private void HandleGoodAnswer()
         {
-            
+            TotalReward += (int)currentGameMode * 1 + CurrentEquation.Operands.Length - 2; 
+            TextBox_Answer.BackColor = Color.LightGreen; // change the answer text box background color to light green
         }
         private void HandleBadAnswer()
         {
-            
+            TextBox_Answer.BackColor = Color.LightPink; // change the answer text box background color to light pink
         }
         #endregion
 

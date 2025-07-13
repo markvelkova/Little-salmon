@@ -38,6 +38,7 @@
             Numeric_MaxOpNum = new NumericUpDown();
             CheckListBox_Difficulty = new CheckedListBox();
             Label_MaxOperandsLabel = new Label();
+            Label_CorrectResult = new Label();
             ((System.ComponentModel.ISupportInitialize)Numeric_MaxOpNum).BeginInit();
             SuspendLayout();
             // 
@@ -122,10 +123,20 @@
             Label_MaxOperandsLabel.TabIndex = 7;
             Label_MaxOperandsLabel.Text = "maximal number of operands";
             // 
+            // Label_CorrectResult
+            // 
+            Label_CorrectResult.AutoSize = true;
+            Label_CorrectResult.Location = new Point(502, 468);
+            Label_CorrectResult.Name = "Label_CorrectResult";
+            Label_CorrectResult.Size = new Size(38, 15);
+            Label_CorrectResult.TabIndex = 8;
+            Label_CorrectResult.Text = "label1";
+            // 
             // UCGame_SpeedyCount
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Label_CorrectResult);
             Controls.Add(Label_MaxOperandsLabel);
             Controls.Add(CheckListBox_Difficulty);
             Controls.Add(Numeric_MaxOpNum);
@@ -152,5 +163,6 @@
         private NumericUpDown Numeric_MaxOpNum;
         private CheckedListBox CheckListBox_Difficulty;
         private Label Label_MaxOperandsLabel;
+        private Label Label_CorrectResult;
     }
 }

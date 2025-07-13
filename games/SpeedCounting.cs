@@ -9,6 +9,10 @@ namespace games
 
     public static class SpeedCounting
     {
+        public static int MaxOperands { get; set; } = 8;
+        public static int MinOperands { get; set; } = 2; // minimum number of operands
+        public static int MaxOperandValue { get; set; } = 100; // maximum value of an operand
+        public static int MinOperandValue { get; set; } = -100; // minimum value of an operand
 
         public interface IEquation
         {
@@ -19,10 +23,7 @@ namespace games
         
         public class SimpleEquation : IEquation
         {
-            public static int MaxOperands { get; set; } = 8;
-            public static int MinOperands { get; set; } = 2; // minimum number of operands
-            public static int MaxOperandValue { get; set; } = 100; // maximum value of an operand
-            public static int MinOperandValue { get; set; } = -100; // minimum value of an operand
+            
 
             public static Random rnd = new Random();
             
@@ -67,13 +68,13 @@ namespace games
                 StringBuilder eqBuilder = new StringBuilder();
                 for (int i = 0; i < Operands.Length; i++)
                 {
-                    if (i > 0)
+                    if (Operands[i] >= 0)
                     {
-                        if (Operands[i] >= 0)
+                        if (i > 0) // first operand is not preceded by + operator
                             eqBuilder.Append(" + ");
-                        else
-                            eqBuilder.Append(" - ");
                     }
+                    else
+                        eqBuilder.Append(" - ");
                     eqBuilder.Append(Math.Abs(Operands[i]));
                 }
                 return eqBuilder.ToString();
