@@ -24,11 +24,20 @@ namespace games
             public static int MaxOperandValue { get; set; } = 100; // maximum value of an operand
             public static int MinOperandValue { get; set; } = -100; // minimum value of an operand
 
-            Random rnd = new Random();
+            public static Random rnd = new Random();
             
             public int[] Operands { get; private set; } // operands of the equation
             public int Solution { get; private set; } // sum of the operands, can be used to check the result
             public string EquationString { get; private set; } // string representation of the equation, can be used to display the equation
+
+            /// <summary>
+            /// default constructor, creates an equation with a random number of operands
+            /// USES THE SPECIFIC CONSTRUCTOR   
+            /// </summary>
+            public SimpleEquation()
+                : this(rnd.Next(MinOperands, MaxOperands + 1))
+            {
+            }
 
             /// <summary>
             /// creates an equation with a given number operands only with + and - operators

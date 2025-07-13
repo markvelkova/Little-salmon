@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             Label_Equation = new Label();
-            Button_GiveEquation = new Button();
+            Button_Start = new Button();
             Button_Return = new Button();
+            TextBox_Answer = new TextBox();
             SuspendLayout();
             // 
             // Label_Equation
@@ -44,16 +45,16 @@
             Label_Equation.Text = "?????";
             Label_Equation.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Button_GiveEquation
+            // Button_Start
             // 
-            Button_GiveEquation.AutoSize = true;
-            Button_GiveEquation.Location = new Point(261, 317);
-            Button_GiveEquation.Name = "Button_GiveEquation";
-            Button_GiveEquation.Size = new Size(75, 25);
-            Button_GiveEquation.TabIndex = 1;
-            Button_GiveEquation.Text = "give next";
-            Button_GiveEquation.UseVisualStyleBackColor = true;
-            Button_GiveEquation.Click += button_GiveEquation_Click;
+            Button_Start.AutoSize = true;
+            Button_Start.Location = new Point(282, 526);
+            Button_Start.Name = "Button_Start";
+            Button_Start.Size = new Size(75, 25);
+            Button_Start.TabIndex = 1;
+            Button_Start.Text = "START";
+            Button_Start.UseVisualStyleBackColor = true;
+            Button_Start.Click += Button_Start_Click;
             // 
             // Button_Return
             // 
@@ -65,12 +66,22 @@
             Button_Return.UseVisualStyleBackColor = true;
             Button_Return.Click += returnButton_Click;
             // 
+            // TextBox_Answer
+            // 
+            TextBox_Answer.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            TextBox_Answer.Location = new Point(273, 481);
+            TextBox_Answer.Name = "TextBox_Answer";
+            TextBox_Answer.Size = new Size(100, 39);
+            TextBox_Answer.TabIndex = 3;
+            TextBox_Answer.KeyDown += textBox_Answer_KeyDown;
+            // 
             // UCGame_SpeedyCount
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(TextBox_Answer);
             Controls.Add(Button_Return);
-            Controls.Add(Button_GiveEquation);
+            Controls.Add(Button_Start);
             Controls.Add(Label_Equation);
             Name = "UCGame_SpeedyCount";
             Size = new Size(640, 640);
@@ -81,7 +92,8 @@
         #endregion
 
         private Label Label_Equation;
-        private Button Button_GiveEquation;
+        private Button Button_Start;
         private Button Button_Return;
+        private TextBox TextBox_Answer;
     }
 }
