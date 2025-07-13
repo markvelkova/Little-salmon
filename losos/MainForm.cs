@@ -21,7 +21,8 @@ namespace losos
             InitializeComponent();
             petLifeTimer.Tick += petLifeTimer_Tick;
 
-            petLifeTimer.Start(); // start the pet life timer
+            //petLifeTimer.Start(); // start the pet life timer
+
             ShowIntro();
             //MessageBox.Show(new SerializationUnit(thePet,theStats).SerializeToJson());
         }
@@ -70,6 +71,7 @@ namespace losos
         /// </summary>
         private void ShowIntro()
         {
+            petLifeTimer.Stop(); // start the pet life timer
             var intro = new UCIntro();
             intro.StartNewGameClicked += (s, e) => ShowMain();
             intro.LoadGameClicked += (s, e) => ShowMain();
@@ -85,6 +87,7 @@ namespace losos
         /// </summary>
         private void ShowMain()
         {
+            petLifeTimer.Start(); // start the pet life timer
             var main = new UCMain();
             main.GamesButtonClicked += (s, e) => ShowGames();
             SwitchScreen(main);

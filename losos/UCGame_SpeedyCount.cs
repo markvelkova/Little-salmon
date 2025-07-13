@@ -16,6 +16,11 @@ namespace losos
         private string equationLabelDefaultText = "?????"; // default text for the equation label
         private SpeedCounting.SimpleEquation CurrentEquation;
         private int Reward = 0;
+        private int TimeLimit { get; set; } = 600; // time limit in seconds, default is 60 seconds - 600 tenths of second
+        private int TimeLeft { get; set; }
+        private GameMode currentGameMode = GameMode.Easy; // current game mode, default is Easy
+
+        MeterDisplayer timeBar; 
 
         private enum GameMode { Easy, Medium, Hard, Insane };
 
@@ -23,8 +28,15 @@ namespace losos
         {
             InitializeComponent();
             this.BackColor = MainForm.MyDefaultBackColor; // set the background color to the default one
+            timeBar = new MeterDisplayer(Panel_Time, new Panel(), new Mirror(() => TimeLeft), TimeLimit);
+
+            CheckListBox_Difficulty.SetItemChecked(0,true); // set the first item (Easy) checked by default
+
+            TimeLeft = TimeLimit; // initialize the time left to the time limit
+            SetTimeBarValue(timeBar); // set the time bar value and color
             ResetEquationLabel();
             CenterControlHorizontally(TextBox_Answer); // center the answer text box horizontally
+            CenterControlHorizontally(Panel_Time); // center the time panel horizontally
             Button_Start.Text = "START";
         }
 
@@ -67,6 +79,7 @@ namespace losos
         }
         #endregion
 
+        #region game logic
         /// <summary>
         /// generate equation and display it in the label
         /// </summary>
@@ -83,6 +96,8 @@ namespace losos
                 e.SuppressKeyPress = true; // prevent the OBNOXIOUS beep sound on Enter key press
                 CheckAnswer();
                 GenerateNewEquation(); // generate a new equation after checking the answer
+                TextBox_Answer.Text = ""; // clear the answer text box
+                TextBox_Answer.Focus(); // set focus to the answer text box
             }
         }
 
@@ -93,15 +108,71 @@ namespace losos
 
         private void StartGame()
         {
+            ReadDifficultyInputs();
             GenerateNewEquation(); // generate a new equation
             TextBox_Answer.Text = ""; // clear the answer text box
             TextBox_Answer.Focus(); // set focus to the answer text box
             Button_Start.Enabled = false;
+            Timer_GameTimer.Start(); // start the game timer
+        }
+
+        private void ReadDifficultyInputs()
+        {
+            if (CheckListBox_Difficulty.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a difficulty level.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // do not start the game if no difficulty is selected
+            }
+            // read the difficulty level from the checked items in the list box
+            if (CheckListBox_Difficulty.CheckedItems.Contains("Easy"))
+            {
+                currentGameMode = GameMode.Easy;
+                SpeedCounting.SimpleEquation.MaxOperandValue = 5; // set the maximum operand value for Easy mode
+                SpeedCounting.SimpleEquation.MinOperandValue = -5; // set the minimum operand value for Easy mode
+            }
+
+            else if (CheckListBox_Difficulty.CheckedItems.Contains("Medium"))
+            {
+                currentGameMode = GameMode.Medium;
+                SpeedCounting.SimpleEquation.MaxOperandValue = 10; // set the maximum operand value for Medium mode
+                SpeedCounting.SimpleEquation.MinOperandValue = -10; // set the minimum operand value for Medium mode
+            }
+            else if (CheckListBox_Difficulty.CheckedItems.Contains("Hard"))
+            {
+                currentGameMode = GameMode.Hard;
+                SpeedCounting.SimpleEquation.MaxOperandValue = 50; // set the maximum operand value for Hard mode
+                SpeedCounting.SimpleEquation.MinOperandValue = -50; // set the minimum operand value for Hard mode
+            }
+            else if (CheckListBox_Difficulty.CheckedItems.Contains("Insane"))
+            {
+                currentGameMode = GameMode.Insane;
+                SpeedCounting.SimpleEquation.MaxOperandValue = 100; // set the maximum operand value for Insane mode
+                SpeedCounting.SimpleEquation.MinOperandValue = -100; // set the minimum operand value for Insane mode
+            }
+
+            // read the operand limit
+            SpeedCounting.SimpleEquation.MaxOperands = (int)Numeric_MaxOpNum.Value;
+
+        }
+        private void checkedListBox_OnlyOneItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox checkedListBox1 = sender as CheckedListBox;
+            if (e.NewValue == CheckState.Checked)
+            {
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                    {
+                        checkedListBox1.SetItemChecked(i, false);
+                    }
+                }
+            }
         }
 
         private void EndGame()
         {
             Button_Start.Enabled = true; // enable the start button
+            Timer_GameTimer.Stop(); // stop the game timer
             ///MISSING REWARD HANDLING
         }
 
@@ -116,7 +187,9 @@ namespace losos
                 }
             }
             HandleBadAnswer();
+            
         }
+        #endregion
 
         #region rewards
         private void HandleGoodAnswer()
@@ -129,6 +202,50 @@ namespace losos
         }
         #endregion
 
+
+        #region time flow
+        /// <summary>
+        /// adjusts the time bar value and color based on value mirrored
+        /// </summary>
+        private void SetTimeBarValue(MeterDisplayer m)
+        {
+            float percentage = (float)m.Mirror.Value / m.Max;
+            int barWidth = (int)(m.BackgroundPanel.Width * percentage);
+
+            m.BarPanel.Width = barWidth;
+            m.BarPanel.Height = m.BackgroundPanel.Height;
+
+            percentage *= 100;
+
+            if (percentage < 15)
+                m.BarPanel.BackColor = Color.Red;
+            else if (percentage < 30)
+                m.BarPanel.BackColor = Color.Orange;
+            else if (percentage < 50)
+                m.BarPanel.BackColor = Color.Yellow;
+            else if (percentage < 80)
+                m.BarPanel.BackColor = Color.Green;
+            else
+                m.BarPanel.BackColor = Color.Blue;
+            m.BackgroundPanel.Controls.Clear();
+            m.BackgroundPanel.Controls.Add(m.BarPanel);
+        }
+
+        private void Timer_GameTimer_Tick(object sender, EventArgs e)
+        {
+            if (TimeLeft <= 0)
+            {
+                Timer_GameTimer.Stop(); // stop the timer when time is up
+                EndGame(); // end the game
+                return;
+            }
+            else
+            {
+                TimeLeft--; // decrease the time left
+                SetTimeBarValue(timeBar); // set the time bar value and color
+            }
+        }
+        #endregion
 
         public event EventHandler ReturnSelected;
         private void returnButton_Click(object sender, EventArgs e)

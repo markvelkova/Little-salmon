@@ -160,7 +160,7 @@
             // 
             // PictureBox_PetBox
             // 
-            PictureBox_PetBox.Image = (Image)resources.GetObject("PictureBox_PetBox.Image");
+            //PictureBox_PetBox.Image = (Image)resources.GetObject("PictureBox_PetBox.Image");
             PictureBox_PetBox.Location = new Point(170, 145);
             PictureBox_PetBox.Name = "PictureBox_PetBox";
             PictureBox_PetBox.Size = new Size(257, 258);
