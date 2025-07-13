@@ -112,7 +112,7 @@ namespace losos
         }
         private void ShowStarrySky()
         {
-            var starrySky = new UCStarrySky();
+            var starrySky = new UCGame_StarrySky();
             thePet.PlayingGames = true; // set the pet to playing games state
             starrySky.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(starrySky);

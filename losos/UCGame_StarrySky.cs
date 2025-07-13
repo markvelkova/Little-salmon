@@ -12,7 +12,7 @@ using games;
 
 namespace losos
 {
-    public partial class UCStarrySky : UserControl
+    public partial class UCGame_StarrySky : UserControl
     {
         private Bitmap[] starPictures; // icons for the stars
         private int iconWidth { get; } = 400; // width of each star icon
@@ -26,7 +26,7 @@ namespace losos
         private int currentCountdownTimeLeft = 3; // countdown time to game start in seconds
         private double currentGameDurationLeft = 100; // duration of the game in tenths of seconds
 
-        public UCStarrySky()
+        public UCGame_StarrySky()
         {
             InitializeComponent();
             this.BackColor = MainForm.MyDefaultBackColor; // set the background color to the default one
@@ -34,6 +34,7 @@ namespace losos
             numberOfIcons = starPictures.Length;
             pictureBox_Sky.Image = starPictures[0]; // set the first star icon as the initial image
             Label_Countdown.Visible = false; // hide the countdown label initially
+            UpdateGameStatusLabels(); // update the game status labels
         }
 
         #region game start end
@@ -77,6 +78,10 @@ namespace losos
             MainForm.thePet.FoodCount += (int)totalReward; // add the reward to the current food count
             UpdateStats(); // update the stats
         }
+
+        /// <summary>
+        /// updates theStats related to the starry sky game, such as the number of clicks, total reward, and records.
+        /// </summary>
         private void UpdateStats()
         {
             //Adjust basic stat
@@ -90,6 +95,11 @@ namespace losos
             if (currentRecord < numberOfClicks)
                 MainForm.AdjustStat("Starry sky clicks record", numberOfClicks);
         }
+
+        /// <summary>
+        /// resets game stats for the next game
+        /// specifically: number of clicks, total reward, countdown time, and game duration.
+        /// </summary>
         private void ResetForNextGame()
         {
             numberOfClicks = 0; // reset number of clicks
@@ -103,25 +113,40 @@ namespace losos
 
         #region timers
 
-        
+        /// <summary>
+        /// this timer counts down the time left before the game starts and updates the countdown label.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_Countdown_Tick(object sender, EventArgs e)
         {
-            if (currentCountdownTimeLeft > 0)
+            if (currentCountdownTimeLeft > 1)
             {
-                Label_Countdown.Text = currentCountdownTimeLeft.ToString();
                 currentCountdownTimeLeft--;
+                Label_Countdown.Text = currentCountdownTimeLeft.ToString();
             }
             else
             {
                 startGame();
             }
         }
+
+        /// <summary>
+        /// This timer changes the image to a random one of the star icons every interval
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_ChangeImage_Tick(object sender, EventArgs e)
         {
             Random random = new Random();
             int index = random.Next(0, numberOfIcons);
             pictureBox_Sky.Image = starPictures[index];
         }
+        /// <summary>
+        /// This timer counts down the game duration and stops the game when the time is up.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer_GameTimer_Tick(object sender, EventArgs e)
         {
             if (currentGameDurationLeft > 0)
@@ -145,6 +170,12 @@ namespace losos
             Label_Reward.Text = "Total reward: " + totalReward.ToString("F2");
             Label_Clicks.Text = "Number of clicks: " + numberOfClicks.ToString();
         }
+
+        /// <summary>
+        /// checks if the game is running and handles the mouse click on the starry sky.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StarrySky_MouseClick(object sender, MouseEventArgs e)
         {
             if (Timer_GameTimer.Enabled == true) // only if game is running

@@ -1,6 +1,6 @@
 ﻿namespace losos
 {
-    partial class UCStarrySky
+    partial class UCGame_StarrySky
     {
         /// <summary> 
         /// Vyžaduje se proměnná návrháře.
