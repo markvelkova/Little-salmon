@@ -15,6 +15,7 @@ namespace losos
         {
             Interval = 1000 // 1 second interval
         };
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace losos
 
             petLifeTimer.Start(); // start the pet life timer
             ShowIntro();
-            MessageBox.Show(new SerializationUnit(thePet,theStats).SerializeToJson());
+            //MessageBox.Show(new SerializationUnit(thePet,theStats).SerializeToJson());
         }
 
         /// <summary>
