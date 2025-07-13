@@ -9,24 +9,34 @@ namespace games
 
     public static class SpeedCounting
     {
-        public static int MaxOperands { get; set; } = 8;
-        public static int MinOperands { get; set; } = 2; // minimum number of operands
-        public static int MaxOperandValue { get; set; } = 100; // maximum value of an operand
-        public static int MinOperandValue { get; set; } = -100; // minimum value of an operand
-        public class Equation
+
+        public interface IEquation
         {
+            int Solution { get; } // sum of the operands, can be used to check the result
+            string EquationString { get; } // string representation of the equation, can be used to display the equation
+
+        }
+        
+        public class SimpleEquation : IEquation
+        {
+            public static int MaxOperands { get; set; } = 8;
+            public static int MinOperands { get; set; } = 2; // minimum number of operands
+            public static int MaxOperandValue { get; set; } = 100; // maximum value of an operand
+            public static int MinOperandValue { get; set; } = -100; // minimum value of an operand
+
             Random rnd = new Random();
             
             public int[] Operands { get; private set; } // operands of the equation
-            public int Sum { get; private set; } // sum of the operands, can be used to check the result
+            public int Solution { get; private set; } // sum of the operands, can be used to check the result
             public string EquationString { get; private set; } // string representation of the equation, can be used to display the equation
+
             /// <summary>
-            /// creates an equation with a given number operands
+            /// creates an equation with a given number operands only with + and - operators
             /// throws argumentException when wrong number of operators are requested
             /// </summary>
             /// <param name="numberOfOperands"></param>
             /// <exception cref="ArgumentException"></exception>
-            public Equation(int numberOfOperands)
+            public SimpleEquation(int numberOfOperands)
             {
                 if (numberOfOperands < MinOperands || numberOfOperands > MaxOperands) // arbitrary limits for the number of operands
                     throw new ArgumentException($"Number of operands must be between {MinOperands} and {MaxOperands}.", nameof(numberOfOperands));
@@ -37,9 +47,9 @@ namespace games
                     int nextOperand = rnd.Next(MinOperandValue, MaxOperandValue + 1); // +1 because upper limit is exclusive
                     Operands[i] = nextOperand; // assign the next operand
                     if (i == 0)
-                        Sum = nextOperand; // first operand is the sum
+                        Solution = nextOperand; // first operand is the sum
                     else
-                        Sum += nextOperand; // add the next operand to the sum
+                        Solution += nextOperand; // add the next operand to the sum
                 }
                 EquationString = GenerateEquationString();
             }

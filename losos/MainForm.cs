@@ -100,6 +100,7 @@ namespace losos
             games.ReturnSelected += (s, e) => ShowMain();
             games.FlipACoinSelected += (s, e) => ShowHeadsOrTails();
             games.StarrySkySelected += (s, e) => ShowStarrySky();
+            games.SpeedyCountSelected += (s, e) => ShowSpeedyCount();
             SwitchScreen(games);
         }
 
@@ -117,6 +118,13 @@ namespace losos
             thePet.PlayingGames = true; // set the pet to playing games state
             starrySky.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(starrySky);
+        }
+        private void ShowSpeedyCount()
+        {
+            var spdcnt = new UCGame_SpeedyCount();
+            thePet.PlayingGames = true; // set the pet to playing games state
+            spdcnt.ReturnSelected += (s, e) => ShowGames();
+            SwitchScreen(spdcnt);
         }
         #endregion
 

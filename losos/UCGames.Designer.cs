@@ -31,6 +31,7 @@
             Button_SelectFlipCoin = new Button();
             Button_ReturnButton = new Button();
             Button_SelectStarrySky = new Button();
+            Button_SelectSpeedyCount = new Button();
             SuspendLayout();
             // 
             // Button_SelectFlipCoin
@@ -63,10 +64,21 @@
             Button_SelectStarrySky.UseVisualStyleBackColor = true;
             Button_SelectStarrySky.Click += button_StarrySky_Click;
             // 
+            // Button_SelectSpeedyCount
+            // 
+            Button_SelectSpeedyCount.Location = new Point(63, 117);
+            Button_SelectSpeedyCount.Name = "Button_SelectSpeedyCount";
+            Button_SelectSpeedyCount.Size = new Size(114, 23);
+            Button_SelectSpeedyCount.TabIndex = 3;
+            Button_SelectSpeedyCount.Text = "SPEEDY COUNT";
+            Button_SelectSpeedyCount.UseVisualStyleBackColor = true;
+            Button_SelectSpeedyCount.Click += button_SpeedyCount_Click;
+            // 
             // UCGames
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Button_SelectSpeedyCount);
             Controls.Add(Button_SelectStarrySky);
             Controls.Add(Button_ReturnButton);
             Controls.Add(Button_SelectFlipCoin);
@@ -80,5 +92,6 @@
         private Button Button_SelectFlipCoin;
         private Button Button_ReturnButton;
         private Button Button_SelectStarrySky;
+        private Button Button_SelectSpeedyCount;
     }
 }
