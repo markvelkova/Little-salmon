@@ -11,6 +11,7 @@ using games;
 
 namespace losos
 {
+    public enum GameMode { easy = 1, medium = 2, hard = 3, insane = 5 };
     public partial class UCGame_SpeedyCount : UserControl
     {
         private string equationLabelDefaultText = "?????"; // default text for the equation label
@@ -18,12 +19,13 @@ namespace losos
         private int Reward = 0;
         private int TimeLimit { get; set; } = 600; // time limit in seconds, default is 60 seconds - 600 tenths of second
         private int TimeLeft { get; set; }
-        private GameMode currentGameMode = GameMode.Easy; // current game mode, default is Easy
+        private GameMode currentGameMode = GameMode.easy; // current game mode, default is easy
         int TotalReward { get; set; } = 0; // total reward for the game, can be used to display the score at the end of the game
+        private List<SpeedCounting.UserCalculationResult> UserCalculationResults { get; set; }
 
         MeterDisplayer timeBar; 
         
-        private enum GameMode { Easy = 1, Medium = 2, Hard = 3, Insane = 5 };
+        
 
         public UCGame_SpeedyCount()
         {
@@ -31,13 +33,13 @@ namespace losos
             this.BackColor = MainForm.MyDefaultBackColor; // set the background color to the default one
             timeBar = new MeterDisplayer(Panel_Time, new Panel(), new Mirror(() => TimeLeft), TimeLimit);
 
-            CheckListBox_Difficulty.SetItemChecked(0,true); // set the first item (Easy) checked by default
+            CheckListBox_Difficulty.SetItemChecked(0,true); // set the first item (easy) checked by default
 
             TimeLeft = TimeLimit; // initialize the time left to the time limit
             SetTimeBarValue(timeBar); // set the time bar value and color
             ResetEquationLabel();
-            CenterControlHorizontally(TextBox_Answer); // center the answer text box horizontally
-            CenterControlHorizontally(Panel_Time); // center the time panel horizontally
+            UsefulForDesign.CenterControlHorizontally(TextBox_Answer); // center the answer text box horizontally
+            UsefulForDesign.CenterControlHorizontally(Panel_Time); // center the time panel horizontally
             Button_Start.Text = "START";
 
         }
@@ -47,36 +49,17 @@ namespace losos
         {
             // display the equation in the label
             Label_Equation.Text = equation.EquationString;
-            CenterControl(Label_Equation);
+            UsefulForDesign.CenterControl(Label_Equation);
         }
 
-        /// <summary>
-        /// centers the control in the parent control
-        /// </summary>
-        /// <param name="control"></param>
-        private void CenterControl(Control control)
-        {
-            CenterControlHorizontally(control);
-            CenterControlVertically(control);
-        }
 
-        private void CenterControlHorizontally(Control control)
-        {
-            // center the label horizontally in the parent control
-            control.Left = (this.Width - control.Width) / 2;
-        }
-        private void CenterControlVertically(Control control)
-        {
-            // center the label vertically in the parent control
-            control.Top = (this.Height - control.Height) / 2;
-        }
 
         /// <summary>
         /// reset the equation label to default text
         /// </summary>
         private void ResetEquationLabel()
         {
-            CenterControl(Label_Equation); // center the label
+            UsefulForDesign.CenterControl(Label_Equation); // center the label
             Label_Equation.Text = equationLabelDefaultText;
         }
         #endregion
@@ -89,7 +72,7 @@ namespace losos
         {
             CurrentEquation = new SpeedCounting.SimpleEquation();
             displayEquation(CurrentEquation); // display the generated equation
-            Label_CorrectResult.Text = CurrentEquation.Solution.ToString(); // display the correct result in the label
+            Label_CurrentRewardDisplay.Text = TotalReward.ToString(); // display the current reward
         }
 
         private void textBox_Answer_KeyDown(object sender, KeyEventArgs e)
@@ -97,7 +80,8 @@ namespace losos
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // prevent the OBNOXIOUS beep sound on Enter key press
-                CheckAnswer();
+                GetAndCheckAnswer();
+
                 GenerateNewEquation(); // generate a new equation after checking the answer
                 TextBox_Answer.Text = ""; // clear the answer text box
                 TextBox_Answer.Focus(); // set focus to the answer text box
@@ -118,6 +102,7 @@ namespace losos
             TextBox_Answer.Focus(); // set focus to the answer text box
             Button_Start.Enabled = false;
             Timer_GameTimer.Start(); // start the game timer
+            UserCalculationResults = new();
         }
 
         private void ReadDifficultyInputs()
@@ -130,28 +115,28 @@ namespace losos
             // read the difficulty level from the checked items in the list box
             if (CheckListBox_Difficulty.CheckedItems.Contains("easy"))
             {
-                currentGameMode = GameMode.Easy;
-                SpeedCounting.MaxOperandValue = 5; // set the maximum operand value for Easy mode
-                SpeedCounting.MinOperandValue = -5; // set the minimum operand value for Easy mode
+                currentGameMode = GameMode.easy;
+                SpeedCounting.MaxOperandValue = 5; // set the maximum operand value for easy mode
+                SpeedCounting.MinOperandValue = -5; // set the minimum operand value for easy mode
             }
 
             else if (CheckListBox_Difficulty.CheckedItems.Contains("medium"))
             {
-                currentGameMode = GameMode.Medium;
-                SpeedCounting.MaxOperandValue = 10; // set the maximum operand value for Medium mode
-                SpeedCounting.MinOperandValue = -10; // set the minimum operand value for Medium mode
+                currentGameMode = GameMode.medium;
+                SpeedCounting.MaxOperandValue = 10; // set the maximum operand value for medium mode
+                SpeedCounting.MinOperandValue = -10; // set the minimum operand value for medium mode
             }
             else if (CheckListBox_Difficulty.CheckedItems.Contains("hard"))
             {
-                currentGameMode = GameMode.Hard;
-                SpeedCounting.MaxOperandValue = 50; // set the maximum operand value for Hard mode
-                SpeedCounting.MinOperandValue = -50; // set the minimum operand value for Hard mode
+                currentGameMode = GameMode.hard;
+                SpeedCounting.MaxOperandValue = 50; // set the maximum operand value for hard mode
+                SpeedCounting.MinOperandValue = -50; // set the minimum operand value for hard mode
             }
             else if (CheckListBox_Difficulty.CheckedItems.Contains("insane"))
             {
-                currentGameMode = GameMode.Insane;
-                SpeedCounting.MaxOperandValue = 100; // set the maximum operand value for Insane mode
-                SpeedCounting.MinOperandValue = -100; // set the minimum operand value for Insane mode
+                currentGameMode = GameMode.insane;
+                SpeedCounting.MaxOperandValue = 100; // set the maximum operand value for insane mode
+                SpeedCounting.MinOperandValue = -100; // set the minimum operand value for insane mode
             }
 
             // read the operand limit
@@ -178,21 +163,62 @@ namespace losos
             Button_Start.Enabled = true; // enable the start button
             Timer_GameTimer.Stop(); // stop the game timer
             TextBox_Answer.BackColor = Color.White;
-            // MISSING REWARD HANDLING
+            EvaluateResults();
+            MainForm.thePet.AddFood(TotalReward);
         }
 
-        private void CheckAnswer()
+        private void EvaluateResults()
         {
-            if (int.TryParse(TextBox_Answer.Text, out int answer))
+            AdjustStatWrapper("played", 1); // adjust the played stat for the current game mode
+
+            var correctAnswers = from result in UserCalculationResults
+                                 where result.IsCorrect
+                                 select result;
+            AdjustStatWrapper("correct", correctAnswers.Count()); // adjust the correct stat for the current game mode
+
+            if (correctAnswers.Count() > MainForm.theStats.GetStat(MainForm.theStats.GetSpeedyStatName(currentGameMode.ToString(), "record")))
             {
-                if (CurrentEquation.Solution == answer)
-                {
-                    HandleGoodAnswer();
-                    return;
-                }
+                AdjustStatWrapper("record", correctAnswers.Count()); // adjust the record stat for the current game mode
             }
-            HandleBadAnswer();
+
+            var incorrectAnswers = from result in UserCalculationResults
+                                   where !result.IsCorrect && !result.IsInvalid
+                                   select result;
+            AdjustStatWrapper("total incorrect", incorrectAnswers.Count()); // adjust the total incorrect stat for the current game mode
             
+
+            var invalidAnswers = from result in incorrectAnswers
+                                 where result.IsInvalid
+                                 select result;
+            AdjustStatWrapper("invalid", invalidAnswers.Count()); // adjust the invalid stat for the current game mode
+
+            var almostCorrectAnswers = from result in incorrectAnswers
+                                       where !result.IsInvalid && Math.Abs(result.UserResult - result.CorrectResult) == 1
+                                       select result;
+            AdjustStatWrapper("almost correct", almostCorrectAnswers.Count()); // adjust the almost correct stat for the current game mode
+
+            var tenLostSomewhere = from result in incorrectAnswers
+                                   where !result.IsInvalid && Math.Abs(result.UserResult - result.CorrectResult) == 10
+                                   select result;
+            AdjustStatWrapper("ten away", tenLostSomewhere.Count()); // adjust the ten away stat for the current game mode
+        }
+        private void AdjustStatWrapper(string statName, int value)
+        {
+            MainForm.theStats.AdjustStat(MainForm.theStats.GetSpeedyStatName(currentGameMode.ToString(), statName), value);
+        }
+
+        private void GetAndCheckAnswer()
+        {
+            SpeedCounting.UserCalculationResult userResult = CurrentEquation.CheckUserResult(TextBox_Answer.Text);
+            if (userResult.IsCorrect)
+            {
+                HandleGoodAnswer();
+            }
+            else // invalid or wrong
+            {
+                HandleBadAnswer();
+            }
+            UserCalculationResults.Add(userResult); // add the user result to the list of results
         }
         #endregion
 

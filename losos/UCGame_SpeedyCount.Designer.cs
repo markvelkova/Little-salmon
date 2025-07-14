@@ -38,7 +38,8 @@
             Numeric_MaxOpNum = new NumericUpDown();
             CheckListBox_Difficulty = new CheckedListBox();
             Label_MaxOperandsLabel = new Label();
-            Label_CorrectResult = new Label();
+            Label_CurrentRewardDisplay = new Label();
+            Label_CurrentRewardLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)Numeric_MaxOpNum).BeginInit();
             SuspendLayout();
             // 
@@ -123,20 +124,31 @@
             Label_MaxOperandsLabel.TabIndex = 7;
             Label_MaxOperandsLabel.Text = "maximal number of operands";
             // 
-            // Label_CorrectResult
+            // Label_CurrentRewardDisplay
             // 
-            Label_CorrectResult.AutoSize = true;
-            Label_CorrectResult.Location = new Point(502, 468);
-            Label_CorrectResult.Name = "Label_CorrectResult";
-            Label_CorrectResult.Size = new Size(38, 15);
-            Label_CorrectResult.TabIndex = 8;
-            Label_CorrectResult.Text = "label1";
+            Label_CurrentRewardDisplay.AutoSize = true;
+            Label_CurrentRewardDisplay.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            Label_CurrentRewardDisplay.Location = new Point(473, 477);
+            Label_CurrentRewardDisplay.Name = "Label_CurrentRewardDisplay";
+            Label_CurrentRewardDisplay.Size = new Size(34, 41);
+            Label_CurrentRewardDisplay.TabIndex = 8;
+            Label_CurrentRewardDisplay.Text = "0";
+            // 
+            // Label_CurrentRewardLabel
+            // 
+            Label_CurrentRewardLabel.AutoSize = true;
+            Label_CurrentRewardLabel.Location = new Point(473, 453);
+            Label_CurrentRewardLabel.Name = "Label_CurrentRewardLabel";
+            Label_CurrentRewardLabel.Size = new Size(84, 15);
+            Label_CurrentRewardLabel.TabIndex = 11;
+            Label_CurrentRewardLabel.Text = "current reward";
             // 
             // UCGame_SpeedyCount
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(Label_CorrectResult);
+            Controls.Add(Label_CurrentRewardLabel);
+            Controls.Add(Label_CurrentRewardDisplay);
             Controls.Add(Label_MaxOperandsLabel);
             Controls.Add(CheckListBox_Difficulty);
             Controls.Add(Numeric_MaxOpNum);
@@ -163,6 +175,7 @@
         private NumericUpDown Numeric_MaxOpNum;
         private CheckedListBox CheckListBox_Difficulty;
         private Label Label_MaxOperandsLabel;
-        private Label Label_CorrectResult;
+        private Label Label_CurrentRewardDisplay;
+        private Label Label_CurrentRewardLabel;
     }
 }

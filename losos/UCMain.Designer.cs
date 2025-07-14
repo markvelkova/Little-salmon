@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCMain));
             Label_Name = new Label();
             Button_SelectGame = new Button();
             Button_Feed = new Button();
@@ -160,7 +159,6 @@
             // 
             // PictureBox_PetBox
             // 
-            //PictureBox_PetBox.Image = (Image)resources.GetObject("PictureBox_PetBox.Image");
             PictureBox_PetBox.Location = new Point(170, 145);
             PictureBox_PetBox.Name = "PictureBox_PetBox";
             PictureBox_PetBox.Size = new Size(257, 258);
@@ -170,13 +168,12 @@
             // TextBox_Stats
             // 
             TextBox_Stats.Font = new Font("Segoe UI", 7F);
-            TextBox_Stats.Location = new Point(458, 59);
-            TextBox_Stats.MaximumSize = new Size(163, 344);
+            TextBox_Stats.Location = new Point(347, 59);
             TextBox_Stats.Multiline = true;
             TextBox_Stats.Name = "TextBox_Stats";
             TextBox_Stats.ReadOnly = true;
             TextBox_Stats.ScrollBars = ScrollBars.Vertical;
-            TextBox_Stats.Size = new Size(163, 344);
+            TextBox_Stats.Size = new Size(274, 344);
             TextBox_Stats.TabIndex = 16;
             // 
             // Button_Stats

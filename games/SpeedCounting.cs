@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static games.SpeedCounting;
 
 namespace games
 {
@@ -14,11 +15,19 @@ namespace games
         public static int MaxOperandValue { get; set; } = 100; // maximum value of an operand
         public static int MinOperandValue { get; set; } = -100; // minimum value of an operand
 
+        public class UserCalculationResult
+        {
+            public int UserResult { get; set; } // result entered by the user
+            public int CorrectResult { get; set; } // correct result of the equation
+            public bool IsCorrect => (UserResult == CorrectResult) && !IsInvalid; // true if the user result is correct
+            public bool IsInvalid = false; // true if the user result is invalid (e.g. not a number or out of range)
+        }
+
         public interface IEquation
         {
             int Solution { get; } // sum of the operands, can be used to check the result
             string EquationString { get; } // string representation of the equation, can be used to display the equation
-
+            public UserCalculationResult CheckUserResult(string userResult);
         }
         
         public class SimpleEquation : IEquation
@@ -78,6 +87,29 @@ namespace games
                     eqBuilder.Append(Math.Abs(Operands[i]));
                 }
                 return eqBuilder.ToString();
+            }
+
+            public UserCalculationResult CheckUserResult(string userResult)
+            {
+                if (int.TryParse(userResult, out int answer))
+                {
+                    return new UserCalculationResult
+                    {
+                        UserResult = answer,
+                        CorrectResult = Solution,
+                        IsInvalid = false
+                    };
+                }
+                else
+                {
+                    return new UserCalculationResult
+                    {
+                        UserResult = 0, // neslo naparsovat na int
+                        CorrectResult = Solution,
+                        IsInvalid = true
+                    };
+                }
+                
             }
         }
     }

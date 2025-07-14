@@ -24,6 +24,7 @@ namespace losos
         public event EventHandler StartNewGameClicked; // here are stacked requests from outside
         private void btnStartNewGame_Click(object sender, EventArgs e)
         {
+            MainForm.thePet = new Pet(); // create a new pet instance
             StartNewGameClicked?.Invoke(this, EventArgs.Empty);
         }
         #endregion

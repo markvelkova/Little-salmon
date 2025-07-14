@@ -12,46 +12,7 @@ using pet;
 
 namespace losos
 {
-    /// <summary>
-    /// wrapper over delegate for getter of a property given
-    /// </summary>
-    public class Mirror
-    {
-        private Func<int> getter;
 
-        public Mirror(Func<int> getFunc)
-        {
-            getter = getFunc;
-        }
-        public int Value
-        {
-            get => getter();
-        }
-    }
-    /// <summary>
-    /// wrapper over the background and foreground panels of the progress bar, used to display the progress bar in a panel.
-    /// </summary>
-    public class MeterDisplayer
-    {
-        public Panel BackgroundPanel { get; set; }
-        public Panel BarPanel { get; set; }
-        public Mirror Mirror { get; set; } // used to get the value of the progress bar
-        public int Max { get; set; } = 100; // default max value for the progress bar
-
-        public MeterDisplayer(Panel panel, Panel barPanel, Mirror mirrorValue)
-        {
-            BackgroundPanel = panel;
-            BarPanel = barPanel;
-            Mirror = mirrorValue;
-        }
-        public MeterDisplayer(Panel panel, Panel barPanel, Mirror mirrorValue, int max)
-        {
-            BackgroundPanel = panel;
-            BarPanel = barPanel;
-            Mirror = mirrorValue;
-            Max = max;
-        }
-    }
 
     public partial class UCMain : UserControl
     {
@@ -82,8 +43,6 @@ namespace losos
             TextBox_NewNameBox.Visible = false;
             Button_ChangeNameSubmit.Visible = false;
             TextBox_Stats.Visible = false; // hide the stats text box initially
-
-            CenterNameLabelPosition();
 
             this.BackColor = MainForm.MyDefaultBackColor;
             UpdatePetStatusDisplay();
@@ -128,6 +87,7 @@ namespace losos
         {
             PictureBox_PetBox.Image = fishPictures[(int)MainForm.thePet.LifeState];
             Label_Name.Text = MainForm.thePet.Name;
+            UsefulForDesign.CenterControlHorizontally(Label_Name);
             Label_FoodCountLabel.Text = "Food count: " + MainForm.thePet.FoodCount.ToString();
 
             foreach (MeterDisplayer m in meterDisplayers)
@@ -162,14 +122,14 @@ namespace losos
 
         private void PetDead()
         {
-            MessageBox.Show("Your pet " + MainForm.thePet.Name + " has died.", "Pet Dead", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Button_Feed.Enabled = false;
             Button_SelectGame.Enabled = false;
             Button_Sleep.Enabled = false;
             Label_Name.Text = "Your pet " + MainForm.thePet.Name + " has died.";
-            CenterNameLabelPosition();
+            UsefulForDesign.CenterControlHorizontally(Label_Name);
             PictureBox_PetBox.Image = fishPictures[(int)Pet.LifeStates.Dead];
             this.BackColor = Color.Maroon;
+            MessageBox.Show("Your pet " + MainForm.thePet.Name + " has died.", "Pet Dead", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         #endregion
@@ -182,10 +142,6 @@ namespace losos
             Button_ChangeNameSubmit.Visible = true;
         }
 
-        private void CenterNameLabelPosition()
-        {
-            Label_Name.Left = (this.Width - Label_Name.Width) / 2;
-        }
         private void Button_ChangeNameSubmit_Click(object sender, EventArgs e)
         {
             string newName = TextBox_NewNameBox.Text.Trim();
@@ -195,7 +151,6 @@ namespace losos
                 return;
             }
             MainForm.thePet.Name = newName;
-            CenterNameLabelPosition();
             UpdatePetStatusDisplay();
             TextBox_NewNameBox.Visible = false;
             Button_ChangeNameSubmit.Visible = false;
