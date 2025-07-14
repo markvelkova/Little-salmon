@@ -52,7 +52,23 @@ namespace losos
 
         #region visual settings
 
-        
+        /// <summary>
+        /// shows color dialog to choose a background color for the background
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_ChooseColor_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                colorDialog.Color = this.BackColor; 
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MainForm.MyDefaultBackColor = colorDialog.Color;
+                    this.BackColor = MainForm.MyDefaultBackColor; // set the background color to the selected color
+                }
+            }
+        }
 
         /// <summary>
         /// adjusts the progress bar value and color based on the given value.

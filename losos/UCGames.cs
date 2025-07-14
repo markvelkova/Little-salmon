@@ -19,6 +19,7 @@ namespace losos
         public UCGames()
         {
             InitializeComponent();
+            this.BackColor = MainForm.MyDefaultBackColor;
         }
         private void button_FlipACoin_Click(object sender, EventArgs e)
         {

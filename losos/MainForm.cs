@@ -30,7 +30,7 @@ namespace losos
         /// <summary>
         /// basic colour, kinda blue, for background
         /// </summary>
-        public static Color MyDefaultBackColor => Color.FromArgb(0, 162, 232);
+        public static Color MyDefaultBackColor { get; set; } = Color.FromArgb(0, 162, 232);
 
 
         #region time flow

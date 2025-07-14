@@ -45,6 +45,7 @@
             Panel_Energy = new Panel();
             Panel_Mood = new Panel();
             Panel_Hunger = new Panel();
+            Button_ChangeColor = new Button();
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
             SuspendLayout();
             // 
@@ -210,10 +211,22 @@
             Panel_Hunger.Size = new Size(100, 26);
             Panel_Hunger.TabIndex = 20;
             // 
+            // Button_ChangeColor
+            // 
+            Button_ChangeColor.AutoSize = true;
+            Button_ChangeColor.Location = new Point(15, 145);
+            Button_ChangeColor.Name = "Button_ChangeColor";
+            Button_ChangeColor.Size = new Size(93, 25);
+            Button_ChangeColor.TabIndex = 21;
+            Button_ChangeColor.Text = "change colour";
+            Button_ChangeColor.UseVisualStyleBackColor = true;
+            Button_ChangeColor.Click += Button_ChooseColor_Click;
+            // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Button_ChangeColor);
             Controls.Add(Panel_Mood);
             Controls.Add(Panel_Hunger);
             Controls.Add(Panel_Energy);
@@ -260,5 +273,6 @@
         private Panel Panel_Energy;
         private Panel Panel_Mood;
         private Panel Panel_Hunger;
+        private Button Button_ChangeColor;
     }
 }
