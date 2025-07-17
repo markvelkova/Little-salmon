@@ -135,6 +135,7 @@ namespace losos
             var snake = new UCGame_Snake();
             thePet.PlayingGames = true; // set the pet to playing games state
             snake.ReturnSelected += (s, e) => ShowGames();
+            snake.Focus();
             SwitchScreen(snake);
         }
 
