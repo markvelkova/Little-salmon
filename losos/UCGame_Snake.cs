@@ -26,17 +26,17 @@ namespace losos
             this.Focus();
 
             Button_ReturnButton.TabStop = false;
-            Button_Focus.TabStop = false;
             snake.Add(new Point(5,5));
             Timer_GameTimer.Start();
         }
 
+        #region keyhandling
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             this.Focus();
             this.KeyDown += Snake_KeyDown;
-            this.PreviewKeyDown += UCGame_Snake_PreviewKeyDown;
+            this.PreviewKeyDown += Snake_PreviewKeyDown;
         }
 
         protected override bool IsInputKey(Keys keyData)
@@ -44,6 +44,38 @@ namespace losos
             return keyData == Keys.Left || keyData == Keys.Right ||
                    keyData == Keys.Up || keyData == Keys.Down || base.IsInputKey(keyData);
         }
+
+        public void Snake_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    if (direction.X != new Point(0, 1).X & direction.Y != new Point(0, 1).Y)
+                        direction = new Point(0, -1);
+                    break;
+                case Keys.Down:
+                    if (direction.X != new Point(0, -1).X & direction.Y != new Point(0, -1).Y)
+                        direction = new Point(0, 1);
+                    break;
+                case Keys.Left:
+                    if (direction.X != new Point(1, 0).X & direction.Y != new Point(1, 0).Y)
+                        direction = new Point(-1, 0);
+                    break;
+                case Keys.Right:
+                    if (direction.X != new Point(-1, 0).X & direction.Y != new Point(-1, 0).Y)
+                        direction = new Point(1, 0);
+                    break;
+            }
+        }
+        private void Snake_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
+                e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+                e.IsInputKey = true;
+            }
+        }
+#endregion
 
         private void Field_Paint(object sender, PaintEventArgs e)
         {
@@ -81,47 +113,7 @@ namespace losos
             return food;
         }
 
-        public void Snake_KeyDown(object sender, KeyEventArgs e)
-        {
-            MessageBox.Show($"KeyDown hit: {e.KeyCode}");
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    MessageBox.Show("Up key pressed");
-                    if (direction.X != new Point(0, 1).X & direction.Y != new Point(0, 1).Y) 
-                        direction = new Point(0, -1);
-                    break;
-                case Keys.Down:
-                    MessageBox.Show("Down key pressed");
-                    if (direction.X != new Point(0, -1).X & direction.Y != new Point(0, -1).Y) 
-                        direction = new Point(0, 1);
-                    break;
-                case Keys.Left:
-                    MessageBox.Show("Left key pressed");
-                    if (direction.X != new Point(1, 0).X & direction.Y != new Point(1,0).Y) 
-                        direction = new Point(-1, 0);
-                    break;
-                case Keys.Right:
-                    MessageBox.Show("Right key pressed");
-                    if (direction.X != new Point(-1, 0).X & direction.Y != new Point(-1, 0).Y) 
-                        direction = new Point(1, 0);
-                    break;
-            }
-        }
-        private void UCGame_Snake_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
-                e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
-            {
-                e.IsInputKey = true;
-            }
-        }
 
-        private void Button_Focus_Click(object sender, EventArgs e)
-        {
-            
-            this.BeginInvoke(new Action(() => this.Focus()));
-        }
 
         public event EventHandler ReturnSelected;
         private void returnButton_Click(object sender, EventArgs e)
