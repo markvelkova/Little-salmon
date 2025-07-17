@@ -73,7 +73,7 @@ namespace losos
         private void HandleGameEnd()
         {
             // Show the final message box with the results
-            MessageBox.Show("Time over! You clicked " + numberOfClicks + " stars and earned a total reward of " + ((int)totalReward).ToString() + " food.", "Time Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Time over! You clicked " + numberOfClicks + " times and earned a total reward of " + ((int)totalReward).ToString() + " food.", "Time Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             MainForm.thePet.FoodCount += (int)totalReward; // add the reward to the current food count
             UpdateStats(); // update the stats

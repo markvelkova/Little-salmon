@@ -40,6 +40,7 @@ namespace losos
                 fileContent = OpenFile();
                 SerializationUnit serializationUnit = new(fileContent);
                 MainForm.thePet = serializationUnit.pet;
+                MessageBox.Show(MainForm.thePet.SerializePet(), "Pet Loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MainForm.theStats = serializationUnit.stats;
                 LoadGameClicked?.Invoke(this, EventArgs.Empty);
             }

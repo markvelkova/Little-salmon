@@ -23,24 +23,27 @@ namespace pet
 
 
         private int _hungerMeter;
+        [JsonInclude]
         public int HungerMeter
         {
             get => _hungerMeter;
-            private set => _hungerMeter = Math.Max(0, Math.Min(100, value));
+            internal set => _hungerMeter = Math.Max(0, Math.Min(100, value));
         }
 
         private int _energyMeter;
+        [JsonInclude]
         public int EnergyMeter
         {
             get => _energyMeter;
-            private set => _energyMeter = Math.Max(0, Math.Min(100, value));
+            internal set => _energyMeter = Math.Max(0, Math.Min(100, value));
         }
 
         private int _moodMeter;
+        [JsonInclude]
         public int MoodMeter
         {
             get => _moodMeter;
-            private set => _moodMeter = Math.Max(0, Math.Min(100, value));
+            internal set => _moodMeter = Math.Max(0, Math.Min(100, value));
         }
 
         // feeding parameters

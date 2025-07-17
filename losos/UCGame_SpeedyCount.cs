@@ -160,9 +160,13 @@ namespace losos
 
         private void EndGame()
         {
+
+            MessageBox.Show("Time over! You earned a total reward of " + TotalReward + " food.", "Time Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             Button_Start.Enabled = true; // enable the start button
             Timer_GameTimer.Stop(); // stop the game timer
             TextBox_Answer.BackColor = Color.White;
+            ResetEquationLabel(); // reset the equation label to default text
             EvaluateResults();
             MainForm.thePet.AddFood(TotalReward);
         }
@@ -179,6 +183,7 @@ namespace losos
             if (correctAnswers.Count() > MainForm.theStats.GetStat(MainForm.theStats.GetSpeedyStatName(currentGameMode.ToString(), "record")))
             {
                 AdjustStatWrapper("record", correctAnswers.Count()); // adjust the record stat for the current game mode
+                MessageBox.Show("You set up a new record!!!", "New record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             var incorrectAnswers = from result in UserCalculationResults
