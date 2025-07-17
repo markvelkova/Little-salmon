@@ -32,6 +32,7 @@
             Button_ReturnButton = new Button();
             Button_SelectStarrySky = new Button();
             Button_SelectSpeedyCount = new Button();
+            Button_SelectSnake = new Button();
             SuspendLayout();
             // 
             // Button_SelectFlipCoin
@@ -74,10 +75,21 @@
             Button_SelectSpeedyCount.UseVisualStyleBackColor = true;
             Button_SelectSpeedyCount.Click += button_SpeedyCount_Click;
             // 
+            // Button_SelectSnake
+            // 
+            Button_SelectSnake.Location = new Point(63, 146);
+            Button_SelectSnake.Name = "Button_SelectSnake";
+            Button_SelectSnake.Size = new Size(114, 23);
+            Button_SelectSnake.TabIndex = 4;
+            Button_SelectSnake.Text = "SNAKE";
+            Button_SelectSnake.UseVisualStyleBackColor = true;
+            Button_SelectSnake.Click += button_Snake_Click;
+            // 
             // UCGames
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Button_SelectSnake);
             Controls.Add(Button_SelectSpeedyCount);
             Controls.Add(Button_SelectStarrySky);
             Controls.Add(Button_ReturnButton);
@@ -93,5 +105,6 @@
         private Button Button_ReturnButton;
         private Button Button_SelectStarrySky;
         private Button Button_SelectSpeedyCount;
+        private Button Button_SelectSnake;
     }
 }

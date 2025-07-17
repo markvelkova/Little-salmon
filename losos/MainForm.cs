@@ -104,6 +104,7 @@ namespace losos
             games.FlipACoinSelected += (s, e) => ShowHeadsOrTails();
             games.StarrySkySelected += (s, e) => ShowStarrySky();
             games.SpeedyCountSelected += (s, e) => ShowSpeedyCount();
+            games.SnakeSelected += (s, e) => ShowSnake();
             SwitchScreen(games);
         }
 
@@ -129,8 +130,25 @@ namespace losos
             spdcnt.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(spdcnt);
         }
-        #endregion
+        private void ShowSnake()
+        {
+            var snake = new UCGame_Snake();
+            thePet.PlayingGames = true; // set the pet to playing games state
+            snake.ReturnSelected += (s, e) => ShowGames();
+            SwitchScreen(snake);
+        }
 
+        #endregion
+        protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e)
+        {
+            base.OnPreviewKeyDown(e);
+
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
+                e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+                e.IsInputKey = true;
+            }
+        }
         private void SwitchScreen(UserControl newControl)
         {
             this.Controls.Clear();
