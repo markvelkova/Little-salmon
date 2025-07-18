@@ -17,6 +17,8 @@ namespace losos
         public UCIntro()
         {
             InitializeComponent();
+            UsefulForDesign.CenterControlHorizontally(myButton_LoadGame);
+            UsefulForDesign.CenterControlHorizontally(myButton_StartNewGame);
             this.BackColor = MainForm.MyDefaultBackColor;
         }
 

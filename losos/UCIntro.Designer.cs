@@ -28,54 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button_StartNewGame = new Button();
-            Button_LoadGame = new Button();
             openFileDialog = new OpenFileDialog();
+            myButton_StartNewGame = new WinFormsControlLibrary1.MyButton();
+            myButton_LoadGame = new WinFormsControlLibrary1.MyButton();
             SuspendLayout();
-            // 
-            // button_StartNewGame
-            // 
-            button_StartNewGame.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button_StartNewGame.Location = new Point(165, 125);
-            button_StartNewGame.Margin = new Padding(3, 2, 3, 2);
-            button_StartNewGame.Name = "button_StartNewGame";
-            button_StartNewGame.Size = new Size(201, 22);
-            button_StartNewGame.TabIndex = 0;
-            button_StartNewGame.Text = "start a new game";
-            button_StartNewGame.UseVisualStyleBackColor = true;
-            button_StartNewGame.Click += btnStartNewGame_Click;
-            // 
-            // Button_LoadGame
-            // 
-            Button_LoadGame.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            Button_LoadGame.Location = new Point(165, 168);
-            Button_LoadGame.Name = "Button_LoadGame";
-            Button_LoadGame.Size = new Size(201, 23);
-            Button_LoadGame.TabIndex = 1;
-            Button_LoadGame.Text = "load an old game";
-            Button_LoadGame.UseVisualStyleBackColor = true;
-            Button_LoadGame.Click += button_LoadGame_Click;
             // 
             // openFileDialog
             // 
             openFileDialog.FileName = "openFileDialog";
             // 
+            // myButton_StartNewGame
+            // 
+            myButton_StartNewGame.AutoSize = true;
+            myButton_StartNewGame.Location = new Point(165, 212);
+            myButton_StartNewGame.Name = "myButton_StartNewGame";
+            myButton_StartNewGame.Size = new Size(201, 25);
+            myButton_StartNewGame.TabIndex = 2;
+            myButton_StartNewGame.Text = "start a new game";
+            myButton_StartNewGame.UseVisualStyleBackColor = true;
+            myButton_StartNewGame.Click += btnStartNewGame_Click;
+            // 
+            // myButton_LoadGame
+            // 
+            myButton_LoadGame.AutoSize = true;
+            myButton_LoadGame.Location = new Point(165, 296);
+            myButton_LoadGame.Name = "myButton_LoadGame";
+            myButton_LoadGame.Size = new Size(201, 25);
+            myButton_LoadGame.TabIndex = 3;
+            myButton_LoadGame.Text = "load an old game";
+            myButton_LoadGame.UseVisualStyleBackColor = true;
+            myButton_LoadGame.Click += button_LoadGame_Click;
+            // 
             // UCIntro
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(Button_LoadGame);
-            Controls.Add(button_StartNewGame);
+            Controls.Add(myButton_LoadGame);
+            Controls.Add(myButton_StartNewGame);
             Margin = new Padding(3, 2, 3, 2);
             Name = "UCIntro";
             Size = new Size(640, 638);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Button button_StartNewGame;
-        private Button Button_LoadGame;
         private OpenFileDialog openFileDialog;
+        private WinFormsControlLibrary1.MyButton myButton_StartNewGame;
+        private WinFormsControlLibrary1.MyButton myButton_LoadGame;
     }
 }
