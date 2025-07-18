@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             Label_Name = new Label();
-            Button_SelectGame = new Button();
-            Button_Feed = new Button();
-            Button_Sleep = new Button();
             TextBox_Reporter = new TextBox();
             Label_FoodCountLabel = new Label();
             TextBox_NewNameBox = new TextBox();
@@ -41,11 +38,14 @@
             Label_MoodLabel = new Label();
             PictureBox_PetBox = new PictureBox();
             TextBox_Stats = new TextBox();
-            Button_Stats = new Button();
             Panel_Energy = new Panel();
             Panel_Mood = new Panel();
             Panel_Hunger = new Panel();
-            Button_ChangeColor = new Button();
+            myButton_ChooseColour = new WinFormsControlLibrary1.MyButton();
+            myButton_ShowStats = new WinFormsControlLibrary1.MyButton();
+            myButton_SelectGame = new WinFormsControlLibrary1.MyButton();
+            myButton_Feed = new WinFormsControlLibrary1.MyButton();
+            myButton_Sleep = new WinFormsControlLibrary1.MyButton();
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
             SuspendLayout();
             // 
@@ -60,36 +60,6 @@
             Label_Name.Text = "NAME";
             Label_Name.Click += Label_Name_Click;
             Label_Name.MouseHover += LabelName_MouseHover;
-            // 
-            // Button_SelectGame
-            // 
-            Button_SelectGame.Location = new Point(120, 523);
-            Button_SelectGame.Name = "Button_SelectGame";
-            Button_SelectGame.Size = new Size(75, 23);
-            Button_SelectGame.TabIndex = 1;
-            Button_SelectGame.Text = "games";
-            Button_SelectGame.UseVisualStyleBackColor = true;
-            Button_SelectGame.Click += button_GamesButton_Click;
-            // 
-            // Button_Feed
-            // 
-            Button_Feed.Location = new Point(262, 523);
-            Button_Feed.Name = "Button_Feed";
-            Button_Feed.Size = new Size(75, 23);
-            Button_Feed.TabIndex = 5;
-            Button_Feed.Text = "feed";
-            Button_Feed.UseVisualStyleBackColor = true;
-            Button_Feed.Click += button_Feed_Click;
-            // 
-            // Button_Sleep
-            // 
-            Button_Sleep.Location = new Point(396, 523);
-            Button_Sleep.Name = "Button_Sleep";
-            Button_Sleep.Size = new Size(75, 23);
-            Button_Sleep.TabIndex = 6;
-            Button_Sleep.Text = "sleep";
-            Button_Sleep.UseVisualStyleBackColor = true;
-            Button_Sleep.Click += button_Sleep_Click;
             // 
             // TextBox_Reporter
             // 
@@ -177,16 +147,6 @@
             TextBox_Stats.Size = new Size(274, 344);
             TextBox_Stats.TabIndex = 16;
             // 
-            // Button_Stats
-            // 
-            Button_Stats.Location = new Point(498, 30);
-            Button_Stats.Name = "Button_Stats";
-            Button_Stats.Size = new Size(75, 23);
-            Button_Stats.TabIndex = 17;
-            Button_Stats.Text = "show stats";
-            Button_Stats.UseVisualStyleBackColor = true;
-            Button_Stats.Click += button_ShowStats_Click;
-            // 
             // Panel_Energy
             // 
             Panel_Energy.BackColor = Color.White;
@@ -211,26 +171,73 @@
             Panel_Hunger.Size = new Size(100, 26);
             Panel_Hunger.TabIndex = 20;
             // 
-            // Button_ChangeColor
+            // myButton_ChooseColour
             // 
-            Button_ChangeColor.AutoSize = true;
-            Button_ChangeColor.Location = new Point(15, 145);
-            Button_ChangeColor.Name = "Button_ChangeColor";
-            Button_ChangeColor.Size = new Size(93, 25);
-            Button_ChangeColor.TabIndex = 21;
-            Button_ChangeColor.Text = "change colour";
-            Button_ChangeColor.UseVisualStyleBackColor = true;
-            Button_ChangeColor.Click += Button_ChooseColor_Click;
+            myButton_ChooseColour.AutoSize = true;
+            myButton_ChooseColour.Location = new Point(15, 145);
+            myButton_ChooseColour.Name = "myButton_ChooseColour";
+            myButton_ChooseColour.Size = new Size(93, 25);
+            myButton_ChooseColour.TabIndex = 22;
+            myButton_ChooseColour.Text = "change colour";
+            myButton_ChooseColour.UseVisualStyleBackColor = true;
+            myButton_ChooseColour.Click += Button_ChooseColor_Click;
+            // 
+            // myButton_ShowStats
+            // 
+            myButton_ShowStats.AutoSize = true;
+            myButton_ShowStats.Location = new Point(523, 18);
+            myButton_ShowStats.Name = "myButton_ShowStats";
+            myButton_ShowStats.Size = new Size(76, 25);
+            myButton_ShowStats.TabIndex = 23;
+            myButton_ShowStats.Text = "show stats";
+            myButton_ShowStats.UseVisualStyleBackColor = true;
+            myButton_ShowStats.Click += button_ShowStats_Click;
+            // 
+            // myButton_SelectGame
+            // 
+            myButton_SelectGame.AutoSize = true;
+            myButton_SelectGame.Location = new Point(120, 521);
+            myButton_SelectGame.Name = "myButton_SelectGame";
+            myButton_SelectGame.Size = new Size(76, 25);
+            myButton_SelectGame.TabIndex = 24;
+            myButton_SelectGame.Text = "games";
+            myButton_SelectGame.UseVisualStyleBackColor = true;
+            myButton_SelectGame.Click += button_GamesButton_Click;
+            // 
+            // myButton_Feed
+            // 
+            myButton_Feed.AutoSize = true;
+            myButton_Feed.Location = new Point(271, 521);
+            myButton_Feed.Name = "myButton_Feed";
+            myButton_Feed.Size = new Size(76, 25);
+            myButton_Feed.TabIndex = 25;
+            myButton_Feed.Text = "feed";
+            myButton_Feed.UseVisualStyleBackColor = true;
+            myButton_Feed.Click += button_Feed_Click;
+            // 
+            // myButton_Sleep
+            // 
+            myButton_Sleep.AutoSize = true;
+            myButton_Sleep.Location = new Point(416, 521);
+            myButton_Sleep.Name = "myButton_Sleep";
+            myButton_Sleep.Size = new Size(76, 25);
+            myButton_Sleep.TabIndex = 26;
+            myButton_Sleep.Text = "sleep";
+            myButton_Sleep.UseVisualStyleBackColor = true;
+            myButton_Sleep.Click += button_Sleep_Click;
             // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(Button_ChangeColor);
+            Controls.Add(myButton_Sleep);
+            Controls.Add(myButton_Feed);
+            Controls.Add(myButton_SelectGame);
+            Controls.Add(myButton_ShowStats);
+            Controls.Add(myButton_ChooseColour);
             Controls.Add(Panel_Mood);
             Controls.Add(Panel_Hunger);
             Controls.Add(Panel_Energy);
-            Controls.Add(Button_Stats);
             Controls.Add(TextBox_Stats);
             Controls.Add(PictureBox_PetBox);
             Controls.Add(Label_MoodLabel);
@@ -240,9 +247,6 @@
             Controls.Add(TextBox_NewNameBox);
             Controls.Add(Label_FoodCountLabel);
             Controls.Add(TextBox_Reporter);
-            Controls.Add(Button_Sleep);
-            Controls.Add(Button_Feed);
-            Controls.Add(Button_SelectGame);
             Controls.Add(Label_Name);
             Name = "UCMain";
             Size = new Size(640, 640);
@@ -254,10 +258,7 @@
         #endregion
 
         private Label Label_Name;
-        private Button Button_SelectGame;
         private ProgressBar ProgressBar_Mood;
-        private Button Button_Feed;
-        private Button Button_Sleep;
         private TextBox TextBox_Reporter;
         private Label Label_FoodCountLabel;
         private TextBox TextBox_NewNameBox;
@@ -267,12 +268,15 @@
         private Label Label_MoodLabel;
         private PictureBox PictureBox_PetBox;
         private TextBox TextBox_Stats;
-        private Button Button_Stats;
         private Panel Panel_HungerMeter;
         private Panel panel1;
         private Panel Panel_Energy;
         private Panel Panel_Mood;
         private Panel Panel_Hunger;
-        private Button Button_ChangeColor;
+        private WinFormsControlLibrary1.MyButton myButton_ChooseColour;
+        private WinFormsControlLibrary1.MyButton myButton_ShowStats;
+        private WinFormsControlLibrary1.MyButton myButton_SelectGame;
+        private WinFormsControlLibrary1.MyButton myButton_Feed;
+        private WinFormsControlLibrary1.MyButton myButton_Sleep;
     }
 }

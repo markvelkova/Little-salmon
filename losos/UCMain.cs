@@ -138,9 +138,9 @@ namespace losos
 
         private void PetDead()
         {
-            Button_Feed.Enabled = false;
-            Button_SelectGame.Enabled = false;
-            Button_Sleep.Enabled = false;
+            myButton_Feed.Enabled = false;
+            myButton_SelectGame.Enabled = false;
+            myButton_Sleep.Enabled = false;
             Label_Name.Text = "Your pet " + MainForm.thePet.Name + " has died.";
             UsefulForDesign.CenterControlHorizontally(Label_Name);
             PictureBox_PetBox.Image = fishPictures[(int)Pet.LifeStates.Dead];
@@ -226,15 +226,15 @@ namespace losos
         #region sleeping
         private void SleepUpdateComponents()
         {
-            Button_Feed.Enabled = false;
-            Button_SelectGame.Enabled = false;
-            Button_Sleep.Text = "wake up";
+            myButton_Feed.Enabled = false;
+            myButton_SelectGame.Enabled = false;
+            myButton_Sleep.Text = "wake up";
         }
         private void WakeUpUpdateComponents()
         {
-            Button_Feed.Enabled = true;
-            Button_SelectGame.Enabled = true;
-            Button_Sleep.Text = "sleep";
+            myButton_Feed.Enabled = true;
+            myButton_SelectGame.Enabled = true;
+            myButton_Sleep.Text = "sleep";
         }
         private void button_Sleep_Click(object sender, EventArgs e)
         {
