@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             Button_SelectFlipCoin = new Button();
-            Button_ReturnButton = new Button();
             Button_SelectStarrySky = new Button();
             Button_SelectSpeedyCount = new Button();
             Button_SelectSnake = new Button();
+            myButton_Return = new WinFormsControlLibrary1.MyButton();
             SuspendLayout();
             // 
             // Button_SelectFlipCoin
@@ -44,16 +44,6 @@
             Button_SelectFlipCoin.Text = "FLIP A COIN";
             Button_SelectFlipCoin.UseVisualStyleBackColor = true;
             Button_SelectFlipCoin.Click += button_FlipACoin_Click;
-            // 
-            // Button_ReturnButton
-            // 
-            Button_ReturnButton.Location = new Point(386, 18);
-            Button_ReturnButton.Name = "Button_ReturnButton";
-            Button_ReturnButton.Size = new Size(75, 23);
-            Button_ReturnButton.TabIndex = 1;
-            Button_ReturnButton.Text = "BACK";
-            Button_ReturnButton.UseVisualStyleBackColor = true;
-            Button_ReturnButton.Click += button_Return_Click;
             // 
             // Button_SelectStarrySky
             // 
@@ -85,26 +75,38 @@
             Button_SelectSnake.UseVisualStyleBackColor = true;
             Button_SelectSnake.Click += button_Snake_Click;
             // 
+            // myButton_Return
+            // 
+            myButton_Return.AutoSize = true;
+            myButton_Return.Location = new Point(393, 17);
+            myButton_Return.Name = "myButton_Return";
+            myButton_Return.Size = new Size(76, 25);
+            myButton_Return.TabIndex = 5;
+            myButton_Return.Text = "BACK";
+            myButton_Return.UseVisualStyleBackColor = true;
+            myButton_Return.Click += button_Return_Click;
+            // 
             // UCGames
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(myButton_Return);
             Controls.Add(Button_SelectSnake);
             Controls.Add(Button_SelectSpeedyCount);
             Controls.Add(Button_SelectStarrySky);
-            Controls.Add(Button_ReturnButton);
             Controls.Add(Button_SelectFlipCoin);
             Name = "UCGames";
             Size = new Size(492, 365);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button Button_SelectFlipCoin;
-        private Button Button_ReturnButton;
         private Button Button_SelectStarrySky;
         private Button Button_SelectSpeedyCount;
         private Button Button_SelectSnake;
+        private WinFormsControlLibrary1.MyButton myButton_Return;
     }
 }

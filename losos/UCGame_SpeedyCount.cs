@@ -12,7 +12,7 @@ using games;
 namespace losos
 {
     public enum GameMode { easy = 1, medium = 2, hard = 3, insane = 5 };
-    public partial class UCGame_SpeedyCount : UserControl
+    public partial class UCGame_SpeedyCount : GamesUserControlParent
     {
         private string equationLabelDefaultText = "?????"; // default text for the equation label
         private SpeedCounting.SimpleEquation CurrentEquation;
@@ -283,17 +283,6 @@ namespace losos
             }
         }
         #endregion
-
-        public event EventHandler ReturnSelected;
-        private void returnButton_Click(object sender, EventArgs e)
-        {
-            ReturnSelected?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 
 }

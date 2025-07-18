@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace losos
 {
-    public partial class UCGame_Snake: UserControl
+    public partial class UCGame_Snake: GamesUserControlParent
     {
         
         Random random = new Random();
@@ -312,12 +312,5 @@ namespace losos
         }
 
         #endregion
-
-
-        public event EventHandler ReturnSelected;
-        private void returnButton_Click(object sender, EventArgs e)
-        {
-            ReturnSelected?.Invoke(this, EventArgs.Empty);
-        }
     }
 }

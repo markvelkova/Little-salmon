@@ -22,7 +22,7 @@ namespace losos
     /// 
     /// player can choose between a fair coin and a randomly unfair coin 
     /// </summary>
-    public partial class UCGame_HeadsOrTails : UserControl
+    public partial class UCGame_HeadsOrTails : GamesUserControlParent
     {
         private string _labelIndifferent = "hmm"; // default label value
         private string[] _labelsVictorious = {
@@ -134,11 +134,6 @@ namespace losos
         }
 
         #region button click functions
-        public event EventHandler ReturnSelected;
-        private void returnButton_Click(object sender, EventArgs e)
-        {
-            ReturnSelected?.Invoke(this, EventArgs.Empty);
-        }
 
         private void playButton_Click(object sender, EventArgs e)
         {

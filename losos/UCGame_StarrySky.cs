@@ -12,7 +12,7 @@ using games;
 
 namespace losos
 {
-    public partial class UCGame_StarrySky : UserControl
+    public partial class UCGame_StarrySky : GamesUserControlParent
     {
         private Bitmap[] starPictures; // icons for the stars
         private int iconWidth { get; } = 400; // width of each star icon
@@ -196,12 +196,6 @@ namespace losos
                 numberOfClicks++;
                 UpdateGameStatusLabels();
             }
-        }
-
-        public event EventHandler ReturnSelected;
-        private void returnButton_Click(object sender, EventArgs e)
-        {
-            ReturnSelected?.Invoke(this, EventArgs.Empty);
         }
     }
 }
