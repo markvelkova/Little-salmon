@@ -177,6 +177,15 @@ namespace losos
             {
                 if (snake.Count != 1) // must not delete the head
                     snake.RemoveAt(snake.Count - 1);
+                if (food is BigSnakeFoodUnit bigFood)
+                {
+                    bigFood.timeLeft--;
+                    if (bigFood.timeLeft <= 0)
+                    {
+                        // Big food has expired, generate new food
+                        food = GenerateNewFood();
+                    }
+                }
             }
             else
             {
@@ -236,19 +245,25 @@ namespace losos
         {
             public List<Point> Positions = new();
             public int value => Positions.Count;
-            public SnakeFoodUnit(Point position, bool isBig)
+            public SnakeFoodUnit(Point position)
             {
                 Positions.Add(position);
-                if (isBig)
-                {
-                    Positions.Add(new Point(position.X + 1, position.Y));
-                    Positions.Add(new Point(position.X, position.Y + 1));
-                    Positions.Add(new Point(position.X + 1, position.Y + 1));
-                }
+                
             }
             public SnakeFoodUnit()
             {
 
+            }
+        }
+
+        private class BigSnakeFoodUnit : SnakeFoodUnit
+        {
+            public int timeLeft = 20; // Time left for the big food to exist, in gameTicks
+            public BigSnakeFoodUnit(Point position) : base(position)
+            {
+                Positions.Add(new Point(position.X + 1, position.Y));
+                Positions.Add(new Point(position.X, position.Y + 1));
+                Positions.Add(new Point(position.X + 1, position.Y + 1));
             }
         }
 
@@ -267,11 +282,11 @@ namespace losos
 
             if (random.Next(0, 100) < BigFoodProb)
             {
-                return new SnakeFoodUnit(foodPoint, true);
+                return new BigSnakeFoodUnit(foodPoint);
             }
             else
             {
-                return new SnakeFoodUnit(foodPoint, false);
+                return new SnakeFoodUnit(foodPoint);
             }
         }
 
