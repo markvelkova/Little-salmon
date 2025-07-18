@@ -32,6 +32,7 @@
             Panel_Field = new Panel();
             Timer_GameTimer = new System.Windows.Forms.Timer(components);
             Button_ReturnButton = new Button();
+            Button_Start = new Button();
             SuspendLayout();
             // 
             // Panel_Field
@@ -57,10 +58,21 @@
             Button_ReturnButton.UseVisualStyleBackColor = true;
             Button_ReturnButton.Click += returnButton_Click;
             // 
+            // Button_Start
+            // 
+            Button_Start.Location = new Point(37, 27);
+            Button_Start.Name = "Button_Start";
+            Button_Start.Size = new Size(75, 23);
+            Button_Start.TabIndex = 2;
+            Button_Start.Text = "START";
+            Button_Start.UseVisualStyleBackColor = true;
+            Button_Start.Click += ButtonStart_Click;
+            // 
             // UCGame_Snake
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Button_Start);
             Controls.Add(Button_ReturnButton);
             Controls.Add(Panel_Field);
             Name = "UCGame_Snake";
@@ -75,5 +87,6 @@
         private Panel Panel_Field;
         private System.Windows.Forms.Timer Timer_GameTimer;
         private Button Button_ReturnButton;
+        private Button Button_Start;
     }
 }

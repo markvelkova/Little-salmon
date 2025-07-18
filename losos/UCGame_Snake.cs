@@ -12,11 +12,22 @@ namespace losos
 {
     public partial class UCGame_Snake: UserControl
     {
+        
         Random random = new Random();
-        List<Point> snake = new List<Point>();
+        List<SnakeSegment> snake = new List<SnakeSegment>();
+        // Initial direction of the snake
         Point direction = new Point(1, 0);
         Point food;
         int tileSize = 20; 
+
+        Brush SnakeHeadColour = Brushes.Black;
+        Brush SnakeBodyColour1 = Brushes.Green;
+        Brush SnakeBodyColour2 = Brushes.DarkGreen;
+
+        Brush FoodColour = Brushes.Red;
+
+        static int MaxX;
+        static int MaxY;
         public UCGame_Snake()
         {
             InitializeComponent();
@@ -26,8 +37,33 @@ namespace losos
             this.Focus();
 
             Button_ReturnButton.TabStop = false;
-            snake.Add(new Point(5,5));
+
+            MaxX = Panel_Field.Width / tileSize;
+            MaxY = Panel_Field.Height / tileSize;
+        }
+
+        private void ButtonStart_Click(object sender, EventArgs e)
+        {
+            // Reset the game state
+            snake.Clear();
+            direction = new Point(1, 0);
+            snake.Add(new SnakeSegment(new Point(5, 5), SnakeHeadColour));
+            food = GenerateNewFood();
             Timer_GameTimer.Start();
+            Panel_Field.Invalidate();
+
+            Button_ReturnButton.Enabled = false;
+            Button_Start.Enabled = false;
+
+            this.Focus();
+        }
+
+        private void HandleGameEnd()
+        {
+            Timer_GameTimer.Stop();
+            Button_ReturnButton.Enabled = true;
+            Button_Start.Enabled = true;
+            MessageBox.Show("Game Over! You collided with yourself.");
         }
 
         #region keyhandling
@@ -75,7 +111,22 @@ namespace losos
                 e.IsInputKey = true;
             }
         }
-#endregion
+        #endregion
+
+        #region snake movement
+
+        private class SnakeSegment
+        {
+            public Point Position;
+            public int X => Position.X;
+            public int Y => Position.Y;
+            public Brush FillBrush { get; set; }
+            public SnakeSegment(Point position, Brush fillBrush)
+            {
+                Position = position;
+                FillBrush = fillBrush;
+            }
+        }
 
         private void Field_Paint(object sender, PaintEventArgs e)
         {
@@ -83,26 +134,94 @@ namespace losos
 
             foreach (var segment in snake)
             {
-                g.FillRectangle(Brushes.Green, new Rectangle(segment.X * tileSize, segment.Y * tileSize, tileSize, tileSize));
+                g.FillRectangle(segment.FillBrush, new Rectangle(segment.X * tileSize, segment.Y * tileSize, tileSize, tileSize));
             }
 
-            g.FillRectangle(Brushes.Red, new Rectangle(food.X * tileSize, food.Y * tileSize, tileSize, tileSize));
+            g.FillRectangle(FoodColour, new Rectangle(food.X * tileSize, food.Y * tileSize, tileSize, tileSize));
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            Point newHead = new Point(snake[0].X + direction.X, snake[0].Y + direction.Y);
-            snake.Insert(0, newHead);
 
-            if (newHead != food)
+            MoveSnake();
+            Panel_Field.Invalidate();
+        }
+
+        private void MoveSnake()
+        {
+            SnakeSegment newHead = GetNewHead();
+
+            CheckCollisionWithSelf(newHead);
+
+            MoveHeadColour(); // change old head colour based on the second segment
+
+            snake.Insert(0, newHead);
+            if (newHead.Position != food)
             {
-                if (snake.Count != 1)
+                if (snake.Count != 1) // must not delete the head
                     snake.RemoveAt(snake.Count - 1);
             }
             else
                 food = GenerateNewFood();
 
-            Panel_Field.Invalidate();
+            
+        }
+        private void MoveHeadColour()
+        {
+            if (snake.Count >= 2)
+            {
+                if (snake[1].FillBrush == SnakeBodyColour1)
+                    snake[0].FillBrush = SnakeBodyColour2;
+                else
+                    snake[0].FillBrush = SnakeBodyColour1;
+            }
+            else
+            {
+                snake[0].FillBrush = SnakeBodyColour1;
+            }
+        }
+
+        private int Mod(int a, int n)
+        {
+            return ((a % n) + n) % n;
+        }
+
+        private SnakeSegment GetNewHead()
+        {
+            int newX = Mod(snake[0].X + direction.X, MaxX);
+            int newY = Mod(snake[0].Y + direction.Y, MaxY);
+            return new SnakeSegment (new Point(newX, newY), SnakeHeadColour);
+        }
+        private void CheckCollisionWithSelf(SnakeSegment newHead)
+        {
+            foreach (var segment in snake)
+            {
+                if (segment.Position == newHead.Position)
+                {
+                    // Game over: snake collided with itself
+                    HandleGameEnd();
+                    return;
+                }
+            }
+        }
+        #endregion
+
+        #region food
+
+        private class SnakeFoodUnit
+        {
+            public List<Point> Positions = new();
+            public SnakeFoodUnit(Point position, bool isBig)
+            {
+                Positions.Add(position);
+                if (isBig)
+                {
+                    Positions.Add(new Point(position.X + 1, position.Y));
+                    Positions.Add(new Point(position.X, position.Y + 1));
+                    Positions.Add(new Point(position.X + 1, position.Y + 1));
+                }
+
+            }
         }
 
         private Point GenerateNewFood()
@@ -113,6 +232,7 @@ namespace losos
             return food;
         }
 
+        #endregion
 
 
         public event EventHandler ReturnSelected;
