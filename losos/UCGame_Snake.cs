@@ -66,6 +66,7 @@ namespace losos
             Timer_GameTimer.Start();
             Panel_Field.Invalidate();
 
+            // they tended to steal the focus from the game panel
             Button_ReturnButton.Enabled = false;
             Button_Start.Enabled = false;
 
@@ -77,10 +78,21 @@ namespace losos
             Timer_GameTimer.Stop();
             Button_ReturnButton.Enabled = true;
             Button_Start.Enabled = true;
+            UpdateStats(); // Update the stats with the total reward and the record, if neccwessary
+            MainForm.thePet.AddFood(TotalReward); // Add the total reward to the pet's food count
             MessageBox.Show("Game Over! You collided with yourself.");
         }
 
-        
+        private void UpdateStats()
+        {
+            MainForm.theStats.AdjustStat("Snake food eaten", TotalReward);
+            if (TotalReward > MainForm.theStats.GetStat("Snake record"))
+            {
+                MainForm.theStats.AdjustStat("Snake record", TotalReward);
+            }
+        }
+
+
 
         #region keyhandling
         protected override void OnLoad(EventArgs e)

@@ -42,7 +42,9 @@ namespace stats
             { "SpeedyCount insane total incorrect", 0 },
             { "SpeedyCount insane almost correct", 0 },
             { "SpeedyCount insane ten away", 0 },
-            { "SpeedyCount insane invalid", 0 }
+            { "SpeedyCount insane invalid", 0 },
+            { "Snake food eaten", 0 },
+            { "Snake record", 0 }
         };
         public Stats()
         {
