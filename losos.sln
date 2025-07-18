@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "losos", "losos\losos.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "games", "games\games.csproj", "{4DC86F75-08FE-404A-8867-ADE1A1FFFCC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pet", "pet\pet.csproj", "{ABA44E8A-1E94-487F-A13C-59FF409D181C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pet", "pet\pet.csproj", "{ABA44E8A-1E94-487F-A13C-59FF409D181C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stats", "stats\stats.csproj", "{CE025B80-B4E5-498C-A15E-AC7FB0809A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "stats", "stats\stats.csproj", "{CE025B80-B4E5-498C-A15E-AC7FB0809A28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "CustomControls\CustomControls.csproj", "{A52A8B26-3F33-4837-B447-510A49FC43B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CE025B80-B4E5-498C-A15E-AC7FB0809A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE025B80-B4E5-498C-A15E-AC7FB0809A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE025B80-B4E5-498C-A15E-AC7FB0809A28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A52A8B26-3F33-4837-B447-510A49FC43B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A52A8B26-3F33-4837-B447-510A49FC43B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A52A8B26-3F33-4837-B447-510A49FC43B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A52A8B26-3F33-4837-B447-510A49FC43B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
