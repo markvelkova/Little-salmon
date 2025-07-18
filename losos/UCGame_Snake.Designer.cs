@@ -33,6 +33,8 @@
             Timer_GameTimer = new System.Windows.Forms.Timer(components);
             Button_ReturnButton = new Button();
             Button_Start = new Button();
+            Label_Reward = new Label();
+            Label_ArrowHint = new Label();
             SuspendLayout();
             // 
             // Panel_Field
@@ -68,10 +70,30 @@
             Button_Start.UseVisualStyleBackColor = true;
             Button_Start.Click += ButtonStart_Click;
             // 
+            // Label_Reward
+            // 
+            Label_Reward.AutoSize = true;
+            Label_Reward.Location = new Point(226, 31);
+            Label_Reward.Name = "Label_Reward";
+            Label_Reward.Size = new Size(43, 15);
+            Label_Reward.TabIndex = 3;
+            Label_Reward.Text = "reward";
+            // 
+            // Label_ArrowHint
+            // 
+            Label_ArrowHint.AutoSize = true;
+            Label_ArrowHint.Location = new Point(168, 614);
+            Label_ArrowHint.Name = "Label_ArrowHint";
+            Label_ArrowHint.Size = new Size(168, 15);
+            Label_ArrowHint.TabIndex = 4;
+            Label_ArrowHint.Text = "Use your arrows, not your bow";
+            // 
             // UCGame_Snake
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Label_ArrowHint);
+            Controls.Add(Label_Reward);
             Controls.Add(Button_Start);
             Controls.Add(Button_ReturnButton);
             Controls.Add(Panel_Field);
@@ -80,6 +102,7 @@
             KeyDown += Snake_KeyDown;
             PreviewKeyDown += Snake_PreviewKeyDown;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -88,5 +111,7 @@
         private System.Windows.Forms.Timer Timer_GameTimer;
         private Button Button_ReturnButton;
         private Button Button_Start;
+        private Label Label_Reward;
+        private Label Label_ArrowHint;
     }
 }

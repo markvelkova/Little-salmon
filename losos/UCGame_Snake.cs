@@ -17,7 +17,11 @@ namespace losos
         List<SnakeSegment> snake = new List<SnakeSegment>();
         // Initial direction of the snake
         Point direction = new Point(1, 0);
-        Point food;
+
+        SnakeFoodUnit food = new();
+        int BigFoodProb = 10; // 10% chance for big food
+        int TotalReward = 0; // Total reward for the snake, not used in this version but can be useful for future enhancements
+
         int tileSize = 20; 
 
         Brush SnakeHeadColour = Brushes.Black;
@@ -36,15 +40,25 @@ namespace losos
             this.TabStop = true;
             this.Focus();
 
+            UsefulForDesign.CenterControlHorizontally(Label_ArrowHint);
+            UpdateRewardLabel();
+
             Button_ReturnButton.TabStop = false;
 
             MaxX = Panel_Field.Width / tileSize;
             MaxY = Panel_Field.Height / tileSize;
         }
 
+        private void UpdateRewardLabel()
+        {
+            Label_Reward.Text = "Total Reward: " + TotalReward;
+        }
+
         private void ButtonStart_Click(object sender, EventArgs e)
         {
             // Reset the game state
+            TotalReward = 0;
+            UpdateRewardLabel();
             snake.Clear();
             direction = new Point(1, 0);
             snake.Add(new SnakeSegment(new Point(5, 5), SnakeHeadColour));
@@ -65,6 +79,8 @@ namespace losos
             Button_Start.Enabled = true;
             MessageBox.Show("Game Over! You collided with yourself.");
         }
+
+        
 
         #region keyhandling
         protected override void OnLoad(EventArgs e)
@@ -137,7 +153,8 @@ namespace losos
                 g.FillRectangle(segment.FillBrush, new Rectangle(segment.X * tileSize, segment.Y * tileSize, tileSize, tileSize));
             }
 
-            g.FillRectangle(FoodColour, new Rectangle(food.X * tileSize, food.Y * tileSize, tileSize, tileSize));
+            foreach (var foodPosition in food.Positions)
+                g.FillRectangle(FoodColour, new Rectangle(foodPosition.X * tileSize, foodPosition.Y * tileSize, tileSize, tileSize));
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -153,18 +170,20 @@ namespace losos
 
             CheckCollisionWithSelf(newHead);
 
-            MoveHeadColour(); // change old head colour based on the second segment
+            MoveHeadColour(); // change old head colour based on the second newHead
 
             snake.Insert(0, newHead);
-            if (newHead.Position != food)
+            if (!IsOnFood(newHead))
             {
                 if (snake.Count != 1) // must not delete the head
                     snake.RemoveAt(snake.Count - 1);
             }
             else
+            {
+                HandleFoodConsumption();
                 food = GenerateNewFood();
-
-            
+                
+            }
         }
         private void MoveHeadColour()
         {
@@ -204,6 +223,11 @@ namespace losos
                 }
             }
         }
+
+        private bool IsOnFood(SnakeSegment newHead)
+        {
+            return food.Positions.Any(foodPosition => foodPosition == newHead.Position);
+        }
         #endregion
 
         #region food
@@ -211,6 +235,7 @@ namespace losos
         private class SnakeFoodUnit
         {
             public List<Point> Positions = new();
+            public int value => Positions.Count;
             public SnakeFoodUnit(Point position, bool isBig)
             {
                 Positions.Add(position);
@@ -220,16 +245,43 @@ namespace losos
                     Positions.Add(new Point(position.X, position.Y + 1));
                     Positions.Add(new Point(position.X + 1, position.Y + 1));
                 }
+            }
+            public SnakeFoodUnit()
+            {
 
             }
         }
 
-        private Point GenerateNewFood()
+
+        private SnakeFoodUnit GenerateNewFood()
         {
-            food = new Point(0, 0);
-            food.X = random.Next(0, Panel_Field.Width / tileSize);
-            food.Y = random.Next(0, Panel_Field.Height / tileSize);
-            return food;
+            Point foodPoint = new Point(0, 0);
+            foodPoint.X = random.Next(0, Panel_Field.Width / tileSize);
+            foodPoint.Y = random.Next(0, Panel_Field.Height / tileSize);
+            
+            while (snake.Any(segment => segment.Position == foodPoint))
+            {
+                foodPoint.X = random.Next(0, Panel_Field.Width / tileSize);
+                foodPoint.Y = random.Next(0, Panel_Field.Height / tileSize);
+            }
+
+            if (random.Next(0, 100) < BigFoodProb)
+            {
+                return new SnakeFoodUnit(foodPoint, true);
+            }
+            else
+            {
+                return new SnakeFoodUnit(foodPoint, false);
+            }
+        }
+
+
+
+        private void HandleFoodConsumption()
+        {
+            
+            TotalReward += food.value;
+            UpdateRewardLabel();
         }
 
         #endregion
