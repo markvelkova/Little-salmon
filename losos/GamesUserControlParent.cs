@@ -15,7 +15,7 @@ namespace losos
     {
         public event EventHandler? ReturnSelected;
 
-        protected void returnButton_Click(object sender, EventArgs e)
+        public void returnButton_Click(object sender, EventArgs e)
         {
             ReturnSelected?.Invoke(this, EventArgs.Empty);
         }

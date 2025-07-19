@@ -138,11 +138,11 @@ namespace losos
         private void playButton_Click(object sender, EventArgs e)
         {
             ResetResultLabel();
-            if (sender == Button_HeadsBet)
+            if (sender == myButton_HeadsBet)
                 _coinGuess = Game_HeadsOrTails.CoinOptions.Heads;
-            else if (sender == Button_TailsBet)
+            else if (sender == myButton_TailsBet)
                 _coinGuess = Game_HeadsOrTails.CoinOptions.Tails;
-            bool shouldEvaluate = sender != Button_JustFlip;
+            bool shouldEvaluate = sender != myButton_JustFlip;
             PerformTurn(shouldEvaluate);
         }
 
