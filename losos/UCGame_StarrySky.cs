@@ -48,7 +48,7 @@ namespace losos
 
         private void button_StartGame_Click(object sender, EventArgs e)
         {
-            Button_Start.Enabled = false; // disable start button to prevent multiple clicks
+            myButton_Start.Enabled = false; // disable start button to prevent multiple clicks
             startCountDown();
         }
         private void startGame()
@@ -64,7 +64,7 @@ namespace losos
         {
             Timer_GameTimer.Stop(); // stop game timer
             Timer_ChangeImage.Stop(); // stop changing images
-            Button_Start.Enabled = true; // re-enable start button
+            myButton_Start.Enabled = true; // re-enable start button
             UpdateGameStatusLabels();
             HandleGameEnd();
             ResetForNextGame();

@@ -33,12 +33,12 @@
             Label_TimeLeft = new Label();
             Timer_CountdownToStart = new System.Windows.Forms.Timer(components);
             Label_Countdown = new Label();
-            Button_Start = new Button();
             Label_Reward = new Label();
             Label_Clicks = new Label();
-            Button_Return = new Button();
             Timer_GameTimer = new System.Windows.Forms.Timer(components);
             Timer_ChangeImage = new System.Windows.Forms.Timer(components);
+            myButton_Start = new WinFormsControlLibrary1.MyButton();
+            myButton_Return = new WinFormsControlLibrary1.MyButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Sky).BeginInit();
             SuspendLayout();
             // 
@@ -78,16 +78,6 @@
             Label_Countdown.Text = "3";
             Label_Countdown.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Button_Start
-            // 
-            Button_Start.Location = new Point(292, 108);
-            Button_Start.Name = "Button_Start";
-            Button_Start.Size = new Size(75, 23);
-            Button_Start.TabIndex = 3;
-            Button_Start.Text = "START";
-            Button_Start.UseVisualStyleBackColor = true;
-            Button_Start.Click += button_StartGame_Click;
-            // 
             // Label_Reward
             // 
             Label_Reward.AutoSize = true;
@@ -106,16 +96,6 @@
             Label_Clicks.TabIndex = 5;
             Label_Clicks.Text = "clicks";
             // 
-            // Button_Return
-            // 
-            Button_Return.Location = new Point(528, 23);
-            Button_Return.Name = "Button_Return";
-            Button_Return.Size = new Size(75, 23);
-            Button_Return.TabIndex = 6;
-            Button_Return.Text = "retreat";
-            Button_Return.UseVisualStyleBackColor = true;
-            Button_Return.Click += returnButton_Click;
-            // 
             // Timer_GameTimer
             // 
             Timer_GameTimer.Tick += timer_GameTimer_Tick;
@@ -125,18 +105,48 @@
             Timer_ChangeImage.Interval = 500;
             Timer_ChangeImage.Tick += timer_ChangeImage_Tick;
             // 
-            // UCStarrySky
+            // myButton_Start
+            // 
+            myButton_Start.AutoSize = true;
+            myButton_Start.BackColor = Color.AntiqueWhite;
+            myButton_Start.FlatStyle = FlatStyle.Popup;
+            myButton_Start.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Start.ForeColor = Color.Black;
+            myButton_Start.Location = new Point(297, 105);
+            myButton_Start.Name = "myButton_Start";
+            myButton_Start.Size = new Size(93, 29);
+            myButton_Start.TabIndex = 7;
+            myButton_Start.Text = "START";
+            myButton_Start.UseVisualStyleBackColor = false;
+            myButton_Start.Click += button_StartGame_Click;
+            // 
+            // myButton_Return
+            // 
+            myButton_Return.AutoSize = true;
+            myButton_Return.BackColor = Color.AntiqueWhite;
+            myButton_Return.FlatStyle = FlatStyle.Popup;
+            myButton_Return.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Return.ForeColor = Color.Black;
+            myButton_Return.Location = new Point(517, 23);
+            myButton_Return.Name = "myButton_Return";
+            myButton_Return.Size = new Size(96, 29);
+            myButton_Return.TabIndex = 8;
+            myButton_Return.Text = "retreat";
+            myButton_Return.UseVisualStyleBackColor = false;
+            myButton_Return.Click += returnButton_Click;
+            // 
+            // UCGame_StarrySky
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(Button_Return);
+            Controls.Add(myButton_Return);
+            Controls.Add(myButton_Start);
             Controls.Add(Label_Clicks);
             Controls.Add(Label_Reward);
-            Controls.Add(Button_Start);
             Controls.Add(Label_Countdown);
             Controls.Add(Label_TimeLeft);
             Controls.Add(pictureBox_Sky);
-            Name = "UCStarrySky";
+            Name = "UCGame_StarrySky";
             Size = new Size(640, 640);
             ((System.ComponentModel.ISupportInitialize)pictureBox_Sky).EndInit();
             ResumeLayout(false);
@@ -149,11 +159,11 @@
         private Label Label_TimeLeft;
         private System.Windows.Forms.Timer Timer_CountdownToStart;
         private Label Label_Countdown;
-        private Button Button_Start;
         private Label Label_Reward;
         private Label Label_Clicks;
-        private Button Button_Return;
         private System.Windows.Forms.Timer Timer_GameTimer;
         private System.Windows.Forms.Timer Timer_ChangeImage;
+        private WinFormsControlLibrary1.MyButton myButton_Start;
+        private WinFormsControlLibrary1.MyButton myButton_Return;
     }
 }
