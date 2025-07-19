@@ -78,9 +78,13 @@
             // myButton_Return
             // 
             myButton_Return.AutoSize = true;
+            myButton_Return.BackColor = Color.AntiqueWhite;
+            myButton_Return.FlatStyle = FlatStyle.Popup;
+            myButton_Return.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Return.ForeColor = Color.Black;
             myButton_Return.Location = new Point(393, 17);
             myButton_Return.Name = "myButton_Return";
-            myButton_Return.Size = new Size(76, 25);
+            myButton_Return.Size = new Size(76, 29);
             myButton_Return.TabIndex = 5;
             myButton_Return.Text = "BACK";
             myButton_Return.UseVisualStyleBackColor = true;
