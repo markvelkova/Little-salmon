@@ -13,13 +13,8 @@ namespace losos
 {
     public partial class GamesUserControlParent : UserControl
     {
-        public GamesUserControlParent()
-        {
-            InitializeComponent();
-        }
-
         public event EventHandler? ReturnSelected;
-        private MyButton returnButton = new MyButton();
+
         protected void returnButton_Click(object sender, EventArgs e)
         {
             ReturnSelected?.Invoke(this, EventArgs.Empty);

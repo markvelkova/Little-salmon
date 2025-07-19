@@ -31,10 +31,10 @@
             components = new System.ComponentModel.Container();
             Panel_Field = new Panel();
             Timer_GameTimer = new System.Windows.Forms.Timer(components);
-            Button_ReturnButton = new Button();
-            Button_Start = new Button();
             Label_Reward = new Label();
             Label_ArrowHint = new Label();
+            myButton_Return = new WinFormsControlLibrary1.MyButton();
+            myButton_Start = new WinFormsControlLibrary1.MyButton();
             SuspendLayout();
             // 
             // Panel_Field
@@ -49,26 +49,6 @@
             // Timer_GameTimer
             // 
             Timer_GameTimer.Tick += gameTimer_Tick;
-            // 
-            // Button_ReturnButton
-            // 
-            Button_ReturnButton.Location = new Point(539, 22);
-            Button_ReturnButton.Name = "Button_ReturnButton";
-            Button_ReturnButton.Size = new Size(75, 23);
-            Button_ReturnButton.TabIndex = 1;
-            Button_ReturnButton.Text = "retreat";
-            Button_ReturnButton.UseVisualStyleBackColor = true;
-            Button_ReturnButton.Click += returnButton_Click;
-            // 
-            // Button_Start
-            // 
-            Button_Start.Location = new Point(37, 27);
-            Button_Start.Name = "Button_Start";
-            Button_Start.Size = new Size(75, 23);
-            Button_Start.TabIndex = 2;
-            Button_Start.Text = "START";
-            Button_Start.UseVisualStyleBackColor = true;
-            Button_Start.Click += ButtonStart_Click;
             // 
             // Label_Reward
             // 
@@ -88,14 +68,44 @@
             Label_ArrowHint.TabIndex = 4;
             Label_ArrowHint.Text = "Use your arrows, not your bow";
             // 
+            // myButton_Return
+            // 
+            myButton_Return.AutoSize = true;
+            myButton_Return.BackColor = Color.AntiqueWhite;
+            myButton_Return.FlatStyle = FlatStyle.Popup;
+            myButton_Return.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Return.ForeColor = Color.Black;
+            myButton_Return.Location = new Point(528, 31);
+            myButton_Return.Name = "myButton_Return";
+            myButton_Return.Size = new Size(93, 29);
+            myButton_Return.TabIndex = 5;
+            myButton_Return.Text = "retreat";
+            myButton_Return.UseVisualStyleBackColor = false;
+            myButton_Return.Click += returnButton_Click;
+            // 
+            // myButton_Start
+            // 
+            myButton_Start.AutoSize = true;
+            myButton_Start.BackColor = Color.AntiqueWhite;
+            myButton_Start.FlatStyle = FlatStyle.Popup;
+            myButton_Start.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Start.ForeColor = Color.Black;
+            myButton_Start.Location = new Point(19, 31);
+            myButton_Start.Name = "myButton_Start";
+            myButton_Start.Size = new Size(96, 29);
+            myButton_Start.TabIndex = 6;
+            myButton_Start.Text = "START";
+            myButton_Start.UseVisualStyleBackColor = false;
+            myButton_Start.Click += ButtonStart_Click;
+            // 
             // UCGame_Snake
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(myButton_Start);
+            Controls.Add(myButton_Return);
             Controls.Add(Label_ArrowHint);
             Controls.Add(Label_Reward);
-            Controls.Add(Button_Start);
-            Controls.Add(Button_ReturnButton);
             Controls.Add(Panel_Field);
             Name = "UCGame_Snake";
             Size = new Size(640, 640);
@@ -109,9 +119,9 @@
 
         private Panel Panel_Field;
         private System.Windows.Forms.Timer Timer_GameTimer;
-        private Button Button_ReturnButton;
-        private Button Button_Start;
         private Label Label_Reward;
         private Label Label_ArrowHint;
+        private WinFormsControlLibrary1.MyButton myButton_Return;
+        private WinFormsControlLibrary1.MyButton myButton_Start;
     }
 }

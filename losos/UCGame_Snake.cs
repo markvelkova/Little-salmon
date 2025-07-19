@@ -43,7 +43,7 @@ namespace losos
             UsefulForDesign.CenterControlHorizontally(Label_ArrowHint);
             UpdateRewardLabel();
 
-            Button_ReturnButton.TabStop = false;
+            myButton_Return.TabStop = false;
 
             MaxX = Panel_Field.Width / tileSize;
             MaxY = Panel_Field.Height / tileSize;
@@ -67,8 +67,8 @@ namespace losos
             Panel_Field.Invalidate();
 
             // they tended to steal the focus from the game panel
-            Button_ReturnButton.Enabled = false;
-            Button_Start.Enabled = false;
+            myButton_Return.Enabled = false;
+            myButton_Start.Enabled = false;
 
             this.Focus();
         }
@@ -76,8 +76,8 @@ namespace losos
         private void HandleGameEnd()
         {
             Timer_GameTimer.Stop();
-            Button_ReturnButton.Enabled = true;
-            Button_Start.Enabled = true;
+            myButton_Return.Enabled = true;
+            myButton_Start.Enabled = true;
             UpdateStats(); // Update the stats with the total reward and the record, if neccwessary
             MainForm.thePet.AddFood(TotalReward); // Add the total reward to the pet's food count
             MessageBox.Show("Game Over! You collided with yourself.");
