@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace losos
 {
-    public partial class UCGame_Snake: GamesUserControlParent
+    public partial class UCGame_Snake : GamesUserControlParent
     {
         
         Random random = new Random();

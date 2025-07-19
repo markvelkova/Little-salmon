@@ -11,9 +11,13 @@ namespace WinFormsControlLibrary1
     {
         public MyButton()
         {
-            //this.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            this.AutoSize = true;
-            this.AutoSizeMode = AutoSizeMode.GrowOnly;
+            Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowOnly;
+            BackColor = Color.AntiqueWhite;
+            FlatStyle = FlatStyle.Popup;
+            ForeColor = Color.Black;
+
         }
     }
 }
