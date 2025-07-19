@@ -40,7 +40,7 @@ namespace losos
             ResetEquationLabel();
             UsefulForDesign.CenterControlHorizontally(TextBox_Answer); // center the answer text box horizontally
             UsefulForDesign.CenterControlHorizontally(Panel_Time); // center the time panel horizontally
-            Button_Start.Text = "START";
+            myButton_Start.Text = "START";
 
         }
 
@@ -100,7 +100,7 @@ namespace losos
             GenerateNewEquation(); // generate a new equation
             TextBox_Answer.Text = ""; // clear the answer text box
             TextBox_Answer.Focus(); // set focus to the answer text box
-            Button_Start.Enabled = false;
+            myButton_Start.Enabled = false;
             Timer_GameTimer.Start(); // start the game timer
             UserCalculationResults = new();
         }
@@ -163,7 +163,7 @@ namespace losos
 
             MessageBox.Show("Time over! You earned a total reward of " + TotalReward + " food.", "Time Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            Button_Start.Enabled = true; // enable the start button
+            myButton_Start.Enabled = true; // enable the start button
             Timer_GameTimer.Stop(); // stop the game timer
             TextBox_Answer.BackColor = Color.White;
             ResetEquationLabel(); // reset the equation label to default text

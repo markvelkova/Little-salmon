@@ -30,8 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             Label_Equation = new Label();
-            Button_Start = new Button();
-            Button_Return = new Button();
             TextBox_Answer = new TextBox();
             Panel_Time = new Panel();
             Timer_GameTimer = new System.Windows.Forms.Timer(components);
@@ -40,6 +38,8 @@
             Label_MaxOperandsLabel = new Label();
             Label_CurrentRewardDisplay = new Label();
             Label_CurrentRewardLabel = new Label();
+            myButton_Return = new WinFormsControlLibrary1.MyButton();
+            myButton_Start = new WinFormsControlLibrary1.MyButton();
             ((System.ComponentModel.ISupportInitialize)Numeric_MaxOpNum).BeginInit();
             SuspendLayout();
             // 
@@ -53,27 +53,6 @@
             Label_Equation.TabIndex = 0;
             Label_Equation.Text = "?????";
             Label_Equation.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // Button_Start
-            // 
-            Button_Start.AutoSize = true;
-            Button_Start.Location = new Point(282, 526);
-            Button_Start.Name = "Button_Start";
-            Button_Start.Size = new Size(75, 25);
-            Button_Start.TabIndex = 1;
-            Button_Start.Text = "START";
-            Button_Start.UseVisualStyleBackColor = true;
-            Button_Start.Click += Button_Start_Click;
-            // 
-            // Button_Return
-            // 
-            Button_Return.Location = new Point(524, 28);
-            Button_Return.Name = "Button_Return";
-            Button_Return.Size = new Size(75, 23);
-            Button_Return.TabIndex = 2;
-            Button_Return.Text = "retreat";
-            Button_Return.UseVisualStyleBackColor = true;
-            Button_Return.Click += returnButton_Click;
             // 
             // TextBox_Answer
             // 
@@ -143,10 +122,42 @@
             Label_CurrentRewardLabel.TabIndex = 11;
             Label_CurrentRewardLabel.Text = "current reward";
             // 
+            // myButton_Return
+            // 
+            myButton_Return.AutoSize = true;
+            myButton_Return.BackColor = Color.AntiqueWhite;
+            myButton_Return.FlatStyle = FlatStyle.Popup;
+            myButton_Return.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Return.ForeColor = Color.Black;
+            myButton_Return.Location = new Point(527, 28);
+            myButton_Return.Name = "myButton_Return";
+            myButton_Return.Size = new Size(93, 29);
+            myButton_Return.TabIndex = 12;
+            myButton_Return.Text = "retreat";
+            myButton_Return.UseVisualStyleBackColor = false;
+            myButton_Return.Click += returnButton_Click;
+            // 
+            // myButton_Start
+            // 
+            myButton_Start.AutoSize = true;
+            myButton_Start.BackColor = Color.AntiqueWhite;
+            myButton_Start.FlatStyle = FlatStyle.Popup;
+            myButton_Start.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Start.ForeColor = Color.Black;
+            myButton_Start.Location = new Point(273, 536);
+            myButton_Start.Name = "myButton_Start";
+            myButton_Start.Size = new Size(96, 29);
+            myButton_Start.TabIndex = 13;
+            myButton_Start.Text = "START";
+            myButton_Start.UseVisualStyleBackColor = false;
+            myButton_Start.Click += Button_Start_Click;
+            // 
             // UCGame_SpeedyCount
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(myButton_Start);
+            Controls.Add(myButton_Return);
             Controls.Add(Label_CurrentRewardLabel);
             Controls.Add(Label_CurrentRewardDisplay);
             Controls.Add(Label_MaxOperandsLabel);
@@ -154,8 +165,6 @@
             Controls.Add(Numeric_MaxOpNum);
             Controls.Add(Panel_Time);
             Controls.Add(TextBox_Answer);
-            Controls.Add(Button_Return);
-            Controls.Add(Button_Start);
             Controls.Add(Label_Equation);
             Name = "UCGame_SpeedyCount";
             Size = new Size(640, 640);
@@ -167,8 +176,6 @@
         #endregion
 
         private Label Label_Equation;
-        private Button Button_Start;
-        private Button Button_Return;
         private TextBox TextBox_Answer;
         private Panel Panel_Time;
         private System.Windows.Forms.Timer Timer_GameTimer;
@@ -177,5 +184,7 @@
         private Label Label_MaxOperandsLabel;
         private Label Label_CurrentRewardDisplay;
         private Label Label_CurrentRewardLabel;
+        private WinFormsControlLibrary1.MyButton myButton_Return;
+        private WinFormsControlLibrary1.MyButton myButton_Start;
     }
 }
