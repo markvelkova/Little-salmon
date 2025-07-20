@@ -282,6 +282,7 @@ namespace losos
         {
             MainForm.thePet.Clean();
             ReportToUser("You cleaned your pet " + MainForm.thePet.Name + ".");
+            MainForm.theStats.AdjustStat("Excrement disposed", 1);
             UpdatePetStatusDisplay();
         }
         #endregion

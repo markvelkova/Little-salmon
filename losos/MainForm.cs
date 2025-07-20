@@ -106,45 +106,30 @@ namespace losos
             var games = new UCGames();
             thePet.PlayingGames = false; // the player does not play games any more
             games.ReturnSelected += (s, e) => ShowMain();
-            games.FlipACoinSelected += (s, e) => ShowHeadsOrTails();
-            games.StarrySkySelected += (s, e) => ShowStarrySky();
-            games.SpeedyCountSelected += (s, e) => ShowSpeedyCount();
-            games.SnakeSelected += (s, e) => ShowSnake();
+            //games.FlipACoinSelected += (s, e) => ShowHeadsOrTails();
+            games.FlipACoinSelected += (s,e) => GameScreenShow(new UCGame_HeadsOrTails());
+            games.StarrySkySelected += (s, e) => GameScreenShow(new UCGame_StarrySky());
+            games.SpeedyCountSelected += (s, e) => GameScreenShow(new UCGame_SpeedyCount());
+            games.SnakeSelected += (s, e) => GameScreenShow(new UCGame_Snake());
             SwitchScreen(games);
         }
 
-        #region individual games Show...
-        private void ShowHeadsOrTails()
-        {
-            var headsOrTails = new UCGame_HeadsOrTails();
-            thePet.PlayingGames = true; // set the pet to playing games state
-            headsOrTails.ReturnSelected += (s, e) => ShowGames();
-            SwitchScreen(headsOrTails);
-        }
-        private void ShowStarrySky()
-        {
-            var starrySky = new UCGame_StarrySky();
-            thePet.PlayingGames = true; // set the pet to playing games state
-            starrySky.ReturnSelected += (s, e) => ShowGames();
-            SwitchScreen(starrySky);
-        }
-        private void ShowSpeedyCount()
-        {
-            var spdcnt = new UCGame_SpeedyCount();
-            thePet.PlayingGames = true; // set the pet to playing games state
-            spdcnt.ReturnSelected += (s, e) => ShowGames();
-            SwitchScreen(spdcnt);
-        }
-        private void ShowSnake()
-        {
-            var snake = new UCGame_Snake();
-            thePet.PlayingGames = true; // set the pet to playing games state
-            snake.ReturnSelected += (s, e) => ShowGames();
-            snake.Focus();
-            SwitchScreen(snake);
-        }
 
+
+        #region individual games Show...
+
+        private void GameScreenShow(GamesUserControlParent gameScreen)
+        {
+            thePet.PlayingGames = true; // set the pet to playing games state
+            gameScreen.ReturnSelected += (s, e) => ShowGames();
+            SwitchScreen(gameScreen);
+        }
         #endregion
+
+        /// <summary>
+        /// this method sets arrows as input keys, which uses the snake game
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             base.OnPreviewKeyDown(e);
@@ -154,12 +139,6 @@ namespace losos
             {
                 e.IsInputKey = true;
             }
-        }
-        private void SwitchScreenObsolete(UserControl newControl)
-        {
-            this.Controls.Clear();
-            this.Controls.Add(newControl);
-            newControl.Dock = DockStyle.Fill;
         }
 
         private void SwitchScreen(UserControl newControl)

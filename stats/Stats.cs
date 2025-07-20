@@ -8,10 +8,11 @@ namespace stats
         private Dictionary<string, int> DefaultStatsDict = new Dictionary<string, int>
         {
             { "Seconds slept", 0 },
-            { "Coins flipped", 0 },
-            { "Lucky coin guesses", 0 },
             { "Food units fed", 0 },
             { "Food units fell", 0 },
+            { "Excrement disposed", 0 },
+            { "Coins flipped", 0 },
+            { "Lucky coin guesses", 0 },
             { "Starry sky clicked", 0 },
             { "Starry sky reward record", 0 },
             { "Starry sky clicks record", 0 },
