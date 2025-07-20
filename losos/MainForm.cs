@@ -9,6 +9,7 @@ namespace losos
     {
         // thePet is STATIC therefore only one at time
         // can be reached from anywhere as MainForm.Pet
+        // same for the stats
         public static Pet thePet = new();
         public static Stats theStats = new();
         System.Windows.Forms.Timer petLifeTimer = new System.Windows.Forms.Timer
@@ -16,25 +17,20 @@ namespace losos
             Interval = 1000 // 1 second interval
         };
 
-
+        // MainScreen is the main screen of the application with pet display
         private UCMain MainScreen = new UCMain();
 
         public MainForm()
         {
             InitializeComponent();
             petLifeTimer.Tick += petLifeTimer_Tick;
-
             MainScreen.GamesButtonClicked += (s, e) => ShowGames();
-
-            //petLifeTimer.Start(); // start the pet life timer
-
             ShowIntro();
-            //MessageBox.Show(new SerializationUnit(thePet,theStats).SerializeToJson());
         }
 
 
         /// <summary>
-        /// basic colour, kinda blue, for background
+        /// basic colour, kinda blue, for background, can be changed globally by user from UCMain
         /// </summary>
         public static Color MyDefaultBackColor { get; set; } = Color.FromArgb(0, 162, 232);
 
@@ -106,15 +102,12 @@ namespace losos
             var games = new UCGames();
             thePet.PlayingGames = false; // the player does not play games any more
             games.ReturnSelected += (s, e) => ShowMain();
-            //games.FlipACoinSelected += (s, e) => ShowHeadsOrTails();
             games.FlipACoinSelected += (s,e) => GameScreenShow(new UCGame_HeadsOrTails());
             games.StarrySkySelected += (s, e) => GameScreenShow(new UCGame_StarrySky());
             games.SpeedyCountSelected += (s, e) => GameScreenShow(new UCGame_SpeedyCount());
             games.SnakeSelected += (s, e) => GameScreenShow(new UCGame_Snake());
             SwitchScreen(games);
         }
-
-
 
         #region individual games Show...
 
@@ -141,6 +134,10 @@ namespace losos
             }
         }
 
+        /// <summary>
+        /// hides current controls and shows the new control. if the new control isn't loaded yet, it loads it.
+        /// </summary>
+        /// <param name="newControl"></param>
         private void SwitchScreen(UserControl newControl)
         {
             foreach (Control ctrl in this.Controls)
@@ -158,7 +155,12 @@ namespace losos
         }
 
         #region saving
-        private void FormClosingReaction(object sender, FormClosingEventArgs e)
+        /// <summary>
+        /// displays dialog that appears when the form is closing, asking if the user wants to save the game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DisplayFormClosingReaction(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show(
                 "Do you want to save your progress?",
@@ -179,6 +181,9 @@ namespace losos
             // if no chosen, nothing happens, it closes
         }
 
+        /// <summary>
+        /// Saves the game to json, from which it can be loaded again
+        /// </summary>
         private void SaveGame()
         {
             SerializationUnit gameToSave = new SerializationUnit(thePet, theStats);

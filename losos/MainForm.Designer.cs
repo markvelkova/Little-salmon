@@ -45,7 +45,7 @@
             MinimumSize = new Size(640, 640);
             Name = "MainForm";
             Text = "losos";
-            FormClosing += FormClosingReaction;
+            FormClosing += DisplayFormClosingReaction;
             Load += Form1_Load;
             ResumeLayout(false);
         }
