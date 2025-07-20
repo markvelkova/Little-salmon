@@ -222,12 +222,12 @@ namespace losos
             switch (result)
             {
                 case Pet.FeedingResult.Successful:
-                    MainForm.AdjustStat("Food units fed", 1);
+                    MainForm.theStats.AdjustStat("Food units fed", 1);
                     UpdateStats();
                     ReportToUser("You fed your pet " + MainForm.thePet.Name + ".");
                     break;
                 case Pet.FeedingResult.Fell:
-                    MainForm.AdjustStat("Food units fell", 1);
+                    MainForm.theStats.AdjustStat("Food units fell", 1);
                     UpdateStats();
                     ReportToUser("Yay, the food must have fallen somewhere...");
                     break;
@@ -268,7 +268,7 @@ namespace losos
             else
             {
                 TimeSpan timeSlept = DateTime.Now - fallenAsleep; // calculate how long the pet has been asleep
-                MainForm.AdjustStat("Seconds slept", (int)timeSlept.TotalSeconds);
+                MainForm.theStats.AdjustStat("Seconds slept", (int)timeSlept.TotalSeconds);
                 MainForm.thePet.WakeUp();
                 ReportToUser("Your pet " + MainForm.thePet.Name + " woke up.");
                 WakeUpUpdateComponents();

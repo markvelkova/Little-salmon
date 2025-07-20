@@ -85,15 +85,15 @@ namespace losos
         private void UpdateStats()
         {
             //Adjust basic stat
-            MainForm.AdjustStat("Starry sky clicked", numberOfClicks);
+            MainForm.theStats.AdjustStat("Starry sky clicked", numberOfClicks);
             // Adjust the starry sky reward record if needed
             int currentRecord = MainForm.theStats.GetStat("Starry sky reward record");
             if (currentRecord < (int)totalReward)
-                MainForm.AdjustStat("Starry sky reward record", (int)totalReward);
+                MainForm.theStats.AdjustStat("Starry sky reward record", (int)totalReward);
             // Adjust the starry sky clicks record if needed
             currentRecord = MainForm.theStats.GetStat("Starry sky clicks record");
             if (currentRecord < numberOfClicks)
-                MainForm.AdjustStat("Starry sky clicks record", numberOfClicks);
+                MainForm.theStats.AdjustStat("Starry sky clicks record", numberOfClicks);
         }
 
         /// <summary>

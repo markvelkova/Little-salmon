@@ -95,7 +95,7 @@ namespace losos
         private void HandleGoodGuess()
         {
             LabelSetResult(_labelsVictorious);
-            MainForm.AdjustStat("Lucky coin guesses", 1); // increment lucky coin guesses
+            MainForm.theStats.AdjustStat("Lucky coin guesses", 1); // increment lucky coin guesses
 
             _soFarWon += Reward;
 
@@ -114,7 +114,7 @@ namespace losos
 
         private async void PerformTurn(bool shouldEvaluate)
         {
-            MainForm.AdjustStat("Coins flipped", 1); // increment coins flipped
+            MainForm.theStats.AdjustStat("Coins flipped", 1); // increment coins flipped
             coinPicture.Image = coinPictures[(int)Game_HeadsOrTails.CoinOptions.Empty]; // interstate
             _coinResult = Game_HeadsOrTails.FlipTheCoin();
             await Task.Delay(_coinSpeed);
