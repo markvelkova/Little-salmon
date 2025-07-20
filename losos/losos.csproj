@@ -15,6 +15,8 @@
     <None Remove="Resources\basicFish.png" />
     <None Remove="Resources\basicFishIcons.png" />
     <None Remove="Resources\coinIcons.png" />
+    <None Remove="Resources\dirtyIconTransparent.png" />
+    <None Remove="Resources\gameIcons.png" />
     <None Remove="Resources\starrySkyIcons.png" />
   </ItemGroup>
 
@@ -32,6 +34,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\coinIcons.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\dirtyIconTransparent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\gameIcons.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\starrySkyIcons.png">

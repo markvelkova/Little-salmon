@@ -17,6 +17,7 @@ namespace WinFormsControlLibrary1
             BackColor = Color.AntiqueWhite;
             FlatStyle = FlatStyle.Popup;
             ForeColor = Color.Black;
+            Cursor = Cursors.Hand;
 
         }
     }

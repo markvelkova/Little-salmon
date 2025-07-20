@@ -20,6 +20,7 @@ namespace losos
         private Bitmap[] fishPictures; // icons for the fish
         private DateTime fallenAsleep; // when the pet fell asleep, used for sleeping time calculation
         private MeterDisplayer[] meterDisplayers;
+        
 
         public UCMain()
         {
@@ -33,6 +34,8 @@ namespace losos
 
             fishPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("basicFishIcons.png")), _iconWidth);
 
+            pictureBox_Dirty.Image = new Bitmap(FileHelper.GetPathToResources("dirtyIconTransparent.png"));
+
             meterDisplayers = new MeterDisplayer[]
             {
                 new MeterDisplayer(Panel_Energy, new Panel(), new Mirror(() => MainForm.thePet.EnergyMeter)),
@@ -40,7 +43,9 @@ namespace losos
                 new MeterDisplayer(Panel_Mood, new Panel(), new Mirror(() => MainForm.thePet.MoodMeter))
             };
 
+            Label_Name.Cursor = Cursors.Hand; // make the name label fancy clickable
             TextBox_NewNameBox.Visible = false;
+           
             Button_ChangeNameSubmit.Visible = false;
             TextBox_Stats.Visible = false; // hide the stats text box initially
 
@@ -109,6 +114,16 @@ namespace losos
             foreach (MeterDisplayer m in meterDisplayers)
             {
                 SetPanelProgressBarValue(m);
+            }
+            
+            if (MainForm.thePet.isDirty)
+            {
+                pictureBox_Dirty.Visible = true;
+                pictureBox_Dirty.BringToFront();
+            }
+            else
+            {
+                pictureBox_Dirty.Visible = false;
             }
         }
 

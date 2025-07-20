@@ -62,7 +62,7 @@
             // Label_ArrowHint
             // 
             Label_ArrowHint.AutoSize = true;
-            Label_ArrowHint.Location = new Point(168, 614);
+            Label_ArrowHint.Location = new Point(226, 573);
             Label_ArrowHint.Name = "Label_ArrowHint";
             Label_ArrowHint.Size = new Size(168, 15);
             Label_ArrowHint.TabIndex = 4;

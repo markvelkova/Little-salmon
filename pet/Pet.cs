@@ -20,6 +20,9 @@ namespace pet
         private int _hungerPointDuration = 8;
         private int _energyPointDuration = 5;
         private int _moodPointDuration = 5;
+        public bool isDirty { get; private set; }
+        private int ticksSinceDirty = 0; // how many ticks since the pet was dirty, used to update the dirty state of the pet
+
 
 
         private int _hungerMeter;
@@ -223,6 +226,25 @@ namespace pet
                 EnergyMeter += 2; // every x seconds, energy goes up by 2 while sleeping
         }
 
+        private void UpdateDirty()
+        {
+            if (!isDirty)
+            {
+                ticksSinceDirty++;
+                rnd.Next(ticksSinceDirty, 120);
+                if (ticksSinceDirty >= 80)
+                {
+                    isDirty = true;
+                    ticksSinceDirty = 0; // reset the dirty ticks counter
+                }
+                else
+                {
+                    isDirty = false;
+                }
+            }
+            
+        }
+
         public void Update()
         {
             _lifeTicks++;
@@ -245,6 +267,7 @@ namespace pet
                 case LifeStates.Dead:
                     return; // no updates for dead pets, no more checking???
             }
+            UpdateDirty();
             CheckIfShouldLive();
         }
     }

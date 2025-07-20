@@ -46,7 +46,9 @@
             myButton_SelectGame = new WinFormsControlLibrary1.MyButton();
             myButton_Feed = new WinFormsControlLibrary1.MyButton();
             myButton_Sleep = new WinFormsControlLibrary1.MyButton();
+            pictureBox_Dirty = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_Dirty).BeginInit();
             SuspendLayout();
             // 
             // Label_Name
@@ -174,9 +176,13 @@
             // myButton_ChooseColour
             // 
             myButton_ChooseColour.AutoSize = true;
+            myButton_ChooseColour.BackColor = Color.AntiqueWhite;
+            myButton_ChooseColour.FlatStyle = FlatStyle.Popup;
+            myButton_ChooseColour.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_ChooseColour.ForeColor = Color.Black;
             myButton_ChooseColour.Location = new Point(15, 145);
             myButton_ChooseColour.Name = "myButton_ChooseColour";
-            myButton_ChooseColour.Size = new Size(93, 25);
+            myButton_ChooseColour.Size = new Size(123, 29);
             myButton_ChooseColour.TabIndex = 22;
             myButton_ChooseColour.Text = "change colour";
             myButton_ChooseColour.UseVisualStyleBackColor = true;
@@ -185,9 +191,13 @@
             // myButton_ShowStats
             // 
             myButton_ShowStats.AutoSize = true;
+            myButton_ShowStats.BackColor = Color.AntiqueWhite;
+            myButton_ShowStats.FlatStyle = FlatStyle.Popup;
+            myButton_ShowStats.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_ShowStats.ForeColor = Color.Black;
             myButton_ShowStats.Location = new Point(523, 18);
             myButton_ShowStats.Name = "myButton_ShowStats";
-            myButton_ShowStats.Size = new Size(76, 25);
+            myButton_ShowStats.Size = new Size(96, 29);
             myButton_ShowStats.TabIndex = 23;
             myButton_ShowStats.Text = "show stats";
             myButton_ShowStats.UseVisualStyleBackColor = true;
@@ -196,9 +206,13 @@
             // myButton_SelectGame
             // 
             myButton_SelectGame.AutoSize = true;
+            myButton_SelectGame.BackColor = Color.AntiqueWhite;
+            myButton_SelectGame.FlatStyle = FlatStyle.Popup;
+            myButton_SelectGame.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_SelectGame.ForeColor = Color.Black;
             myButton_SelectGame.Location = new Point(120, 521);
             myButton_SelectGame.Name = "myButton_SelectGame";
-            myButton_SelectGame.Size = new Size(76, 25);
+            myButton_SelectGame.Size = new Size(76, 29);
             myButton_SelectGame.TabIndex = 24;
             myButton_SelectGame.Text = "games";
             myButton_SelectGame.UseVisualStyleBackColor = true;
@@ -207,9 +221,13 @@
             // myButton_Feed
             // 
             myButton_Feed.AutoSize = true;
+            myButton_Feed.BackColor = Color.AntiqueWhite;
+            myButton_Feed.FlatStyle = FlatStyle.Popup;
+            myButton_Feed.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Feed.ForeColor = Color.Black;
             myButton_Feed.Location = new Point(271, 521);
             myButton_Feed.Name = "myButton_Feed";
-            myButton_Feed.Size = new Size(76, 25);
+            myButton_Feed.Size = new Size(76, 29);
             myButton_Feed.TabIndex = 25;
             myButton_Feed.Text = "feed";
             myButton_Feed.UseVisualStyleBackColor = true;
@@ -218,18 +236,31 @@
             // myButton_Sleep
             // 
             myButton_Sleep.AutoSize = true;
+            myButton_Sleep.BackColor = Color.AntiqueWhite;
+            myButton_Sleep.FlatStyle = FlatStyle.Popup;
+            myButton_Sleep.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_Sleep.ForeColor = Color.Black;
             myButton_Sleep.Location = new Point(416, 521);
             myButton_Sleep.Name = "myButton_Sleep";
-            myButton_Sleep.Size = new Size(76, 25);
+            myButton_Sleep.Size = new Size(76, 29);
             myButton_Sleep.TabIndex = 26;
             myButton_Sleep.Text = "sleep";
             myButton_Sleep.UseVisualStyleBackColor = true;
             myButton_Sleep.Click += button_Sleep_Click;
             // 
+            // pictureBox_Dirty
+            // 
+            pictureBox_Dirty.Location = new Point(291, 344);
+            pictureBox_Dirty.Name = "pictureBox_Dirty";
+            pictureBox_Dirty.Size = new Size(50, 50);
+            pictureBox_Dirty.TabIndex = 27;
+            pictureBox_Dirty.TabStop = false;
+            // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(pictureBox_Dirty);
             Controls.Add(myButton_Sleep);
             Controls.Add(myButton_Feed);
             Controls.Add(myButton_SelectGame);
@@ -251,6 +282,7 @@
             Name = "UCMain";
             Size = new Size(640, 640);
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_Dirty).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -278,5 +310,6 @@
         private WinFormsControlLibrary1.MyButton myButton_SelectGame;
         private WinFormsControlLibrary1.MyButton myButton_Feed;
         private WinFormsControlLibrary1.MyButton myButton_Sleep;
+        private PictureBox pictureBox_Dirty;
     }
 }
