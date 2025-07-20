@@ -197,6 +197,32 @@ namespace pet
 
         #endregion
 
+        #region cleaning
+        private void UpdateDirty()
+        {
+            if (!IsDirty)
+            {
+                _ticksSinceDirty++;
+                int prob = rnd.Next(_ticksSinceDirty, 300);
+                if (prob >= 280)
+                {
+                    IsDirty = true;
+                    _ticksSinceDirty = 0; // reset the dirty ticks counter
+                }
+                else
+                {
+                    IsDirty = false;
+                }
+            }
+        }
+
+        public void Clean()
+        {
+            MoodMeter += rnd.Next(_minCleanReward, _maxCleanReward);
+            IsDirty = false;
+        }
+        #endregion
+
         private void CheckIfShouldLive()
         {
             if (HungerMeter <= 0 || EnergyMeter <= 0 || MoodMeter <= 0)
@@ -232,29 +258,8 @@ namespace pet
                 EnergyMeter += 2; // every x seconds, energy goes up by 2 while sleeping
         }
 
-        private void UpdateDirty()
-        {
-            if (!IsDirty)
-            {
-                _ticksSinceDirty++;
-                int prob = rnd.Next(_ticksSinceDirty, 120);
-                if (prob >= 110)
-                {
-                    IsDirty = true;
-                    _ticksSinceDirty = 0; // reset the dirty ticks counter
-                }
-                else
-                {
-                    IsDirty = false;
-                }
-            }
-        }
 
-        public void Clean()
-        {
-            FoodCount += rnd.Next(_minCleanReward, _maxCleanReward);
-            IsDirty = false;
-        }
+        
 
         public void Update()
         {
