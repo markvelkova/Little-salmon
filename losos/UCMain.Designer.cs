@@ -255,6 +255,7 @@
             pictureBox_Dirty.Size = new Size(50, 50);
             pictureBox_Dirty.TabIndex = 27;
             pictureBox_Dirty.TabStop = false;
+            pictureBox_Dirty.Click += dirtyComponent_Click;
             // 
             // UCMain
             // 

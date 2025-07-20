@@ -35,6 +35,7 @@ namespace losos
             fishPictures = FileHelper.SplitIcons(new Bitmap(FileHelper.GetPathToResources("basicFishIcons.png")), _iconWidth);
 
             pictureBox_Dirty.Image = new Bitmap(FileHelper.GetPathToResources("dirtyIconTransparent.png"));
+            pictureBox_Dirty.Cursor = Cursors.Hand; // make the dirty icon fancy clickable
 
             meterDisplayers = new MeterDisplayer[]
             {
@@ -116,7 +117,7 @@ namespace losos
                 SetPanelProgressBarValue(m);
             }
             
-            if (MainForm.thePet.isDirty)
+            if (MainForm.thePet.IsDirty)
             {
                 pictureBox_Dirty.Visible = true;
                 pictureBox_Dirty.BringToFront();
@@ -270,6 +271,15 @@ namespace losos
                 WakeUpUpdateComponents();
                 UpdatePetStatusDisplay();
             }
+        }
+        #endregion
+
+        #region cleaning
+        private void dirtyComponent_Click(object sender, EventArgs e)
+        {
+            MainForm.thePet.Clean();
+            ReportToUser("You cleaned your pet " + MainForm.thePet.Name + ".");
+            UpdatePetStatusDisplay();
         }
         #endregion
     }

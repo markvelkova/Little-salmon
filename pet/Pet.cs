@@ -20,8 +20,12 @@ namespace pet
         private int _hungerPointDuration = 8;
         private int _energyPointDuration = 5;
         private int _moodPointDuration = 5;
-        public bool isDirty { get; private set; }
-        private int ticksSinceDirty = 0; // how many ticks since the pet was dirty, used to update the dirty state of the pet
+
+        // dirty stuff
+        public bool IsDirty { get; private set; }
+        private int _ticksSinceDirty = 0; // how many ticks since the pet was dirty, used to update the dirty state of the pet
+        private int _minCleanReward = 5;
+        private int _maxCleanReward = 12;
 
 
 
@@ -123,6 +127,7 @@ namespace pet
             {
                 FoodCount -= 1; // we used one food item
                 OverFeed();
+                _ticksSinceDirty++;
                 return FeedingResult.TooMuch;
             }
             // we gave it food successfully, while it was hungry
@@ -130,6 +135,7 @@ namespace pet
             {
                 FoodCount -= 1; // we used one food item
                 Feed();
+                _ticksSinceDirty++;
                 return FeedingResult.Successful;
             }  
         }
@@ -228,21 +234,26 @@ namespace pet
 
         private void UpdateDirty()
         {
-            if (!isDirty)
+            if (!IsDirty)
             {
-                ticksSinceDirty++;
-                rnd.Next(ticksSinceDirty, 120);
-                if (ticksSinceDirty >= 80)
+                _ticksSinceDirty++;
+                int prob = rnd.Next(_ticksSinceDirty, 120);
+                if (prob >= 110)
                 {
-                    isDirty = true;
-                    ticksSinceDirty = 0; // reset the dirty ticks counter
+                    IsDirty = true;
+                    _ticksSinceDirty = 0; // reset the dirty ticks counter
                 }
                 else
                 {
-                    isDirty = false;
+                    IsDirty = false;
                 }
             }
-            
+        }
+
+        public void Clean()
+        {
+            FoodCount += rnd.Next(_minCleanReward, _maxCleanReward);
+            IsDirty = false;
         }
 
         public void Update()
