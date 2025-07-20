@@ -25,6 +25,9 @@ namespace losos
         public UCMain()
         {
             InitializeComponent();
+            UsefulForDesign.CenterControlHorizontally(Label_Name);
+
+
             MainForm.PetLifeTick += (s, e) =>
             {
                 UpdatePetStatusDisplay();
@@ -51,8 +54,10 @@ namespace losos
             TextBox_Stats.Visible = false; // hide the stats text box initially
 
             this.BackColor = MainForm.MyDefaultBackColor;
+
             UpdatePetStatusDisplay();
             UpdateStats();
+
         }
 
 
@@ -197,8 +202,6 @@ namespace losos
 
 
         #endregion
-
-
 
         #region games button
         public event EventHandler GamesButtonClicked;

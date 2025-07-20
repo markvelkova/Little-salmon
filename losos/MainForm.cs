@@ -16,10 +16,15 @@ namespace losos
             Interval = 1000 // 1 second interval
         };
 
+
+        private UCMain MainScreen = new UCMain();
+
         public MainForm()
         {
             InitializeComponent();
             petLifeTimer.Tick += petLifeTimer_Tick;
+
+            MainScreen.GamesButtonClicked += (s, e) => ShowGames();
 
             //petLifeTimer.Start(); // start the pet life timer
 
@@ -82,16 +87,15 @@ namespace losos
         /// <summary>
         /// from the "Main" screen the player can choose from following:
         /// games
-        /// feed MISSING
-        /// sleep MISSING
-        /// wash MISSING
+        /// feed
+        /// sleep
+        /// wash
         /// </summary>
         private void ShowMain()
         {
             petLifeTimer.Start(); // start the pet life timer
-            var main = new UCMain();
-            main.GamesButtonClicked += (s, e) => ShowGames();
-            SwitchScreen(main);
+            
+            SwitchScreen(MainScreen);
         }
 
         /// <summary>
@@ -151,11 +155,27 @@ namespace losos
                 e.IsInputKey = true;
             }
         }
-        private void SwitchScreen(UserControl newControl)
+        private void SwitchScreenObsolete(UserControl newControl)
         {
             this.Controls.Clear();
             this.Controls.Add(newControl);
             newControl.Dock = DockStyle.Fill;
+        }
+
+        private void SwitchScreen(UserControl newControl)
+        {
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.Visible = false;
+            }
+
+            if (!this.Controls.Contains(newControl))
+            {
+                newControl.Dock = DockStyle.Fill;
+                this.Controls.Add(newControl);
+            }
+
+            newControl.Visible = true;
         }
 
         #region saving
