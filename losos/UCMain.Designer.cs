@@ -47,6 +47,7 @@
             myButton_Feed = new WinFormsControlLibrary1.MyButton();
             myButton_Sleep = new WinFormsControlLibrary1.MyButton();
             pictureBox_Dirty = new PictureBox();
+            myButton_StartOver = new WinFormsControlLibrary1.MyButton();
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Dirty).BeginInit();
             SuspendLayout();
@@ -257,10 +258,27 @@
             pictureBox_Dirty.TabStop = false;
             pictureBox_Dirty.Click += dirtyComponent_Click;
             // 
+            // myButton_StartOver
+            // 
+            myButton_StartOver.AutoSize = true;
+            myButton_StartOver.BackColor = Color.AntiqueWhite;
+            myButton_StartOver.FlatStyle = FlatStyle.Popup;
+            myButton_StartOver.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            myButton_StartOver.ForeColor = Color.Black;
+            myButton_StartOver.Location = new Point(154, 111);
+            myButton_StartOver.Name = "myButton_StartOver";
+            myButton_StartOver.Size = new Size(289, 29);
+            myButton_StartOver.TabIndex = 28;
+            myButton_StartOver.Text = "enough mourning, let us start again!!!";
+            myButton_StartOver.UseVisualStyleBackColor = false;
+            myButton_StartOver.Visible = false;
+            myButton_StartOver.Click += button_StartOver_Click;
+            // 
             // UCMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(myButton_StartOver);
             Controls.Add(pictureBox_Dirty);
             Controls.Add(myButton_Sleep);
             Controls.Add(myButton_Feed);
@@ -312,5 +330,6 @@
         private WinFormsControlLibrary1.MyButton myButton_Feed;
         private WinFormsControlLibrary1.MyButton myButton_Sleep;
         private PictureBox pictureBox_Dirty;
+        private WinFormsControlLibrary1.MyButton myButton_StartOver;
     }
 }

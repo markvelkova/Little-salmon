@@ -26,7 +26,7 @@ namespace losos
         {
             InitializeComponent();
             UsefulForDesign.CenterControlHorizontally(Label_Name);
-
+            myButton_StartOver.Visible = false;
 
             MainForm.PetLifeTick += (s, e) =>
             {
@@ -159,6 +159,7 @@ namespace losos
 
         private void PetDead()
         {
+            myButton_StartOver.Visible = true;
             myButton_Feed.Enabled = false;
             myButton_SelectGame.Enabled = false;
             myButton_Sleep.Enabled = false;
@@ -167,7 +168,17 @@ namespace losos
             PictureBox_PetBox.Image = fishPictures[(int)Pet.LifeStates.Dead];
             this.BackColor = Color.Maroon;
             MessageBox.Show("Your pet " + MainForm.thePet.Name + " has died.", "Pet Dead", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
+
+        public event EventHandler StartOver;
+        private void button_StartOver_Click(object sender, EventArgs e)
+        {
+            myButton_StartOver.Visible = false;
+            StartOver?.Invoke(this, EventArgs.Empty);
+            
+        }
+
 
         #endregion
 

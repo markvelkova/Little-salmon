@@ -25,6 +25,7 @@ namespace losos
             InitializeComponent();
             petLifeTimer.Tick += petLifeTimer_Tick;
             MainScreen.GamesButtonClicked += (s, e) => ShowGames();
+            MainScreen.StartOver += (s, e) => ShowIntro();
             ShowIntro();
         }
 
