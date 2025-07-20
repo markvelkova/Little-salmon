@@ -203,8 +203,8 @@ namespace pet
             if (!IsDirty)
             {
                 _ticksSinceDirty++;
-                int prob = rnd.Next(_ticksSinceDirty, 300);
-                if (prob >= 280)
+                int prob = rnd.Next(_ticksSinceDirty, 500);
+                if (prob >= 475)
                 {
                     IsDirty = true;
                     _ticksSinceDirty = 0; // reset the dirty ticks counter

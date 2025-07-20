@@ -36,6 +36,8 @@ namespace losos
         {
             InitializeComponent();
 
+            this.BackColor = MainForm.MyDefaultBackColor; // set the background color to the default one
+
             this.SetStyle(ControlStyles.Selectable, true);
             this.TabStop = true;
             this.Focus();
