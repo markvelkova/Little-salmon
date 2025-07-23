@@ -1,4 +1,4 @@
-﻿namespace losos
+﻿namespace LittleSalmon
 {
     partial class UCIntro
     {

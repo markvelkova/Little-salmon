@@ -1,4 +1,4 @@
-﻿namespace games
+﻿namespace Games
 {
     /// <summary>
     /// this is the classic game of heads or tails

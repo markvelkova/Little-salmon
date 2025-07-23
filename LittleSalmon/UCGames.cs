@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace losos
+namespace LittleSalmon
 {
     public partial class UCGames : UserControl
     {
@@ -32,7 +32,7 @@ namespace losos
             int initialX = 150;
             int initialY = 30;
             int numberOfGames = Enum.GetNames(typeof(Games)).Length;
-            int spacing = (540 - (numberOfGames * 100)) / (numberOfGames -1); // calculate spacing based on the number of games
+            int spacing = (540 - (numberOfGames * 100)) / (numberOfGames -1); // calculate spacing based on the number of Games
             Games[] gameValues = (Games[])Enum.GetValues(typeof(Games));
 
             for (int i = 0; i < numberOfGames; i++)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace losos
+namespace LittleSalmon
 {
     /// <summary>
     /// wrapper over delegate for getter of a property given

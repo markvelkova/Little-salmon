@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using stats;
-using pet;
+using Stats;
+using Pet;
 using System.Text.Json;
 
-namespace losos
+namespace LittleSalmon
 {
     internal static class FileHelper
     {

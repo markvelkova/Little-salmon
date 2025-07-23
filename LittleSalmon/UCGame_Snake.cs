@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace losos
+namespace LittleSalmon
 {
     public partial class UCGame_Snake : GamesUserControlParent
     {
@@ -80,8 +80,8 @@ namespace losos
             Timer_GameTimer.Stop();
             myButton_Return.Enabled = true;
             myButton_Start.Enabled = true;
-            UpdateStats(); // Update the stats with the total reward and the record, if neccwessary
-            MainForm.thePet.AddFood(TotalReward); // Add the total reward to the pet's food count
+            UpdateStats(); // Update the Stats with the total reward and the record, if neccwessary
+            MainForm.thePet.AddFood(TotalReward); // Add the total reward to the Pet's food count
             MessageBox.Show("Game Over! You collided with yourself.");
         }
 

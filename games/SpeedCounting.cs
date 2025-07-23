@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static games.SpeedCounting;
+using static Games.SpeedCounting;
 
-namespace games
+namespace Games
 {
 
     public static class SpeedCounting

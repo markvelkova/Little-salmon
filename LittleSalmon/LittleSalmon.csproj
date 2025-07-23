@@ -33,7 +33,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\basicFishIcons.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\coinIcons.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

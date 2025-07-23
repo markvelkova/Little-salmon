@@ -1,8 +1,8 @@
-using games;
-using pet;
+using Games;
+using Pet;
 using System.Security.Cryptography.X509Certificates;
 
-namespace losos
+namespace LittleSalmon
 {
     internal static class Program
     {

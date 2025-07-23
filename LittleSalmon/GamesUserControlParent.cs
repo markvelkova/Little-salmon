@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CustomControls;
 
-namespace losos
+namespace LittleSalmon
 {
     public partial class GamesUserControlParent : UserControl
     {

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using games;
+using Games;
 
-namespace losos
+namespace LittleSalmon
 {
     public partial class UCGame_StarrySky : GamesUserControlParent
     {
@@ -76,7 +76,7 @@ namespace losos
             MessageBox.Show("Time over! You clicked " + numberOfClicks + " times and earned a total reward of " + ((int)totalReward).ToString() + " food.", "Time Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             MainForm.thePet.FoodCount += (int)totalReward; // add the reward to the current food count
-            UpdateStats(); // update the stats
+            UpdateStats(); // update the Stats
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace losos
         }
 
         /// <summary>
-        /// resets game stats for the next game
+        /// resets game Stats for the next game
         /// specifically: number of clicks, total reward, countdown time, and game duration.
         /// </summary>
         private void ResetForNextGame()

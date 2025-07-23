@@ -8,9 +8,9 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using pet;
+using Pet;
 
-namespace losos
+namespace LittleSalmon
 {
 
 
@@ -18,7 +18,7 @@ namespace losos
     {
         private int _iconWidth { get; } = 256;
         private Bitmap[] fishPictures; // icons for the fish
-        private DateTime fallenAsleep; // when the pet fell asleep, used for sleeping time calculation
+        private DateTime fallenAsleep; // when the Pet fell asleep, used for sleeping time calculation
         private MeterDisplayer[] meterDisplayers;
         
 
@@ -51,7 +51,7 @@ namespace losos
             TextBox_NewNameBox.Visible = false;
            
             Button_ChangeNameSubmit.Visible = false;
-            TextBox_Stats.Visible = false; // hide the stats text box initially
+            TextBox_Stats.Visible = false; // hide the Stats text box initially
 
             this.BackColor = MainForm.MyDefaultBackColor;
 
@@ -108,7 +108,7 @@ namespace losos
 
 
         /// <summary>
-        /// Updates the pet's status display with current values from the pet object.
+        /// Updates the Pet's status display with current values from the Pet object.
         /// </summary>
         private void UpdatePetStatusDisplay()
         {
@@ -165,7 +165,7 @@ namespace losos
             myButton_Sleep.Enabled = false;
             Label_Name.Text = "Your pet " + MainForm.thePet.Name + " has died.";
             UsefulForDesign.CenterControlHorizontally(Label_Name);
-            PictureBox_PetBox.Image = fishPictures[(int)Pet.LifeStates.Dead];
+            PictureBox_PetBox.Image = fishPictures[(int)Pet.Pet.LifeStates.Dead];
             this.BackColor = Color.Maroon;
             MessageBox.Show("Your pet " + MainForm.thePet.Name + " has died.", "Pet Dead", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -229,23 +229,23 @@ namespace losos
         /// </summary>
         private void button_Feed_Click(object sender, EventArgs e)
         {
-            Pet.FeedingResult result = MainForm.thePet.TryFeed();
+            Pet.Pet.FeedingResult result = MainForm.thePet.TryFeed();
             switch (result)
             {
-                case Pet.FeedingResult.Successful:
+                case Pet.Pet.FeedingResult.Successful:
                     MainForm.theStats.AdjustStat("Food units fed", 1);
                     UpdateStats();
                     ReportToUser("You fed your pet " + MainForm.thePet.Name + ".");
                     break;
-                case Pet.FeedingResult.Fell:
+                case Pet.Pet.FeedingResult.Fell:
                     MainForm.theStats.AdjustStat("Food units fell", 1);
                     UpdateStats();
                     ReportToUser("Yay, the food must have fallen somewhere...");
                     break;
-                case Pet.FeedingResult.NoFood:
+                case Pet.Pet.FeedingResult.NoFood:
                     ReportToUser("You have NO food to feed your pet.");
                     break;
-                case Pet.FeedingResult.TooMuch:
+                case Pet.Pet.FeedingResult.TooMuch:
                     ReportToUser("You overfed your pet " + MainForm.thePet.Name + ".");
                     break;
             }
@@ -268,17 +268,17 @@ namespace losos
         }
         private void button_Sleep_Click(object sender, EventArgs e)
         {
-            if (MainForm.thePet.LifeState == Pet.LifeStates.Awake)
+            if (MainForm.thePet.LifeState == Pet.Pet.LifeStates.Awake)
             {
                 MainForm.thePet.Sleep();
-                fallenAsleep = DateTime.Now; // record the time when the pet fell asleep
+                fallenAsleep = DateTime.Now; // record the time when the Pet fell asleep
                 ReportToUser("Your pet " + MainForm.thePet.Name + " fell asleep.");
                 SleepUpdateComponents();
                 UpdatePetStatusDisplay();
             }
             else
             {
-                TimeSpan timeSlept = DateTime.Now - fallenAsleep; // calculate how long the pet has been asleep
+                TimeSpan timeSlept = DateTime.Now - fallenAsleep; // calculate how long the Pet has been asleep
                 MainForm.theStats.AdjustStat("Seconds slept", (int)timeSlept.TotalSeconds);
                 MainForm.thePet.WakeUp();
                 ReportToUser("Your pet " + MainForm.thePet.Name + " woke up.");

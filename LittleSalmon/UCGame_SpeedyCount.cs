@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using games;
+using Games;
 
-namespace losos
+namespace LittleSalmon
 {
     public enum GameMode { easy = 1, medium = 2, hard = 3, insane = 5 };
     public partial class UCGame_SpeedyCount : GamesUserControlParent

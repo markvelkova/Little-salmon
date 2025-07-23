@@ -1,5 +1,5 @@
-﻿using pet;
-using stats;
+﻿using Pet;
+using Stats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +7,13 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace losos
+namespace LittleSalmon
 {
     public class SerializationUnit
     {
-        public Pet pet { get; set; }
-        public Stats stats { get; set; }
-        public SerializationUnit(Pet pet, Stats stats)
+        public Pet.Pet pet { get; set; }
+        public Stats.Stats stats { get; set; }
+        public SerializationUnit(Pet.Pet pet, Stats.Stats stats)
         {
             this.pet = pet;
             this.stats = stats;
@@ -26,8 +26,8 @@ namespace losos
             string petJson = root.GetProperty("pet").GetRawText();
             string statsJson = root.GetProperty("stats").GetRawText();
 
-            pet = Pet.DeserializeFromJson(petJson);
-            stats = Stats.DeserializeFromJson(statsJson);
+            pet = Pet.Pet.DeserializeFromJson(petJson);
+            stats = Stats.Stats.DeserializeFromJson(statsJson);
         }
         public string SerializeToJson()
         {

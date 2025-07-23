@@ -1,23 +1,23 @@
-using games;
+using Games;
 using System.Windows.Forms;
-using pet;
-using stats;
+using Pet;
+using Stats;
 
-namespace losos
+namespace LittleSalmon
 {
     public partial class MainForm : Form
     {
         // thePet is STATIC therefore only one at time
         // can be reached from anywhere as MainForm.Pet
-        // same for the stats
-        public static Pet thePet = new();
-        public static Stats theStats = new();
+        // same for the Stats
+        public static Pet.Pet thePet = new();
+        public static Stats.Stats theStats = new();
         System.Windows.Forms.Timer petLifeTimer = new System.Windows.Forms.Timer
         {
             Interval = 1000 // 1 second interval
         };
 
-        // MainScreen is the main screen of the application with pet display
+        // MainScreen is the main screen of the application with Pet display
         private UCMain MainScreen = new UCMain();
 
         public MainForm()
@@ -38,7 +38,7 @@ namespace losos
 
         #region time flow
         /// <summary>
-        /// Event that is raised when the pet dies.
+        /// Event that is raised when the Pet dies.
         /// </summary>
         public static event EventHandler? PetDead;
         private void HandlePetDeath()
@@ -48,15 +48,15 @@ namespace losos
         }
 
         /// <summary>
-        /// event that is raised every second to update the pet's life state.
-        /// UCMain uses this event to update the pet's display and stats.
+        /// event that is raised every second to update the Pet's life state.
+        /// UCMain uses this event to update the Pet's display and Stats.
         /// </summary>
         public static event EventHandler? PetLifeTick;
         private void petLifeTimer_Tick(object? sender, EventArgs e)
         {
-            if (thePet.LifeState != Pet.LifeStates.Dead)
+            if (thePet.LifeState != Pet.Pet.LifeStates.Dead)
                 thePet.Update();
-            if (thePet.LifeState == Pet.LifeStates.Dead)
+            if (thePet.LifeState == Pet.Pet.LifeStates.Dead)
             {
                 HandlePetDeath();
             }
@@ -70,7 +70,7 @@ namespace losos
         /// </summary>
         private void ShowIntro()
         {
-            petLifeTimer.Stop(); // start the pet life timer
+            petLifeTimer.Stop(); // start the Pet life timer
             var intro = new UCIntro();
             intro.StartNewGameClicked += (s, e) => ShowMain();
             intro.LoadGameClicked += (s, e) => ShowMain();
@@ -79,14 +79,14 @@ namespace losos
 
         /// <summary>
         /// from the "Main" screen the player can choose from following:
-        /// games
+        /// Games
         /// feed
         /// sleep
         /// wash
         /// </summary>
         private void ShowMain()
         {
-            petLifeTimer.Start(); // start the pet life timer
+            petLifeTimer.Start(); // start the Pet life timer
             SwitchScreen(MainScreen);
         }
 
@@ -96,7 +96,7 @@ namespace losos
         private void ShowGames()
         {
             var games = new UCGames();
-            thePet.PlayingGames = false; // the player does not play games any more
+            thePet.PlayingGames = false; // the player does not play Games any more
             games.ReturnSelected += (s, e) => ShowMain();
             games.FlipACoinSelected += (s,e) => GameScreenShow(new UCGame_HeadsOrTails());
             games.StarrySkySelected += (s, e) => GameScreenShow(new UCGame_StarrySky());
@@ -109,7 +109,7 @@ namespace losos
 
         private void GameScreenShow(GamesUserControlParent gameScreen)
         {
-            thePet.PlayingGames = true; // set the pet to playing games state
+            thePet.PlayingGames = true; // set the Pet to playing Games state
             gameScreen.ReturnSelected += (s, e) => ShowGames();
             SwitchScreen(gameScreen);
         }

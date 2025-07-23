@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace stats
+namespace Stats
 {
     public class Stats
     {

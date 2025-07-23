@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using games;
+using Games;
 using System.Diagnostics.Eventing.Reader;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace losos
+namespace LittleSalmon
 {
     /// <summary>
-    /// together with ../games/Game_HeadsOrTails does the flip the coin game
+    /// together with ../Games/Game_HeadsOrTails does the flip the coin game
     /// player can either bet on heads or tails or just flip
     /// bad bet result - 1
     /// good bet result - 1
@@ -105,7 +105,7 @@ namespace losos
         {
             LabelSetResult(_labelsDefeated);
 
-            if (MainForm.thePet.FoodCount >= Reward) // cap on 0, so that the pet doesn't have negative nuber of food
+            if (MainForm.thePet.FoodCount >= Reward) // cap on 0, so that the Pet doesn't have negative nuber of food
             {
                 MainForm.thePet.AddFood(-Reward);
                 _soFarWon -= Reward;

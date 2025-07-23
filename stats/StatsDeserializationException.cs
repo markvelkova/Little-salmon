@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace stats
+namespace Stats
 {
 
     public class StatsDeserializationException : Exception

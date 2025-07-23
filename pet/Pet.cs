@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace pet
+namespace Pet
 {
     /// <summary>
     /// Pet is the key compomenent
@@ -23,7 +23,7 @@ namespace pet
 
         // dirty stuff
         public bool IsDirty { get; private set; }
-        private int _ticksSinceDirty = 0; // how many ticks since the pet was dirty, used to update the dirty state of the pet
+        private int _ticksSinceDirty = 0; // how many ticks since the Pet was dirty, used to update the dirty state of the Pet
         private int _minCleanReward = 5;
         private int _maxCleanReward = 12;
 
@@ -64,7 +64,7 @@ namespace pet
         public enum LifeStates { Awake, Asleep, Dead };
         public LifeStates LifeState { get; set; }
 
-        //creates new pet
+        //creates new Pet
         public Pet() 
         {
             Name = "Give me a name :(";
@@ -75,7 +75,7 @@ namespace pet
             LifeState = LifeStates.Awake;
         }
 
-        //creates pet from file
+        //creates Pet from file
         public Pet(string filename) => throw new NotImplementedException();
 
         #region serialization and deserialization
@@ -104,7 +104,7 @@ namespace pet
 
         #region feeding
         /// <summary>
-        /// Tries to feed the pet and if successful, performs the feeding or overfeeding action.
+        /// Tries to feed the Pet and if successful, performs the feeding or overfeeding action.
         /// </summary>
         /// <returns>
         /// FeedingResult.NoFood if no food
@@ -141,7 +141,7 @@ namespace pet
         }
 
         /// <summary>
-        /// Does the feeding itself, randomly choses the amount of food fed to the pet and increases  the hunger meter by that amount.
+        /// Does the feeding itself, randomly choses the amount of food fed to the Pet and increases  the hunger meter by that amount.
         /// </summary>
         private void Feed()
         {
@@ -151,7 +151,7 @@ namespace pet
         private void OverFeed()
         {
             int amount = rnd.Next(_minFoodFed, _maxFoodFed);
-            BeSad(amount); // overfeeding makes the pet sad
+            BeSad(amount); // overfeeding makes the Pet sad
         }
         #endregion
 
@@ -170,7 +170,7 @@ namespace pet
 
         #region adding food
         /// <summary>
-        /// Adds or substracts food to the pet's food count, cap on 0
+        /// Adds or substracts food to the Pet's food count, cap on 0
         /// </summary>
         public void AddFood(int amount)
         {
@@ -181,14 +181,14 @@ namespace pet
 
         #region sleeping
         /// <summary>
-        /// sets life state to asleep, which means the pet is sleeping and its energy meter will go up
+        /// sets life state to asleep, which means the Pet is sleeping and its energy meter will go up
         /// </summary>
         public void Sleep()
         {
             LifeState = LifeStates.Asleep;
         }
         /// <summary>
-        /// sets life state to awake, which means the pet is awake and its energy meter will go down
+        /// sets life state to awake, which means the Pet is awake and its energy meter will go down
         /// </summary>
         public void WakeUp()
         {
@@ -272,7 +272,7 @@ namespace pet
                         UpdateMoodAwake();
                     break;
                 case LifeStates.Asleep:
-                    if (EnergyMeter >= 100) // in this case the pet doesn't need to sleep anymore and starts to feel hunger and bad mood again
+                    if (EnergyMeter >= 100) // in this case the Pet doesn't need to sleep anymore and starts to feel hunger and bad mood again
                     {
                         UpdateHungerAwake();
                         UpdateMoodAwake();

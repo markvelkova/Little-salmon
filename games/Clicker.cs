@@ -2,7 +2,7 @@
 using System.Drawing;
 
 
-namespace games
+namespace Games
 {
     public static class Clicker
     {
