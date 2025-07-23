@@ -38,8 +38,8 @@
             Label_MaxOperandsLabel = new Label();
             Label_CurrentRewardDisplay = new Label();
             Label_CurrentRewardLabel = new Label();
-            myButton_Return = new WinFormsControlLibrary1.MyButton();
-            myButton_Start = new WinFormsControlLibrary1.MyButton();
+            myButton_Return = new CustomControls.MyButton();
+            myButton_Start = new CustomControls.MyButton();
             ((System.ComponentModel.ISupportInitialize)Numeric_MaxOpNum).BeginInit();
             SuspendLayout();
             // 
@@ -184,7 +184,7 @@
         private Label Label_MaxOperandsLabel;
         private Label Label_CurrentRewardDisplay;
         private Label Label_CurrentRewardLabel;
-        private WinFormsControlLibrary1.MyButton myButton_Return;
-        private WinFormsControlLibrary1.MyButton myButton_Start;
+        private CustomControls.MyButton myButton_Return;
+        private CustomControls.MyButton myButton_Start;
     }
 }

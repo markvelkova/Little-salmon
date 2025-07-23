@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pet", "pet\pet.csproj", "{A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "stats", "stats\stats.csproj", "{CE025B80-B4E5-498C-A15E-AC7FB0809A28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControls", "WinFormsControlLibrary1\CustomControls.csproj", "{CB89AD40-F0AC-42BF-81B2-F518E4C4317C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomControls", "WinFormsControlLibrary1\CustomControls.csproj", "{CB89AD40-F0AC-42BF-81B2-F518E4C4317C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

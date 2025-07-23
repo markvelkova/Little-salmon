@@ -40,22 +40,19 @@ namespace losos
         /// <summary>
         /// Event that is raised when the pet dies.
         /// </summary>
-        public static event EventHandler PetDead;
+        public static event EventHandler? PetDead;
         private void HandlePetDeath()
         {
             petLifeTimer.Stop();
-            if (PetDead != null)
-                PetDead?.Invoke(this, EventArgs.Empty);
+            PetDead?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
         /// event that is raised every second to update the pet's life state.
-        /// this timer is used to update the pet's life state
-        /// it can be used to update the pet's stats, like hunger, energy, mood
-        /// and also to check if the pet is dead
+        /// UCMain uses this event to update the pet's display and stats.
         /// </summary>
-        public static event EventHandler PetLifeTick;
-        private void petLifeTimer_Tick(object sender, EventArgs e)
+        public static event EventHandler? PetLifeTick;
+        private void petLifeTimer_Tick(object? sender, EventArgs e)
         {
             if (thePet.LifeState != Pet.LifeStates.Dead)
                 thePet.Update();
@@ -63,8 +60,7 @@ namespace losos
             {
                 HandlePetDeath();
             }
-            if (PetLifeTick != null)
-                PetLifeTick?.Invoke(this, EventArgs.Empty); // raise the event (contains things from UCMain)
+            PetLifeTick?.Invoke(this, EventArgs.Empty); // raise the event (contains things from UCMain)
         }
         #endregion
 
@@ -91,7 +87,6 @@ namespace losos
         private void ShowMain()
         {
             petLifeTimer.Start(); // start the pet life timer
-            
             SwitchScreen(MainScreen);
         }
 
@@ -212,9 +207,5 @@ namespace losos
         }
 
         #endregion
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

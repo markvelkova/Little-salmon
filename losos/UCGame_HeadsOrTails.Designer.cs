@@ -32,12 +32,12 @@
             Label_Result = new Label();
             Label_WinSoFar = new Label();
             Label_CurrentFoodCount = new Label();
-            myButton_ResetFairness = new WinFormsControlLibrary1.MyButton();
-            myButton_Randomize = new WinFormsControlLibrary1.MyButton();
-            myButton_HeadsBet = new WinFormsControlLibrary1.MyButton();
-            myButton_JustFlip = new WinFormsControlLibrary1.MyButton();
-            myButton_TailsBet = new WinFormsControlLibrary1.MyButton();
-            myButton_Return = new WinFormsControlLibrary1.MyButton();
+            myButton_ResetFairness = new CustomControls.MyButton();
+            myButton_Randomize = new CustomControls.MyButton();
+            myButton_HeadsBet = new CustomControls.MyButton();
+            myButton_JustFlip = new CustomControls.MyButton();
+            myButton_TailsBet = new CustomControls.MyButton();
+            myButton_Return = new CustomControls.MyButton();
             ((System.ComponentModel.ISupportInitialize)coinPicture).BeginInit();
             SuspendLayout();
             // 
@@ -195,11 +195,11 @@
         private Button button_ReturnButton;
         private Label Label_WinSoFar;
         private Label Label_CurrentFoodCount;
-        private WinFormsControlLibrary1.MyButton myButton_ResetFairness;
-        private WinFormsControlLibrary1.MyButton myButton_Randomize;
-        private WinFormsControlLibrary1.MyButton myButton_HeadsBet;
-        private WinFormsControlLibrary1.MyButton myButton_JustFlip;
-        private WinFormsControlLibrary1.MyButton myButton_TailsBet;
-        private WinFormsControlLibrary1.MyButton myButton_Return;
+        private CustomControls.MyButton myButton_ResetFairness;
+        private CustomControls.MyButton myButton_Randomize;
+        private CustomControls.MyButton myButton_HeadsBet;
+        private CustomControls.MyButton myButton_JustFlip;
+        private CustomControls.MyButton myButton_TailsBet;
+        private CustomControls.MyButton myButton_Return;
     }
 }

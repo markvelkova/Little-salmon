@@ -178,9 +178,9 @@ namespace losos
         /// <param name="e"></param>
         private void StarrySky_MouseClick(object sender, MouseEventArgs e)
         {
-            if (Timer_GameTimer.Enabled == true) // only if game is running
+            if (Timer_GameTimer.Enabled == true && sender is PictureBox) // only if game is running
             {
-                PictureBox pb = sender as PictureBox;
+                PictureBox pb = (PictureBox)sender;
                 Bitmap bmp = (Bitmap)pb.Image;
 
                 int x = e.X;

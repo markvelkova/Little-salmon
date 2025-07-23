@@ -46,7 +46,6 @@
             Name = "MainForm";
             Text = "losos";
             FormClosing += DisplayFormClosingReaction;
-            Load += Form1_Load;
             ResumeLayout(false);
         }
 

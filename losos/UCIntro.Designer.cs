@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             openFileDialog = new OpenFileDialog();
-            myButton_StartNewGame = new WinFormsControlLibrary1.MyButton();
-            myButton_LoadGame = new WinFormsControlLibrary1.MyButton();
+            myButton_StartNewGame = new CustomControls.MyButton();
+            myButton_LoadGame = new CustomControls.MyButton();
             SuspendLayout();
             // 
             // openFileDialog
@@ -74,7 +74,7 @@
 
         #endregion
         private OpenFileDialog openFileDialog;
-        private WinFormsControlLibrary1.MyButton myButton_StartNewGame;
-        private WinFormsControlLibrary1.MyButton myButton_LoadGame;
+        private CustomControls.MyButton myButton_StartNewGame;
+        private CustomControls.MyButton myButton_LoadGame;
     }
 }

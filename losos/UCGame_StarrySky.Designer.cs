@@ -37,8 +37,8 @@
             Label_Clicks = new Label();
             Timer_GameTimer = new System.Windows.Forms.Timer(components);
             Timer_ChangeImage = new System.Windows.Forms.Timer(components);
-            myButton_Start = new WinFormsControlLibrary1.MyButton();
-            myButton_Return = new WinFormsControlLibrary1.MyButton();
+            myButton_Start = new CustomControls.MyButton();
+            myButton_Return = new CustomControls.MyButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Sky).BeginInit();
             SuspendLayout();
             // 
@@ -163,7 +163,7 @@
         private Label Label_Clicks;
         private System.Windows.Forms.Timer Timer_GameTimer;
         private System.Windows.Forms.Timer Timer_ChangeImage;
-        private WinFormsControlLibrary1.MyButton myButton_Start;
-        private WinFormsControlLibrary1.MyButton myButton_Return;
+        private CustomControls.MyButton myButton_Start;
+        private CustomControls.MyButton myButton_Return;
     }
 }

@@ -29,11 +29,10 @@ namespace games
             string EquationString { get; } // string representation of the equation, can be used to display the equation
             public UserCalculationResult CheckUserResult(string userResult);
         }
+
         
         public class SimpleEquation : IEquation
         {
-            
-
             public static Random rnd = new Random();
             
             public int[] Operands { get; private set; } // operands of the equation

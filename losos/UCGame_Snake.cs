@@ -111,7 +111,7 @@ namespace losos
                    keyData == Keys.Up || keyData == Keys.Down || base.IsInputKey(keyData);
         }
 
-        public void Snake_KeyDown(object sender, KeyEventArgs e)
+        public void Snake_KeyDown(object? sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -133,7 +133,7 @@ namespace losos
                     break;
             }
         }
-        private void Snake_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void Snake_PreviewKeyDown(object? sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down ||
                 e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)

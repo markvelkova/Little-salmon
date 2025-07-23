@@ -23,7 +23,7 @@ namespace losos
         }
 
         #region start new game
-        public event EventHandler StartNewGameClicked; // here are stacked requests from outside
+        public event EventHandler? StartNewGameClicked; // here are stacked requests from outside
         private void btnStartNewGame_Click(object sender, EventArgs e)
         {
             MainForm.thePet = new Pet(); // create a new pet instance
@@ -32,7 +32,7 @@ namespace losos
         #endregion
 
         #region load game
-        public event EventHandler LoadGameClicked; 
+        public event EventHandler? LoadGameClicked; 
         private void button_LoadGame_Click(object sender, EventArgs e)
         {
 

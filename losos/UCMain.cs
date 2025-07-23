@@ -171,7 +171,7 @@ namespace losos
 
         }
 
-        public event EventHandler StartOver;
+        public event EventHandler? StartOver;
         private void button_StartOver_Click(object sender, EventArgs e)
         {
             myButton_StartOver.Visible = false;
@@ -215,7 +215,7 @@ namespace losos
         #endregion
 
         #region games button
-        public event EventHandler GamesButtonClicked;
+        public event EventHandler? GamesButtonClicked;
         private void button_GamesButton_Click(object sender, EventArgs e)
         {
             GamesButtonClicked?.Invoke(this, EventArgs.Empty);

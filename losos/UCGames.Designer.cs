@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            myButton_Return = new WinFormsControlLibrary1.MyButton();
+            myButton_Return = new CustomControls.MyButton();
             SuspendLayout();
             // 
             // myButton_Return
@@ -58,6 +58,6 @@
         }
 
         #endregion
-        private WinFormsControlLibrary1.MyButton myButton_Return;
+        private CustomControls.MyButton myButton_Return;
     }
 }

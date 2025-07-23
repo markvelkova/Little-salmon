@@ -41,13 +41,13 @@
             Panel_Energy = new Panel();
             Panel_Mood = new Panel();
             Panel_Hunger = new Panel();
-            myButton_ChooseColour = new WinFormsControlLibrary1.MyButton();
-            myButton_ShowStats = new WinFormsControlLibrary1.MyButton();
-            myButton_SelectGame = new WinFormsControlLibrary1.MyButton();
-            myButton_Feed = new WinFormsControlLibrary1.MyButton();
-            myButton_Sleep = new WinFormsControlLibrary1.MyButton();
+            myButton_ChooseColour = new CustomControls.MyButton();
+            myButton_ShowStats = new CustomControls.MyButton();
+            myButton_SelectGame = new CustomControls.MyButton();
+            myButton_Feed = new CustomControls.MyButton();
+            myButton_Sleep = new CustomControls.MyButton();
             pictureBox_Dirty = new PictureBox();
-            myButton_StartOver = new WinFormsControlLibrary1.MyButton();
+            myButton_StartOver = new CustomControls.MyButton();
             ((System.ComponentModel.ISupportInitialize)PictureBox_PetBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Dirty).BeginInit();
             SuspendLayout();
@@ -324,12 +324,12 @@
         private Panel Panel_Energy;
         private Panel Panel_Mood;
         private Panel Panel_Hunger;
-        private WinFormsControlLibrary1.MyButton myButton_ChooseColour;
-        private WinFormsControlLibrary1.MyButton myButton_ShowStats;
-        private WinFormsControlLibrary1.MyButton myButton_SelectGame;
-        private WinFormsControlLibrary1.MyButton myButton_Feed;
-        private WinFormsControlLibrary1.MyButton myButton_Sleep;
+        private CustomControls.MyButton myButton_ChooseColour;
+        private CustomControls.MyButton myButton_ShowStats;
+        private CustomControls.MyButton myButton_SelectGame;
+        private CustomControls.MyButton myButton_Feed;
+        private CustomControls.MyButton myButton_Sleep;
         private PictureBox pictureBox_Dirty;
-        private WinFormsControlLibrary1.MyButton myButton_StartOver;
+        private CustomControls.MyButton myButton_StartOver;
     }
 }

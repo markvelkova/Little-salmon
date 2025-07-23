@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsControlLibrary1
+namespace CustomControls
 {
     [System.ComponentModel.DesignerCategory("Code")]
     public class MyButton : Button

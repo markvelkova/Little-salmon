@@ -15,8 +15,7 @@ namespace losos
     public partial class UCGame_SpeedyCount : GamesUserControlParent
     {
         private string equationLabelDefaultText = "?????"; // default text for the equation label
-        private SpeedCounting.SimpleEquation CurrentEquation;
-        private int Reward = 0;
+        private SpeedCounting.SimpleEquation? CurrentEquation;
         private int TimeLimit { get; set; } = 600; // time limit in seconds, default is 60 seconds - 600 tenths of second
         private int TimeLeft { get; set; }
         private GameMode currentGameMode = GameMode.easy; // current game mode, default is easy
@@ -41,6 +40,8 @@ namespace losos
             UsefulForDesign.CenterControlHorizontally(TextBox_Answer); // center the answer text box horizontally
             UsefulForDesign.CenterControlHorizontally(Panel_Time); // center the time panel horizontally
             myButton_Start.Text = "START";
+
+            UserCalculationResults = new();
 
         }
 
@@ -143,19 +144,23 @@ namespace losos
             SpeedCounting.MaxOperands = (int)Numeric_MaxOpNum.Value;
 
         }
-        private void checkedListBox_OnlyOneItemCheck(object sender, ItemCheckEventArgs e)
+        private void checkedListBox_OnlyOneItemCheck(object? sender, ItemCheckEventArgs e)
         {
-            CheckedListBox clb = sender as CheckedListBox;
-            if (e.NewValue == CheckState.Checked)
+            if (sender != null && (sender is CheckedListBox)) 
             {
-                for (int i = 0; i < clb.Items.Count; i++)
+                CheckedListBox clb = (CheckedListBox)sender;
+                if (e.NewValue == CheckState.Checked)
                 {
-                    if (i != e.Index)
+                    for (int i = 0; i < clb.Items.Count; i++)
                     {
-                        clb.SetItemChecked(i, false);
+                        if (i != e.Index)
+                        {
+                            clb.SetItemChecked(i, false);
+                        }
                     }
                 }
             }
+            
         }
 
         private void EndGame()
@@ -214,22 +219,26 @@ namespace losos
 
         private void GetAndCheckAnswer()
         {
-            SpeedCounting.UserCalculationResult userResult = CurrentEquation.CheckUserResult(TextBox_Answer.Text);
-            if (userResult.IsCorrect)
+            if (CurrentEquation != null)
             {
-                HandleGoodAnswer();
+                SpeedCounting.UserCalculationResult userResult = CurrentEquation.CheckUserResult(TextBox_Answer.Text);
+                if (userResult.IsCorrect)
+                {
+                    HandleGoodAnswer();
+                }
+                else // invalid or wrong
+                {
+                    HandleBadAnswer();
+                }
+                UserCalculationResults.Add(userResult); // add the user result to the list of results
             }
-            else // invalid or wrong
-            {
-                HandleBadAnswer();
-            }
-            UserCalculationResults.Add(userResult); // add the user result to the list of results
         }
         #endregion
 
         #region rewards
         private void HandleGoodAnswer()
         {
+            if (CurrentEquation == null) return; // if there is no current equation, do nothing
             TotalReward += (int)currentGameMode * 1 + CurrentEquation.Operands.Length - 2; 
             TextBox_Answer.BackColor = Color.LightGreen; // change the answer text box background color to light green
         }

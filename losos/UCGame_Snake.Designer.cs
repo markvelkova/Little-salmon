@@ -33,8 +33,8 @@
             Timer_GameTimer = new System.Windows.Forms.Timer(components);
             Label_Reward = new Label();
             Label_ArrowHint = new Label();
-            myButton_Return = new WinFormsControlLibrary1.MyButton();
-            myButton_Start = new WinFormsControlLibrary1.MyButton();
+            myButton_Return = new CustomControls.MyButton();
+            myButton_Start = new CustomControls.MyButton();
             SuspendLayout();
             // 
             // Panel_Field
@@ -121,7 +121,7 @@
         private System.Windows.Forms.Timer Timer_GameTimer;
         private Label Label_Reward;
         private Label Label_ArrowHint;
-        private WinFormsControlLibrary1.MyButton myButton_Return;
-        private WinFormsControlLibrary1.MyButton myButton_Start;
+        private CustomControls.MyButton myButton_Return;
+        private CustomControls.MyButton myButton_Start;
     }
 }

@@ -13,10 +13,10 @@ namespace losos
     public partial class UCGames : UserControl
     {
         
-        public event EventHandler FlipACoinSelected;
-        public event EventHandler StarrySkySelected;
-        public event EventHandler SpeedyCountSelected;
-        public event EventHandler SnakeSelected;
+        public event EventHandler? FlipACoinSelected;
+        public event EventHandler? StarrySkySelected;
+        public event EventHandler? SpeedyCountSelected;
+        public event EventHandler? SnakeSelected;
         public UCGames()
         {
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace losos
 
         }
 
-        private void GamePictureBox_Click(object sender, EventArgs e)
+        private void GamePictureBox_Click(object? sender, EventArgs e)
         {
             if (sender is PictureBox pb && pb.Tag is Games selectedGame)
             {
@@ -98,7 +98,7 @@ namespace losos
         private enum Games { HeadsOrTails, StarrySky, Snake, SpeedyCount };
 
 
-        public event EventHandler ReturnSelected;
+        public event EventHandler? ReturnSelected;
         private void button_Return_Click(object sender, EventArgs e)
         {
             ReturnSelected?.Invoke(this, EventArgs.Empty);
