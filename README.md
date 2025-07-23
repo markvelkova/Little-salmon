@@ -1,6 +1,6 @@
 # Term Project for NPRG035 and NPRG038: **Little Salmon - Virtual Pet**
 
-The project is be based on a concept similar to *Pou* or *Tamagotchi*, where the player performs actions that affect the state of their virtual pet and tries to keep it alive for as long as possible.
+The project is based on a concept similar to *Pou* or *Tamagotchi*, where the player performs actions that affect the state of their virtual pet and tries to keep it alive for as long as possible.
 
 ## Player Interaction Flow
 After launching the application, the player reaches the intro menu and can:
